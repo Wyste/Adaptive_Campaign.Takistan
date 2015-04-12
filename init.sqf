@@ -38,6 +38,9 @@ enableSaving [false, false];
 //--- Game Briefing
 [] call compileFinal preprocessfilelinenumbers "scripts\briefings\briefing.sqf";
 
+//--- Task/Mission Definitions
+[] call compileFinal preprocessfilelinenumbers "tasks.sqf";
+
 //--- End Init
 ["Adaptive Intel | AlivE - END OF INIT..."] call ALiVE_fnc_Dump;
 
