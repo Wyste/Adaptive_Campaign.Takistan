@@ -36,6 +36,18 @@ switch (_screenColor) {
 	case "red": {
 		_msg = Format ["<t color='#FF0000'>%1</t>",_screenMsg];
 	};
+  case "green": {
+    _msg = Format ["<t color='#40FF00'>%1</t>",_screenMsg];
+  };
+  case "blue": {
+    _msg = Format ["<t color='#0040FF'>%1</t>",_screenMsg];
+  };
+  case "yellow": {
+    _msg = Format ["<t color='#FFFF00'>%1</t>",_screenMsg];
+  };
+  case "purple": {
+    _msg = Format ["<t color='#8000FF'>%1</t>",_screenMsg];
+  };
 };
 
 if(isNull _object) exitWith {};
