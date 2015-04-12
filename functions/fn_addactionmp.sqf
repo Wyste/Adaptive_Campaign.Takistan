@@ -34,7 +34,7 @@ _screenColor = _this select 5;
 
 switch (_screenColor) {
 	case "red": {
-		_msg = "<t color='#FF0000'>"
+		_msg = Format ["<t color='#FF0000'>%1</t>",_screenMsg];
 	};
 };
 
