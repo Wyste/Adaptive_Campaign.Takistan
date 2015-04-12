@@ -26,10 +26,16 @@ AIO_T2TASKS = []; //--- These are the main missions, required to win the game.
 AIO_T3TASKS = []; //--- These are special, rarely follow after T2.(10%)
 
 // Format : ["taskID","TaskName","TaskDesc","AreaToUse"]
-private ["newtask"];
+private ["_newtask"];
 for "_i" from 0 to 4 do
 {
-  _newtask = [_i,"Gather Intellegence","Gather intellegence from %1.",[AIO_SmCITY,AIO_VILLIAGE]];
+  _newtask = [_i,"Gather Intel","Gather Intellegence","Gather intellegence from %1.","spawnintel.sqf",[AIO_SmCITY,AIO_VILLIAGE]];
   AIO_T1TASKS = AIO_T1TASKS + _newtask;
 };
 
+/*
+0 = ID
+1 = AddAction Name
+2 = TaskName
+3 = TaskDesc
+4 = Areas to Use

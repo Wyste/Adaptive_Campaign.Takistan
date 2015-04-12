@@ -6,30 +6,23 @@
         / _ | ______/_/ / _ | |_  /
        / __ |/ __/  ' \/ __ |_/_ <
       /_/ |_/_/ /_/_/_/_/ |_/____/
-                                                    @filename: cfgfunctions.hpp
+                                                @filename: fn_gettaskdetail.sqf
 
 Author:
 
-	Wyste / BBrown
-
+	Wyste
 Last modified:
 
-	2/11/2015
+	4/12/2015
 
 Description:
 
-	Creates and appends AIO_FNC to each function listed.
+  Gets a detail of the defined task
+_____________________________________________________________________________*/
 
-______________________________________________________*/
-
-class INS
-{
-	tag = "AIO";
-	class functions
-	{
-		file = "functions";
-		class areas {};
-		class toggletaskavail {};
-		class gettaskdetail {};
-	};
-};
+private["_taskArray","_taskID","_result","_detail"];
+_taskArray = _this select 0;
+_taskID = _this select 1;
+_detail = _this select 2;
+_result = _taskArray select _taskID select _detail;
+_result;

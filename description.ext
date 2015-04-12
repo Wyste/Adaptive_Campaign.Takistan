@@ -33,7 +33,7 @@ onLoadMission = "Welcome to Adaptive Intel | AlivE.";
 onLoadIntroTime = true;
 onLoadMissionTime = true;
 onLoadName = Insurgency | ALiVE;
-loadScreen = "media\logo_INS.paa";
+//loadScreen = "media\logo_INS.paa";
 
 //--- General Settings
 aiKills = 0;

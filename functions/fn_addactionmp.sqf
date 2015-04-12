@@ -25,11 +25,11 @@ _____________________________________________________________________________*/
 
 private["_object","_screenMsg","_script","_args","_pri","_screenColor","_msg"];
 
-_object 	= _this select 0;
-_screenMsg 	= _this select 1;
-_script 	= _this select 2;
-_args		= _this select 3;
-_pri		= _this select 4;
+_object 	   = _this select 0;
+_screenMsg 	 = _this select 1;
+_script 	   = _this select 2;
+_args		     = _this select 3;
+_pri		     = _this select 4;
 _screenColor = _this select 5;
 
 switch (_screenColor) {
@@ -47,6 +47,9 @@ switch (_screenColor) {
   };
   case "purple": {
     _msg = Format ["<t color='#8000FF'>%1</t>",_screenMsg];
+  };
+  default: {
+    _msg = Format ["%1",_screenMsg];
   };
 };
 

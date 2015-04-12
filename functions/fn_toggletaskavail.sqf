@@ -24,10 +24,15 @@ Usage:
 
 _____________________________________________________________________________*/
 
+
+
+
 private["taskID","tier","makeavail"];
 _taskID = _this select 0;
 _tier = _this select 1;
 _makeavail = _this select 2;
+
+["Adaptive Intel | AlivE - toggletaskavail running..."] call ALiVE_fnc_Dump;
 
 switch (_makeavail) do {
   case true: {
@@ -75,5 +80,3 @@ switch (_makeavail) do {
   };
 
 };
-
-
