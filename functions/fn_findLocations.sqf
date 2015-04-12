@@ -71,6 +71,23 @@ switch (_rtName) do {
     };
     default {
      	_rtPos = _randTown select 1;
+        _rtRadA = _randTown select 2;
+        _rtRadB = _randTown select 3;
+
+        //Cut the radius values in half
+        _rtRadA = _rtRadA / 2;
+        _rtRadB = _rtRadB / 2;
+
+        //Retreive the X and Y positions
+        _rtPosX = _rtPos select 0;
+        _rtPosY = _rtPos select 1;
+
+        //Calculate new X and Y positions
+        _rtPosX = _rtPosX - _rtRadA;
+        _rtPosY = _rtPosY - _rtRadB;
+
+        //Apply new coordinates
+        _rtPos = [_rtPosX, _rtPosY];
     };
 };
 
@@ -78,7 +95,7 @@ _m = createMarker [_rtName, _rtPos];
 _m setMarkerType "hd_dot";
 _m setMarkerColor "ColorBlue";
 _m setMarkerSize [1,1];
-sleep 10;
+sleep 30;
 deleteMarker _m;
 
 /*
