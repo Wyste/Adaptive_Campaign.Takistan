@@ -6,7 +6,7 @@
         / _ | ______/_/ / _ | |_  /
        / __ |/ __/  ' \/ __ |_/_ <
       /_/ |_/_/ /_/_/_/_/ |_/____/
-                                                   @filename: fn_addationmp.sqf
+                                                  @filename: fn_addactionmp.sqf
 
 Author:
 
@@ -23,12 +23,22 @@ Usage:
 	[[_item,"<t color='#FF0000'>Message</t>"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
 _____________________________________________________________________________*/
 
-private["_object","_screenMsg"];
+private["_object","_screenMsg","_script","_args","_pri","_screenColor","_msg"];
+
 _object 	= _this select 0;
 _screenMsg 	= _this select 1;
 _script 	= _this select 2;
+_args		= _this select 3;
+_pri		= _this select 4;
+_screenColor = _this select 5;
+
+switch (_screenColor) {
+	case "red": {
+		_msg = "<t color='#FF0000'>"
+	};
+};
 
 if(isNull _object) exitWith {};
 
-//--- Add action to object that calls the intel being picked up function.
-_object addaction [_screenMsg,_script, nil, 6, True, True, "", "(_target distance _this) < 6"];
+//--- Add action to object and calls the script specified.
+_object addaction [_msg,_script, _args, _pri, True, True, "", "(_target distance _this) < 6"];

@@ -64,7 +64,7 @@ ______________________________________________________________________________*/
   AIO_WATER     = ["NameMarine"] call AIO_fnc_areas;
 
 //--- Mission Public Variables
-  AIO_T1TASKS_AVL = [1,2,3,4,5];
+  AIO_T1TASKS_AVL = [0,1,2,3,4];
   AIO_T2TASKS_AVL = [];
   AIO_T3TASKS_AVL = [];
   AIO_T1TASKS_NA = [];
