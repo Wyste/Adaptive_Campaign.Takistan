@@ -13,21 +13,15 @@ Author:
 	Wyste
 Last modified:
 
-<<<<<<< HEAD
 	4/12/2015
-=======
-	4/11/2015
->>>>>>> master
+
 Description:
 
 	Removes a task from the global array and puts it in the unavailable array.
 Usage:
 
-<<<<<<< HEAD
 **DO NOT CALL THIS WITH BIS_fnc_MP - THE PUBLIC VARIABLES HANDLE EVERYTHING
-=======
 
->>>>>>> master
 _____________________________________________________________________________*/
 
 private["taskID","tier","makeavail"];
