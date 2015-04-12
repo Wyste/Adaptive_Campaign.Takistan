@@ -29,6 +29,7 @@ class INS
 	{
 		file = "functions";
 		class areas {};
+		class toggletaskavail {};
 
 	};
 };
