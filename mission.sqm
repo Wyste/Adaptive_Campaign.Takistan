@@ -128,7 +128,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="w";
-					init="this addAction[""Find Locations"", ""functions\fn_findLocations.sqf""];";
+					init="this addAction[""Run Test Script"", ""functions\testScript.sqf""];";
 					syncId=0;
 					synchronizations[]={2};
 				};

@@ -28,7 +28,7 @@ class header {
 };
 
 //--- Mission Title
-author = "AEF-Wyste";
+author = "AEF-Wyste & AEF-BBrown";
 onLoadMission = "Welcome to Adaptive Intel | AlivE.";
 onLoadIntroTime = true;
 onLoadMissionTime = true;

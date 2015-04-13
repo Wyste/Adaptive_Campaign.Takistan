@@ -31,5 +31,9 @@ class INS
 		class areas {};
 		class toggletaskavail {};
 		class gettaskdetail {};
+		class findLocations {};
+		class findbuildings {};
+		class getenterablehouses {};
+		class getflatsecludedlocation {};
 	};
 };
