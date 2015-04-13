@@ -16,8 +16,8 @@ fn_RandomPosInRadius = {
 };
 
 _loc = nearestBuilding _randPos;
-while {_loc != nil} do {
-    _nul = call fn_RandomPosInRadius;
+while {(count _loc) >= 1} do {
+    call fn_RandomPosInRadius;
 };
 hint "found suitable location";
 _m = createMarker ["m", _randPos];
