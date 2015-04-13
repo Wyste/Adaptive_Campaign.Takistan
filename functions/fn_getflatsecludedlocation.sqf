@@ -15,6 +15,9 @@ fn_RandomPosInRadius = {
 	_randPos = [_posX, _posY, 0];
 };
 
+hint format ["_centerPoint: %1\n_radiusA: %2\n_minDistance: %3", _centerPoint, _radiusA, _minDistance];
+
+/*
 _loc = nearestBuilding _randPos;
 while {(count _loc) >= 1} do {
     call fn_RandomPosInRadius;
@@ -27,3 +30,4 @@ _m setMarkerSize [1,1];
 
 sleep 20;
 deleteMarker _m;
+*/
