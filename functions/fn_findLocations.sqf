@@ -25,7 +25,6 @@ for "_x" from 0 to (count _locations - 1) do {
 
 _randTown = _cities call bis_fnc_selectRandom;
 _rtName = _randTown select 0;
-//hint format["%1\n%2\n%3\n%4\n%5\n%6", _randTown select 0, _randTown select 1, _randTown select 2, _randTown select 3, _randTown select 4, _randTown select 5];
 _rtPos = [];
 
 switch (_rtName) do {
@@ -89,14 +88,6 @@ switch (_rtName) do {
         _randTown set [1, [_rtPosX, _rtPosY]];
     };
 };
+[format [" DEBUG | AIO_fnc_findLocations | Name: %1\nPosition: %2\nRadiusA: %3\nRadiusB: %4\nType: %5\nAngle: %6",_randTown select 0,_randTown select 1,_randTown select 2,_randTown select 3,_randTown select 4,_randTown select 5]] call ALiVE_fnc_Dump;
 
-_randTown;
-
-/*
-_m = createMarker [_rtName, _randTown select 1];
-_m setMarkerType "hd_dot";
-_m setMarkerColor "ColorBlue";
-_m setMarkerSize [1,1];
-sleep 30;
-deleteMarker _m;
-*/
+_randTown
