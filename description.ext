@@ -23,7 +23,7 @@ ________________________________________________________________________________
 class header {
 	gametype = COOP;
 	minplayers = 1;
-	maxplayers = 24;
+	maxplayers = 2;
 	playerCountMultipleOf = 1;  //Coop type missions use 1, Team type missions use 2
 };
 
@@ -49,7 +49,7 @@ respawn = BASE;
 respawnDelay = 15;
 respawnDialog = 1;
 disabledAI = 1;
-respawnTemplates[] = {"MenuPosition"};
+//respawnTemplates[] = {"MenuPosition"};
 respawnButton = 1;
 respawnOnStart = 0;
 
@@ -77,7 +77,7 @@ respawnOnStart = 0;
 class Extended_InitPost_EventHandlers {
     class Man {
         //--- Make sure everyone is happy when the mission starts
-		//init = "_this call INS_fnc_handlerRegister";
+		//init = "_this call AIO_fnc_handlerRegister";
     };
 };
 
@@ -97,7 +97,7 @@ class Params {
 		default = 0;
 	};
 
-	class INS_STARTTIME {
+	class AIO_STARTTIME {
 		title = "Mission Start Time";
 		values[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
 		texts[] = {
@@ -108,14 +108,6 @@ class Params {
 		function = "BIS_fnc_paramDaytime";
 	};
 
-	class INS_CallToPrayer {
-		//--- paramsArray[2]
-		title = "Civilian Call To Prayer";
-		values[] = {1,0};
-		texts[] = {"Enabled","Disabled"};
-		default = 1;
-	};
-
 	class EMPTYPARAM {
 		//--- paramsArray[3]
 		title = "Empty Param";
@@ -124,7 +116,7 @@ class Params {
 		default = 0;
 	};
 
-	class INS_ADVANCEDROLES{
+	class AIO_ADVANCEDROLES{
 		//--- paramsArray[4]
 		title = "Advanced Roles: Specialty Utilities.";
 		values[] = {1,0};
@@ -140,28 +132,12 @@ class Params {
 		default = 0;
 	};
 
-    class cachesLimit {
+    	class AIO_objectiveLimit {
 		//--- paramsArray[6]
-		title = "Number of caches to hunt";
+		title = "Number of objectives to complete";
 		values[] = {2,4,6,8,10,12,14,16};
 		texts[] = {"Two","Four","Six","Eight","Ten","Twelve","Fourteen","Sixteen"};
 		default = 6;
-	};
-
-	class intelItems {
-		//--- paramsArray[7]
-		title = "Spawn Intel in town?";
-		values[] = {1,0};
-		texts[] = {"Enabled","Disabled"};
-		default = 0;
-	};
-
-	class intelAmount {
-		//--- paramsArray[8]
-		title = "Number of Intel Items to spawn per town";
-		values[] = {2,4,6,8,10};
-		texts[] = {"2","4","6","8","10"};
-		default = 4;
 	};
 
 	class EMPTYPARAM1 {
@@ -172,28 +148,11 @@ class Params {
 		default = 0;
 	};
 
-	class INS_dropRate {
+	class AIO_dropRate {
 		//--- paramsArray[10]
-		title = "Intel drop rate - off bodies";
-		values[] = {98,95,92,87,84,80,77,75,70};
-		texts[] = {"2% Chance","5% Chance","8% Chance","13% Chance","16% Chance","20% Chance","23% Chance","25% Chance","30% Chance"};
+		title = "Intel drop rate - off enemy bodies";
+		values[] = {95,90,85,80,75,70};
+		texts[] = {"5% Chance","10% Chance","15% Chance","20% Chance","25% Chance","30% Chance"};
 		default = 95;
 	};
-
-	class INS_MHQ {
-		//--- paramsArray[11]
-		title = "Insurgency MHQ - WIP";
-		values[] = {1,0};
-		texts[] = {"Enabled","Disabled"};
-		default = 1;
-	};
-
-	class INS_MHQ_DeployTime {
-		//--- paramsArray[12]
-		title = "MHQ Deploy Time.";
-		values[] = {10,20,30,60,120,300};
-		texts[] = {"10 Seconds","20 Seconds","30 Seconds","60 Seconds","2 Minutes","5 Minutes"};
-		default = 30;
-	};
-
 };
