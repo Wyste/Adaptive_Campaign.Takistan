@@ -23,6 +23,8 @@ Usage:
 	[[_item,"<t color='#FF0000'>Message</t>"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
 _____________________________________________________________________________*/
 
+
+["Adaptive Intel | AlivE - addactionmp..sqf running..."] call ALiVE_fnc_Dump;
 private["_object","_screenMsg","_script","_args","_pri","_screenColor","_msg"];
 
 _object 	   = _this select 0;
@@ -32,7 +34,7 @@ _args		     = _this select 3;
 _pri		     = _this select 4;
 _screenColor = _this select 5;
 
-switch (_screenColor) {
+switch (_screenColor) do {
 	case "red": {
 		_msg = Format ["<t color='#FF0000'>%1</t>",_screenMsg];
 	};
@@ -48,12 +50,17 @@ switch (_screenColor) {
   case "purple": {
     _msg = Format ["<t color='#8000FF'>%1</t>",_screenMsg];
   };
-  default: {
-    _msg = Format ["%1",_screenMsg];
+  default {
+    _msg = _screenMsg;
   };
 };
+
+
+hint format ["%1 | %2 | %3 | %4 | %5 | %6",typename _object,typename  _screenMsg, typename _script,typename _args,typename _pri,typename _screenColor];
 
 if(isNull _object) exitWith {};
 
 //--- Add action to object and calls the script specified.
-_object addaction [_msg,_script, _args, _pri, True, True, "", "(_target distance _this) < 6"];
+_object addAction [_msg,_script, _args, _pri, True, True, "", "(_target distance _this) < 6"];
+
+//unit addAction [title, script, arguments, priority, showWindow, hideOnUse, shortcut, condition, positionInModel, radius, radiusView, showIn3D, available, textDefault, textToolTip]

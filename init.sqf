@@ -39,7 +39,12 @@ enableSaving [false, false];
 [] call compileFinal preprocessfilelinenumbers "scripts\briefings\briefing.sqf";
 
 //--- Task/Mission Definitions
-[] call compileFinal preprocessfilelinenumbers "tasks.sqf";
+//[] call compileFinal preprocessfilelinenumbers "tasks.sqf";
+
+//--- Add things to teh sign.
+if (isServer || isDedicated) then {
+  [missionNamespace getVariable "AIO_TASKS"] execVM "sign.sqf";
+};
 
 //--- End Init
 ["Adaptive Intel | AlivE - END OF INIT..."] call ALiVE_fnc_Dump;

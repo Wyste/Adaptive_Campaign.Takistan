@@ -35,5 +35,6 @@ class INS
 		class findbuildings {};
 		class getenterablehouses {};
 		class getflatsecludedlocation {};
+		class addactionmp {};
 	};
 };

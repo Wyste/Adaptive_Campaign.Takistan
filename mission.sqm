@@ -967,7 +967,6 @@ class Mission
 			vehicle="Land_MapBoard_F";
 			skill=0.60000002;
 			text="intelsign";
-			init="_handle = [this] execVM ""sign.sqf"";";
 		};
 		class Item14
 		{
@@ -2364,10 +2363,10 @@ class Mission
 		class Item0
 		{
 			position[]={4898.1426,105.61111,10224.778};
-			name="Camp_Sheild";
+			name="base";
 			text="Camp Sheild";
 			type="Empty";
-			angle=145.3567;
+			angle=145.35699;
 		};
 		class Item1
 		{
