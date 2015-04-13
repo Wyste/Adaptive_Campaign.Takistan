@@ -22,7 +22,7 @@ Description:
 
 ______________________________________________________*/
 
-class INS
+class AIO
 {
 	tag = "AIO";
 	class functions
