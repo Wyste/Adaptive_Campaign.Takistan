@@ -22,21 +22,25 @@ _____________________________________________________________________________*/
 
 //-Look at Global Variables for Available Missions and Unavailable Missions
 
-sleep 10;
-
 ["Adaptive Intel | AlivE - Sign.sqf running..."] call ALiVE_fnc_Dump;
-private ["_item","_tasks","_nme","_ids","_script","_args","_tier"];
-_item = _this select 0;
-_tier = 1;
-//--- T1 missions
+
+AIO_TASKS = missionNamespace getVariable "AIO_TASKS";
+
+private ["_tID","_tier","_avl","_aStr","_mStr","_MDStr","_areas","_script","_args","_color"];
+
 {
-hint format ["%1",_x select 0];
-_ids    = [AIO_T1TASKS, [_x select 0], 0] call AIO_fnc_gettaskdetail;
-_nme    = [AIO_T1TASKS, [_x select 0], 1] call AIO_fnc_gettaskdetail;
-_script = [AIO_T1TASKS, [_x select 0], 4] call AIO_fnc_gettaskdetail;
-_args   = [_ids,_tier];
-_pri = _tier;
 
-[[_item,_nme,_script,_args,_pri,"green"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
+  _tID    = _x select 0;
+  _tier   = _x select 1;
+  _avl    = _x select 2;
+  _aStr   = _x select 3;
+  _script = _x select 7;
+  _args   = _x select 8;
+  _color  = _x select 9;
 
-} foreach AIO_T1TASKS_AVL;
+  if (_avl) then {
+     [[AIO_SIGN select 0,_aStr,_script,_args,_tier+5,_color],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
+  };
+} forEach AIO_TASKS;
+
+["Adaptive Intel | AlivE - Sign.sqf finished..."] call ALiVE_fnc_Dump;

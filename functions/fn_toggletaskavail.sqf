@@ -29,54 +29,26 @@ _____________________________________________________________________________*/
 
 private["taskID","tier","makeavail"];
 _taskID = _this select 0;
-_tier = _this select 1;
-_makeavail = _this select 2;
+_makeavail = _this select 1;
 
 ["Adaptive Intel | AlivE - toggletaskavail running..."] call ALiVE_fnc_Dump;
 
+
+
+//-- Needs rewritten for new task array
+
 switch (_makeavail) do {
   case true: {
-    switch (_tier) do {
-        case 1: {
-        AIO_T1TASKS_AVL = AIO_T1TASKS_AVL + [_taskID];
-        publicVariable "AIO_T1TASKS_AVL";
-        AIO_T1TASKS_NA = AIO_T1TASKS_NA - [_taskID];
-        publicVariable "AIO_T1TASKS_NA";
-      };
-        case 2: {
-        AIO_T2TASKS_AVL = AIO_T2TASKS_AVL + [_taskID];
-        publicVariable "AIO_T2TASKS_AVL";
-        AIO_T2TASKS_NA = AIO_T2TASKS_NA - [_taskID];
-        publicVariable "AIO_T2TASKS_NA";
-      };
-        case 3: {
-        AIO_T3TASKS_AVL = AIO_T3TASKS_AVL + [_taskID];
-        publicVariable "AIO_T3TASKS_AVL";
-        AIO_T3TASKS_NA = AIO_T3TASKS_NA - [_taskID];
-        publicVariable "AIO_T3TASKS_NA";
-      };
+     {
+      if (_x select 0 == _taskID) then { _x select 3 set true; };
+
+     } forEach AIO_TASKS;
   };
   case false: {
-    switch (_tier) do {
-        case 1: {
-        AIO_T1TASKS_AVL = AIO_T1TASKS_AVL - [_taskID];
-        publicVariable "AIO_T1TASKS_AVL";
-        AIO_T1TASKS_NA = AIO_T1TASKS_NA + [_taskID];
-        publicVariable "AIO_T1TASKS_NA";
-      };
-        case 2: {
-        AIO_T2TASKS_AVL = AIO_T2TASKS_AVL - [_taskID];
-        publicVariable "AIO_T2TASKS_AVL";
-        AIO_T2TASKS_NA = AIO_T2TASKS_NA + [_taskID];
-        publicVariable "AIO_T2TASKS_NA";
-      };
-        case 3: {
-        AIO_T3TASKS_AVL = AIO_T3TASKS_AVL - [_taskID];
-        publicVariable "AIO_T3TASKS_AVL";
-        AIO_T3TASKS_NA = AIO_T3TASKS_NA + [_taskID];
-        publicVariable "AIO_T3TASKS_NA";
-      };
-    };
-  };
+    {
+      if (_x select 0 == _taskID) then { _x select 3 set false; };
 
+    } forEach AIO_TASKS;
+  };
 };
+publicVariable "AIO_TASKS";

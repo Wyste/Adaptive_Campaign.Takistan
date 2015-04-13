@@ -31,5 +31,6 @@ class INS
 		class areas {};
 		class toggletaskavail {};
 		class gettaskdetail {};
+		class addactionmp {};
 	};
 };
