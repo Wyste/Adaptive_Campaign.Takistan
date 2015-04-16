@@ -34,12 +34,12 @@ private ["_tID","_tier","_avl","_aStr","_mStr","_MDStr","_areas","_script","_arg
   _tier   = _x select 1;
   _avl    = _x select 2;
   _aStr   = _x select 3;
+  _args   = _x select 6;
   _script = _x select 7;
-  _args   = _x select 8;
-  _color  = _x select 9;
+  _color  = _x select 8;
 
   if (_avl) then {
-     [[AIO_SIGN select 0,_aStr,"'"+_script+"'",_args,_tier+5,_color],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
+     [[AIO_SIGN select 0,_aStr,_script,_args,_tier+5,_color],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
   };
 } forEach AIO_TASKS;
 

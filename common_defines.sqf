@@ -38,6 +38,7 @@ ______________________________________________________________________________*/
   AIO_AUTORIFLE = ["B_soldier_AR_F","B_support_MG_F","B_G_Soldier_AR_F"];
 //--- Public Mission Define.
   AIO_INTEL_POINTS = 0;
+  AIO_INTEL_ACTIVE = 0;
   publicVariable "AIO_INTEL_POINTS";
 
   /*if (isServer || isDedicated) then {
@@ -76,7 +77,7 @@ ______________________________________________________________________________*/
 
   AIO_TASKS = [
     [0,1,true,"Gather Intel","Gather Intellegence : ","Gather intellegence to make available more advanced missions.",
-    ["AIO_VILLIAGE","AIO_SmCITY"],"call AIO_fnc_spawnintel",0,"green"],
-    [1,2,true,"Destroy Cache","Destroy Weapons Cache : ","Insurgents have been hoarding weapons, we need your squad to destroy them immediately upon discovery.",["AIO_LgCITY","AIO_SmCITY"],"call AIO_fnc_spawncache",0,"yellow"]];
+    ["AIO_VILLIAGE","AIO_SmCITY"],{call AIO_fnc_spawnintel},0,"green"],
+    [1,2,true,"Destroy Cache","Destroy Weapons Cache : ","Insurgents have been hoarding weapons, we need your squad to destroy them immediately upon discovery.",["AIO_LgCITY","AIO_SmCITY"],{call AIO_fnc_spawncache},0,"yellow"]];
 
   publicVariable "AIO_TASKS";

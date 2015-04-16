@@ -38,5 +38,6 @@ class AIO
 		class addactionmp {};
 		class spawnintel {};
 		class spawncache {};
+		class debugarray {};
 	};
 };
