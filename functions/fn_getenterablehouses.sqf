@@ -18,5 +18,5 @@ if(count _allbuildings >= 1) then {
 		};
 	};
 };
-[format [" DEBUG | AIO_fnc_getenterablehouses | Total number of enterable buildings: %1", count _enterablebuildings]] call ALiVE_fnc_Dump;
+if (AIO_DEBUG) then {[format [" DEBUG | AIO_fnc_getenterablehouses | Total number of enterable buildings: %1", count _enterablebuildings]] call ALiVE_fnc_Dump;};
 _enterablebuildings

@@ -20,7 +20,7 @@ Description:
 
 	Finds of area and adds a bunch of info into the array.
 _____________________________________________________________________________*/
-if (!AIO_DEBUG) then {["Adaptive Intel | AlivE - STARTING AIO_fnc_area..."] call ALiVE_fnc_Dump;};
+if (AIO_DEBUG) then {["Adaptive Intel | AlivE - STARTING AIO_fnc_area..."] call ALiVE_fnc_Dump;};
 private ["_locations","_cityTypes","_randomLoc","_x","_i","_cities"];
 _i = 0;
 _cities = [];

@@ -22,7 +22,7 @@ _____________________________________________________________________________*/
 
 //-Look at Global Variables for Available Missions and Unavailable Missions
 
-["Adaptive Intel | AlivE - Sign.sqf running..."] call ALiVE_fnc_Dump;
+if (AIO_DEBUG) then {["Adaptive Intel | AlivE - Sign.sqf running..."] call ALiVE_fnc_Dump;};
 
 AIO_TASKS = missionNamespace getVariable "AIO_TASKS";
 
@@ -39,8 +39,8 @@ private ["_tID","_tier","_avl","_aStr","_mStr","_MDStr","_areas","_script","_arg
   _color  = _x select 9;
 
   if (_avl) then {
-     [[AIO_SIGN select 0,_aStr,_script,_args,_tier+5,_color],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
+     [[AIO_SIGN select 0,_aStr,"'"+_script+"'",_args,_tier+5,_color],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
   };
 } forEach AIO_TASKS;
 
-["Adaptive Intel | AlivE - Sign.sqf finished..."] call ALiVE_fnc_Dump;
+if (AIO_DEBUG) then {["Adaptive Intel | AlivE - Sign.sqf finished..."] call ALiVE_fnc_Dump;};

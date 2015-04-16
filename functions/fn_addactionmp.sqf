@@ -24,7 +24,7 @@ Usage:
 _____________________________________________________________________________*/
 
 
-["Adaptive Intel | AlivE - addactionmp..sqf running..."] call ALiVE_fnc_Dump;
+if (AIO_DEBUG) then {["Adaptive Intel | AlivE - addactionmp..sqf running..."] call ALiVE_fnc_Dump;};
 private["_object","_screenMsg","_script","_args","_pri","_screenColor","_msg"];
 
 _object 	   = _this select 0;
@@ -56,7 +56,7 @@ switch (_screenColor) do {
 };
 
 
-hint format ["%1 | %2 | %3 | %4 | %5 | %6",typename _object,typename  _screenMsg, typename _script,typename _args,typename _pri,typename _screenColor];
+if (AIO_DEBUG) then {hint format ["%1 | %2 | %3 | %4 | %5 | %6",typename _object,typename  _screenMsg, typename _script,typename _args,typename _pri,typename _screenColor];};
 
 if(isNull _object) exitWith {};
 

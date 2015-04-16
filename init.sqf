@@ -30,6 +30,7 @@ ______________________________________________________________________________*/
 // =============================================================================
     //--- DEFINES/ INCLUDES
     call compile preprocessFile "common_defines.sqf";
+    if (AIO_DEBUG) then {["Adaptive Intel | AlivE - commond_defines.sqf finished"] call ALiVE_fnc_Dump;};
 // =============================================================================
 
 //--- Disable Saving
@@ -47,11 +48,11 @@ if (isServer || isDedicated) then {
 };
 
 //--- End Init
-["Adaptive Intel | AlivE - END OF INIT..."] call ALiVE_fnc_Dump;
+if (AIO_DEBUG) then {["Adaptive Intel | AlivE - END OF INIT..."] call ALiVE_fnc_Dump;};
 
-if (!AIO_DEBUG) then {
+//if (!AIO_DEBUG) then {
     //Push player into intro sequence
     //[] call compileFinal preprocessfilelinenumbers "scripts\intro.sqf";
-};
+//};
 // =============================================================================
 // =============================================================================

@@ -88,6 +88,6 @@ switch (_rtName) do {
         _randTown set [1, [_rtPosX, _rtPosY]];
     };
 };
-[format [" DEBUG | AIO_fnc_findLocations | Name: %1\nPosition: %2\nRadiusA: %3\nRadiusB: %4\nType: %5\nAngle: %6",_randTown select 0,_randTown select 1,_randTown select 2,_randTown select 3,_randTown select 4,_randTown select 5]] call ALiVE_fnc_Dump;
+if (AIO_DEBUG) then {[format [" DEBUG | AIO_fnc_findLocations | Name: %1\nPosition: %2\nRadiusA: %3\nRadiusB: %4\nType: %5\nAngle: %6",_randTown select 0,_randTown select 1,_randTown select 2,_randTown select 3,_randTown select 4,_randTown select 5]] call ALiVE_fnc_Dump;};
 
 _randTown

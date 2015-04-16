@@ -22,5 +22,4 @@ while {(count _loc) >= 1} do {
 	_loc = _p nearObjects _minDistance;
 	sleep 1;
 };
-
-[format [" DEBUG | fn_getflatsecludedlocation | Found suitable location: %1", _p]] call ALiVE_fnc_Dump;
+if (AIO_DEBUG) then {[format [" DEBUG | fn_getflatsecludedlocation | Found suitable location: %1", _p]] call ALiVE_fnc_Dump;};

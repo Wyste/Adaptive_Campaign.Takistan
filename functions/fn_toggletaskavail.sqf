@@ -31,7 +31,7 @@ private["taskID","tier","makeavail"];
 _taskID = _this select 0;
 _makeavail = _this select 1;
 
-["Adaptive Intel | AlivE - toggletaskavail running..."] call ALiVE_fnc_Dump;
+if (AIO_DEBUG) then {["Adaptive Intel | AlivE - toggletaskavail running..."] call ALiVE_fnc_Dump;};
 
 
 

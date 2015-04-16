@@ -36,5 +36,7 @@ class AIO
 		class getenterablehouses {};
 		class getflatsecludedlocation {};
 		class addactionmp {};
+		class spawnintel {};
+		class spawncache {};
 	};
 };
