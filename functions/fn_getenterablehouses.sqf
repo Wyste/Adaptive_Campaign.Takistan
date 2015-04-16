@@ -1,5 +1,3 @@
-//hint "Firing AIO_fnc_getenterablehouses";
-//sleep 1;
 private ["_cityPos", "_cityRadA", "_buildings"];
 
 _cityPos = _this select 0;
@@ -8,8 +6,8 @@ _cityRadA = _this select 1;
 _allbuildings = [_cityPos, _cityRadA] call AIO_fnc_findbuildings;
 _enterablebuildings = [];
 
-hint format["Total Buildings: %1", count _allbuildings];
-sleep 1;
+[format [" DEBUG | AIO_fnc_getenterablehouses | Total Buildings Found: %1", count _allbuildings]] call ALiVE_fnc_Dump;
+
 if(count _allbuildings >= 1) then {
 	for "_x" from 0 to (count _allbuildings) do {
 		_b = _allbuildings select _x;
@@ -20,6 +18,5 @@ if(count _allbuildings >= 1) then {
 		};
 	};
 };
-hint format["Enterable Buildings: %1", count _enterablebuildings];
-sleep 1;
+[format [" DEBUG | AIO_fnc_getenterablehouses | Total number of enterable buildings: %1", count _enterablebuildings]] call ALiVE_fnc_Dump;
 _enterablebuildings
