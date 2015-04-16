@@ -41,5 +41,4 @@ _m setMarkerSize [1,1];
 sleep 20;
 deleteMarker _m;
 */
-\ No newline at end of file
 if (AIO_DEBUG) then {[format [" DEBUG | fn_getflatsecludedlocation | Found suitable location: %1", _p]] call ALiVE_fnc_Dump;}
