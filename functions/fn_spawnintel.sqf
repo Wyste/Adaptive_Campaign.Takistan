@@ -48,10 +48,11 @@ if (AIO_DEBUG) then {[" DEBUG| Selecting area for intel spawn..."] call ALiVE_fn
 IF (AIO_DEBUG) then {[_args] call AIO_fnc_debugarray;};
 
 { // Available city groups
-  if (AIO_DEBUG) then {[format [" DEBUG| %1",_x]] call ALiVE_fnc_Dump;};
   _area = missionNamespace getVariable _x;
-  if (AIO_DEBUG) then {[format [" DEBUG| %1",_area select 0]] call ALiVE_fnc_Dump;};
-
+  hint _x;
+    {
+    	[_x] call AIO_fnc_debugarray;
+	} foreach _area;
 } forEach _args;
 
 

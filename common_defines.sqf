@@ -77,7 +77,7 @@ ______________________________________________________________________________*/
 
   AIO_TASKS = [
     [0,1,true,"Gather Intel","Gather Intellegence : ","Gather intellegence to make available more advanced missions.",
-    ["AIO_VILLIAGE","AIO_SmCITY"],{call AIO_fnc_spawnintel},0,"green"],
+    ["AIO_VILLIAGE","AIO_LOCAL"],{call AIO_fnc_spawnintel},0,"green"],
     [1,2,true,"Destroy Cache","Destroy Weapons Cache : ","Insurgents have been hoarding weapons, we need your squad to destroy them immediately upon discovery.",["AIO_LgCITY","AIO_SmCITY"],{call AIO_fnc_spawncache},0,"yellow"]];
 
   publicVariable "AIO_TASKS";
