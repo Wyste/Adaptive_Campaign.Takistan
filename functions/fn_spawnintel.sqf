@@ -45,13 +45,13 @@ if (_intelactive > 4) exitWith {}; //Max intels spawned - you need to wait.
 //--- Selecting an area of operations
 if (AIO_DEBUG) then {[" DEBUG| Selecting area for intel spawn..."] call ALiVE_fnc_Dump;};
 
-IF (AIO_DEBUG) then {[_args] call AIO_fnc_debugarray;};
+IF (AIO_DEBUG) then {[_args] call DEBUG_fnc_debugarray;};
 
 { // Available city groups
   _area = missionNamespace getVariable _x;
   hint _x;
     {
-    	[_x] call AIO_fnc_debugarray;
+    	[_x] call DEBUG_fnc_debugarray;
 	} foreach _area;
 } forEach _args;
 

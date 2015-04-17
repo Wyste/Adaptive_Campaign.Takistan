@@ -38,6 +38,15 @@ class AIO
 		class addactionmp {};
 		class spawnintel {};
 		class spawncache {};
+	};
+};
+
+class DEBUG
+{
+	tag = "DEBUG";
+	class debug
+	{
+		file = "debug";
 		class debugarray {};
 	};
 };

@@ -120,7 +120,8 @@ class Mission
 				items=2;
 				class Item0
 				{
-					position[]={4850.3594,107.38084,10279.204};
+					position[]={4843.5015,107.64463,10280.889};
+					azimut=263.02719;
 					id=0;
 					side="WEST";
 					vehicle="aef_dcu_Commander";

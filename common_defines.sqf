@@ -62,10 +62,11 @@ ______________________________________________________________________________*/
   //AIO_AREAS = allMissionObjects "LocationArea_F";
   if (AIO_DEBUG) then { ["Adaptive Intel | AlivE - Mapping Cities to Arrays..."] call ALiVE_fnc_Dump;};
   AIO_LgCITY    = ["NameCityCapital"] call AIO_fnc_areas;
+  AIO_CITY      = ["NameCity"] call AIO_fnc_areas;
   AIO_SmCITY    = ["FlatAreaCitySmall"] call AIO_fnc_areas;
   AIO_HILL      = ["Hill"] call AIO_fnc_areas;
   AIO_LOCAL     = ["NameLocal"] call AIO_fnc_areas; //Airfields included
-  AIO_VILLIAGE  = ["NameVilliage"] call AIO_fnc_areas;
+  AIO_VILLAGE   = ["NameVillage"] call AIO_fnc_areas;
   AIO_WATER     = ["NameMarine"] call AIO_fnc_areas;
 
   AIO_TASKS = [0,1,2,3,4,5];
@@ -77,7 +78,7 @@ ______________________________________________________________________________*/
 
   AIO_TASKS = [
     [0,1,true,"Gather Intel","Gather Intellegence : ","Gather intellegence to make available more advanced missions.",
-    ["AIO_VILLIAGE","AIO_LOCAL"],{call AIO_fnc_spawnintel},0,"green"],
-    [1,2,true,"Destroy Cache","Destroy Weapons Cache : ","Insurgents have been hoarding weapons, we need your squad to destroy them immediately upon discovery.",["AIO_LgCITY","AIO_SmCITY"],{call AIO_fnc_spawncache},0,"yellow"]];
+    ["AIO_VILLAGE","AIO_LOCAL"],{call AIO_fnc_spawnintel},0,"green"],
+    [1,2,true,"Destroy Cache","Destroy Weapons Cache : ","Insurgents have been hoarding weapons, we need your squad to destroy them immediately upon discovery.",["AIO_LgCITY","AIO_SmCITY","AIO_CITY"],{call AIO_fnc_spawncache},0,"yellow"]];
 
   publicVariable "AIO_TASKS";
