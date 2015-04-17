@@ -30,7 +30,7 @@ arguments (_this select 3): Anything - arguments given to the script
 
 //--- Setup / Gathering Arguments + Mission Parameters
 
-private ["_target","_caller","_aID","_args","_intelItems","_selectedItem","_item","_buildings","_area","_cities","_cityName","_intelactive"];
+private ["_target","_caller","_aID","_args","_intelItems","_selectedItem","_item","_buildings","_area","_cities","_cityName","_cityPOS","_cityRadA","_cityRadB","_cityCent","_intelactive"];
 
 _target = _this select 0;
 _caller = _this select 1;
@@ -52,6 +52,11 @@ IF (AIO_DEBUG) then {[_args] call DEBUG_fnc_debugarray;};
   hint _x;
     {
     	[_x] call DEBUG_fnc_debugarray;
+      _cityName = _x select 0;
+      _cityPOS  = _x select 1;
+      _cityRadA = _x select 2;
+      _cityRadB = _x select 3;
+      _cityCent = _x select 4;
 	} foreach _area;
 } forEach _args;
 

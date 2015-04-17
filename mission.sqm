@@ -57,11 +57,11 @@ class Mission
 		"agm_map",
 		"agm_movement",
 		"agm_explosives",
-		"agm_interaction",
 		"agm_medical",
 		"agm_nametags",
 		"agm_logistics",
 		"alive_sys_weather",
+		"agm_interaction",
 		"A3_Structures_F_Mil_Cargo",
 		"rhsusf_c_rg33",
 		"A3_Structures_F_Mil_Fortification",
@@ -111,7 +111,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=14;
+		items=15;
 		class Item0
 		{
 			side="WEST";
@@ -251,7 +251,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4799.2246,106.14505,10298.624};
+					position[]={4849.1289,98.18969,10545.841};
 					class args
 					{
 						items=7;
@@ -315,7 +315,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4899.2139,106.38481,10300.695};
+					position[]={4949.1182,98.866425,10547.912};
 					class args
 					{
 						items=8;
@@ -385,7 +385,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4899.9297,109.72,10099.685};
+					position[]={4949.834,109.66675,10346.901};
 					class args
 					{
 						items=2;
@@ -419,7 +419,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4601.8359,110.57162,10200.187};
+					position[]={4651.7402,105.70775,10447.403};
 					class args
 					{
 						items=3;
@@ -459,7 +459,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4599.7632,112.60145,10099.681};
+					position[]={4649.6675,109.24214,10346.897};
 					class args
 					{
 						items=2;
@@ -493,7 +493,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4599.7632,111.06638,10301.214};
+					position[]={4649.6675,108.09436,10548.431};
 					class args
 					{
 						items=2;
@@ -527,7 +527,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4699.2349,109.05149,10300.695};
+					position[]={4749.1392,103.50381,10547.912};
 					class args
 					{
 						items=2;
@@ -558,30 +558,10 @@ class Mission
 			side="LOGIC";
 			class Vehicles
 			{
-				items=2;
+				items=1;
 				class Item0
 				{
-					position[]={4700.1558,109.59329,10199.572};
-					class args
-					{
-						items=1;
-						class Item0
-						{
-							value="1";
-							parentCls="AGM_ModuleInteraction";
-							typeName="EnableTeamManagement";
-						};
-					};
-					id=11;
-					side="LOGIC";
-					vehicle="AGM_ModuleInteraction";
-					leader=1;
-					lock="UNLOCKED";
-					skill=0.60000002;
-				};
-				class Item1
-				{
-					position[]={4700.7402,111.23452,10100.27};
+					position[]={4750.6445,105.35757,10347.486};
 					class args
 					{
 						items=16;
@@ -682,9 +662,10 @@ class Mission
 							typeName="DisableScreams";
 						};
 					};
-					id=12;
+					id=11;
 					side="LOGIC";
 					vehicle="AGM_ModuleMedical";
+					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
 				};
@@ -698,7 +679,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4799.4585,108.6923,10101.438};
+					position[]={4849.3628,105.43321,10348.655};
 					class args
 					{
 						items=3;
@@ -721,7 +702,7 @@ class Mission
 							typeName="Visibility";
 						};
 					};
-					id=13;
+					id=12;
 					side="LOGIC";
 					vehicle="AGM_ModuleNameTags";
 					leader=1;
@@ -738,7 +719,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4800.043,107.36363,10198.987};
+					position[]={4849.9473,101.31911,10446.204};
 					class args
 					{
 						items=4;
@@ -767,7 +748,7 @@ class Mission
 							typeName="MaxDamageRepair";
 						};
 					};
-					id=14;
+					id=13;
 					side="LOGIC";
 					vehicle="AGM_ModuleRepair";
 					leader=1;
@@ -784,7 +765,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4900.7681,106.18015,10198.116};
+					position[]={4950.6724,108.29002,10445.333};
 					class args
 					{
 						items=6;
@@ -825,9 +806,37 @@ class Mission
 							typeName="weather_cycle_variance_setting";
 						};
 					};
-					id=15;
+					id=14;
 					side="LOGIC";
 					vehicle="ALiVE_sys_weather";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+				};
+			};
+		};
+		class Item14
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={4750.0601,101.82767,10446.789};
+					class args
+					{
+						items=1;
+						class Item0
+						{
+							value="1";
+							parentCls="AGM_ModuleInteraction";
+							typeName="EnableTeamManagement";
+						};
+					};
+					id=15;
+					side="LOGIC";
+					vehicle="AGM_ModuleInteraction";
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
