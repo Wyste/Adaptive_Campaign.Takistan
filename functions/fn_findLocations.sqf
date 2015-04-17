@@ -1,3 +1,27 @@
+/*
+         ___     __          __  _            ____     __      __
+        / _ |___/ /__ ____  / /_(_)  _____   /  _/__  / /____ / /
+       / __ / _  / _ `/ _ \/ __/ / |/ / -_) _/ // _ \/ __/ -_) /
+      /_/_|_\_,_/\_,_/ .__/\__/_/|___/\__/ /___/_//_/\__/\__/_/
+        / _ | ______/_/ / _ | |_  /
+       / __ |/ __/  ' \/ __ |_/_ <
+      /_/ |_/_/ /_/_/_/_/ |_/____/
+                                                      @filename: fn_findLocations.sqf
+
+Author:
+
+    BBrown
+
+Last modified:
+
+    4/12/2015
+
+Description:
+
+    TASK - finds all locations of the allowed location types
+_____________________________________________________________________________
+*/
+
 private ["_locations","_cityTypes","_randomLoc","_x","_i","_cities"];
 _mapCenter = getArray(configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 
@@ -27,6 +51,7 @@ _randTown = _cities call bis_fnc_selectRandom;
 _rtName = _randTown select 0;
 _rtPos = [];
 
+// This finds all the cities that have actual city centers and sets their coordinates to the city's center coords
 switch (_rtName) do {
     case "Anar": {
     	_randTown set [1, [5984.78,5780.72]];

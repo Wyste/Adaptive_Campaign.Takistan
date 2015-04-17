@@ -1,3 +1,35 @@
+/*
+         ___     __          __  _            ____     __      __
+        / _ |___/ /__ ____  / /_(_)  _____   /  _/__  / /____ / /
+       / __ / _  / _ `/ _ \/ __/ / |/ / -_) _/ // _ \/ __/ -_) /
+      /_/_|_\_,_/\_,_/ .__/\__/_/|___/\__/ /___/_//_/\__/\__/_/
+        / _ | ______/_/ / _ | |_  /
+       / __ |/ __/  ' \/ __ |_/_ <
+      /_/ |_/_/ /_/_/_/_/ |_/____/
+                                                      @filename: fn_getenterablehouses.sqf
+
+Author:
+
+    BBrown
+
+Last modified:
+
+    4/12/2015
+
+Description:
+
+    TASK - finds all enterable buildings in a given radius
+
+Returns:
+
+	Array
+_____________________________________________________________________________
+
+_cityPos		(_this select 0): Position - Coordinates for the city location
+_cityRadA	(_this select 1): Number - The Radius A of selected city
+
+*/
+
 private ["_cityPos", "_cityRadA", "_buildings"];
 
 _cityPos = _this select 0;

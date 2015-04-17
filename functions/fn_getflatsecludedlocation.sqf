@@ -1,3 +1,36 @@
+/*
+         ___     __          __  _            ____     __      __
+        / _ |___/ /__ ____  / /_(_)  _____   /  _/__  / /____ / /
+       / __ / _  / _ `/ _ \/ __/ / |/ / -_) _/ // _ \/ __/ -_) /
+      /_/_|_\_,_/\_,_/ .__/\__/_/|___/\__/ /___/_//_/\__/\__/_/
+        / _ | ______/_/ / _ | |_  /
+       / __ |/ __/  ' \/ __ |_/_ <
+      /_/ |_/_/ /_/_/_/_/ |_/____/
+                                                      @filename: fn_getflatsecludedlocation.sqf
+
+Author:
+
+    BBrown
+
+Last modified:
+
+    4/12/2015
+
+Description:
+
+    TASK - finds location that has the specified distance of open space on all sides
+
+Returns:
+
+    No return value
+_____________________________________________________________________________
+
+
+_centerPoint     (_this select 0): Position - the center point of the radius being searched
+_radius          (_this select 1): Number - the radius to search within
+_minDistance     (_this select 2): Number - the minimum distance away from all objects required
+*/
+
 private ["_centerPoint", "_radiusA", "_dir", "_minDistance", "_orgX", "_orgY", "_posX", "_posY", "_randPos", "_loc"];
 
 _centerPoint = _this select 0;

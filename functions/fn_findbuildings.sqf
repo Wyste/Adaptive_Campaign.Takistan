@@ -3,7 +3,7 @@
 
 Author:
 
-	BBrown & Wyste
+	BBrown
 
 Last modified:
 
@@ -11,15 +11,14 @@ Last modified:
 
 Description:
 
-	Find buildings in given radius
+	Finds all buildings in given radius
 
-TODO:
+Returns:
 
-	Add comment lines so people can get a better understand of how and why it works.
+	Array
 
 ______________________________________________________*/
-//hint "Firing AIO_fnc_findbuildings";
-//sleep 1;
+
 private ["_centerPos","_radius","_buildingList","_house"];
 _buildingList = [];
 
