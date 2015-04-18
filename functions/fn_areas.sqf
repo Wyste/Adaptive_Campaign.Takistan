@@ -26,6 +26,7 @@ _i = 0;
 _cities = [];
 
 _locations = configfile >> "CfgWorlds" >> worldName >> "Names";
+
 _cityTypes = [_this select 0];
 
 for "_x" from 0 to (count _locations - 1) do {
@@ -39,6 +40,7 @@ for "_x" from 0 to (count _locations - 1) do {
 	_cityType = getText(_randomLoc >> "type");
 	//_cityAngle = getNumber(_randomLoc >> "angle");
 	if (_cityType in _cityTypes) then {
+		//[format ["Added Location: %1 to %2... and setting element %3 to %4 area",_x,_cityType,_i,_cityName]] call ALIVE_fnc_Dump;
 		_cities set [_i,[_cityName, _cityPos, _cityRadA, _cityRadB, _cityType ]];
 		_i = _i + 1;
 	};
