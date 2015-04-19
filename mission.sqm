@@ -41,13 +41,15 @@ class Mission
 		"agm_core",
 		"agm_map",
 		"agm_movement",
-		"agm_explosives",
 		"agm_interaction",
 		"agm_medical",
-		"agm_nametags"
+		"agm_nametags",
+		"alive_sup_multispawn",
+		"rhsusf_c_troops"
 	};
 	addOnsAuto[]=
 	{
+		"rhsusf_c_troops",
 		"AEF_DCU_UNIFORM_1",
 		"A3_Modules_F_Curator_Curator",
 		"task_force_radio_items",
@@ -55,13 +57,13 @@ class Mission
 		"agm_respawn",
 		"agm_core",
 		"agm_map",
-		"agm_movement",
-		"agm_explosives",
+		"alive_sup_multispawn",
 		"agm_medical",
 		"agm_nametags",
 		"agm_logistics",
 		"alive_sys_weather",
 		"agm_interaction",
+		"agm_movement",
 		"A3_Structures_F_Mil_Cargo",
 		"rhsusf_c_rg33",
 		"A3_Structures_F_Mil_Fortification",
@@ -121,10 +123,10 @@ class Mission
 				class Item0
 				{
 					position[]={4843.5015,107.64463,10280.889};
-					azimut=263.02719;
+					azimut=263.02701;
 					id=0;
 					side="WEST";
-					vehicle="aef_dcu_Commander";
+					vehicle="rhsusf_army_ucp_rifleman_82nd";
 					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
@@ -321,7 +323,7 @@ class Mission
 						items=8;
 						class Item0
 						{
-							value="false";
+							value="true";
 							parentCls="ALiVE_require";
 							typeName="debug";
 						};
@@ -339,7 +341,7 @@ class Mission
 						};
 						class Item3
 						{
-							value="1";
+							value="0";
 							parentCls="ALiVE_require";
 							typeName="ALiVE_DISABLEMARKERS";
 						};
@@ -493,26 +495,38 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4649.6675,108.09436,10548.431};
+					position[]={4748.355,103.54823,10547.986};
 					class args
 					{
-						items=2;
+						items=4;
 						class Item0
 						{
-							value="1";
-							parentCls="AGM_ModuleFatigue";
-							typeName="CoefFatigue";
+							value="true";
+							parentCls="ALiVE_sup_multispawn";
+							typeName="debug";
 						};
 						class Item1
 						{
-							value="1";
-							parentCls="AGM_ModuleFatigue";
-							typeName="CoefRecover";
+							value="insertion";
+							parentCls="ALiVE_sup_multispawn";
+							typeName="spawntype";
+						};
+						class Item2
+						{
+							value="15";
+							parentCls="ALiVE_sup_multispawn";
+							typeName="timeout";
+						};
+						class Item3
+						{
+							value="false";
+							parentCls="ALiVE_sup_multispawn";
+							typeName="spawningnearenemiesallowed";
 						};
 					};
 					id=9;
 					side="LOGIC";
-					vehicle="AGM_ModuleFatigue";
+					vehicle="ALiVE_sup_multispawn";
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
@@ -520,40 +534,6 @@ class Mission
 			};
 		};
 		class Item9
-		{
-			side="LOGIC";
-			class Vehicles
-			{
-				items=1;
-				class Item0
-				{
-					position[]={4749.1392,103.50381,10547.912};
-					class args
-					{
-						items=2;
-						class Item0
-						{
-							value="1";
-							parentCls="AGM_ModuleExplosive";
-							typeName="RequireSpecialist";
-						};
-						class Item1
-						{
-							value="1";
-							parentCls="AGM_ModuleExplosive";
-							typeName="PunishNonSpecialists";
-						};
-					};
-					id=10;
-					side="LOGIC";
-					vehicle="AGM_ModuleExplosive";
-					leader=1;
-					lock="UNLOCKED";
-					skill=0.60000002;
-				};
-			};
-		};
-		class Item10
 		{
 			side="LOGIC";
 			class Vehicles
@@ -662,7 +642,7 @@ class Mission
 							typeName="DisableScreams";
 						};
 					};
-					id=11;
+					id=10;
 					side="LOGIC";
 					vehicle="AGM_ModuleMedical";
 					leader=1;
@@ -671,7 +651,7 @@ class Mission
 				};
 			};
 		};
-		class Item11
+		class Item10
 		{
 			side="LOGIC";
 			class Vehicles
@@ -702,7 +682,7 @@ class Mission
 							typeName="Visibility";
 						};
 					};
-					id=12;
+					id=11;
 					side="LOGIC";
 					vehicle="AGM_ModuleNameTags";
 					leader=1;
@@ -711,7 +691,7 @@ class Mission
 				};
 			};
 		};
-		class Item12
+		class Item11
 		{
 			side="LOGIC";
 			class Vehicles
@@ -748,7 +728,7 @@ class Mission
 							typeName="MaxDamageRepair";
 						};
 					};
-					id=13;
+					id=12;
 					side="LOGIC";
 					vehicle="AGM_ModuleRepair";
 					leader=1;
@@ -757,7 +737,7 @@ class Mission
 				};
 			};
 		};
-		class Item13
+		class Item12
 		{
 			side="LOGIC";
 			class Vehicles
@@ -771,7 +751,7 @@ class Mission
 						items=6;
 						class Item0
 						{
-							value="false";
+							value="true";
 							parentCls="ALiVE_sys_weather";
 							typeName="weather_debug_setting";
 						};
@@ -806,7 +786,7 @@ class Mission
 							typeName="weather_cycle_variance_setting";
 						};
 					};
-					id=14;
+					id=13;
 					side="LOGIC";
 					vehicle="ALiVE_sys_weather";
 					leader=1;
@@ -815,7 +795,7 @@ class Mission
 				};
 			};
 		};
-		class Item14
+		class Item13
 		{
 			side="LOGIC";
 			class Vehicles
@@ -834,9 +814,43 @@ class Mission
 							typeName="EnableTeamManagement";
 						};
 					};
-					id=15;
+					id=14;
 					side="LOGIC";
 					vehicle="AGM_ModuleInteraction";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+				};
+			};
+		};
+		class Item14
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={4649.6675,108.09436,10548.431};
+					class args
+					{
+						items=2;
+						class Item0
+						{
+							value="1";
+							parentCls="AGM_ModuleFatigue";
+							typeName="CoefFatigue";
+						};
+						class Item1
+						{
+							value="1";
+							parentCls="AGM_ModuleFatigue";
+							typeName="CoefRecover";
+						};
+					};
+					id=15;
+					side="LOGIC";
+					vehicle="AGM_ModuleFatigue";
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
@@ -1307,11 +1321,12 @@ class Mission
 		class Item48
 		{
 			position[]={4866.1958,106.55428,10264.682};
-			azimut=145.3567;
+			azimut=145.35699;
 			id=64;
 			side="EMPTY";
 			vehicle="Land_HelipadRescue_F";
 			skill=0.60000002;
+			text="ALiVE_SUP_MULTISPAWN_DESTINATION_rhs_faction_usarmy_d";
 		};
 		class Item49
 		{
@@ -2369,7 +2384,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=2;
+		items=3;
 		class Item0
 		{
 			position[]={4898.1426,105.61111,10224.778};
@@ -2383,6 +2398,13 @@ class Mission
 			position[]={6550.3672,286.0275,6451.9194};
 			name="AIO_MAPCENTER";
 			type="Empty";
+		};
+		class Item2
+		{
+			position[]={4694.54,-10.501183,12795.247};
+			name="ALiVE_SUP_MULTISPAWN_INSERTION_rhs_faction_usarmy_d";
+			type="Faction_US";
+			a=2;
 		};
 	};
 };
