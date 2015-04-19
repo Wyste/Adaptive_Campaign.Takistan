@@ -6,7 +6,7 @@
         / _ | ______/_/ / _ | |_  /
        / __ |/ __/  ' \/ __ |_/_ <
       /_/ |_/_/ /_/_/_/_/ |_/____/
-                                                      @filename: fn_getflatsecludedlocation.sqf
+                                      @filename: fn_getflatsecludedlocation.sqf
 
 Author:
 
@@ -23,13 +23,11 @@ Description:
 Returns:
 
     No return value
-_____________________________________________________________________________
 
+TODO:
 
-_centerPoint     (_this select 0): Position - the center point of the radius being searched
-_radius          (_this select 1): Number - the radius to search within
-_minDistance     (_this select 2): Number - the minimum distance away from all objects required
-*/
+    Check to see if this script actually works?
+______________________________________________________________________________*/
 
 private ["_centerPoint", "_radiusA", "_dir", "_minDistance", "_orgX", "_orgY", "_posX", "_posY", "_randPos", "_loc"];
 
@@ -43,16 +41,17 @@ fn_RandomPosInRadius = {
         _orgY = _centerPoint select 1;
         _posX = _orgX + (_radius * sin _dir);
         _posY = _orgY + (_radius * cos _dir);
-
         _randPos = [_posX, _posY, 0];
         _randPos;
 };
+
 _p = call fn_RandomPosInRadius;
 _loc = _p nearObjects _minDistance;
 
 while {(count _loc) >= 1} do {
-    _p = call fn_RandomPosInRadius;
-        _loc = _p nearObjects _minDistance;
-        sleep 1;
+  _p = call fn_RandomPosInRadius;
+  _loc = _p nearObjects _minDistance;
+  sleep 1;  //IS THIS REALLY NEEDED? -Wyste
 };
+
 if (AIO_DEBUG) then {[format [" DEBUG | fn_getflatsecludedlocation | Found suitable location: %1", _p]] call ALiVE_fnc_Dump;};

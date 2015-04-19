@@ -6,7 +6,7 @@
         / _ | ______/_/ / _ | |_  /
        / __ |/ __/  ' \/ __ |_/_ <
       /_/ |_/_/ /_/_/_/_/ |_/____/
-                                                      @filename: fn_getenterablehouses.sqf
+                                           @filename: fn_getenterablehouses.sqf
 
 Author:
 
@@ -14,7 +14,7 @@ Author:
 
 Last modified:
 
-    4/12/2015
+    4/19/2015
 
 Description:
 
@@ -23,12 +23,7 @@ Description:
 Returns:
 
 	Array
-_____________________________________________________________________________
-
-_cityPos		(_this select 0): Position - Coordinates for the city location
-_cityRadA	(_this select 1): Number - The Radius A of selected city
-
-*/
+______________________________________________________________________________*/
 
 private ["_cityPos", "_cityRadA", "_buildings"];
 
@@ -37,8 +32,6 @@ _cityRadA = _this select 1;
 
 _allbuildings = [_cityPos, _cityRadA] call AIO_fnc_findbuildings;
 _enterablebuildings = [];
-
-[format [" DEBUG | AIO_fnc_getenterablehouses | Total Buildings Found: %1", count _allbuildings]] call ALiVE_fnc_Dump;
 
 if(count _allbuildings >= 1) then {
 	for "_x" from 0 to (count _allbuildings) do {
@@ -50,5 +43,5 @@ if(count _allbuildings >= 1) then {
 		};
 	};
 };
-if (AIO_DEBUG) then {[format [" DEBUG | AIO_fnc_getenterablehouses | Total number of enterable buildings: %1", count _enterablebuildings]] call ALiVE_fnc_Dump;};
+
 _enterablebuildings

@@ -13,14 +13,14 @@ Author:
 	Wyste
 Last modified:
 
-	4/11/2015
+	4/19/2015
 Description:
 
 	Add multiplayer action to an item, there are CBA functions that add one to
 	a player - but this time we need it to go onto the whiteboard inside base.
 Usage:
 
-	[[_item,"<t color='#FF0000'>Message</t>"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
+	TODO
 _____________________________________________________________________________*/
 
 
@@ -55,14 +55,7 @@ switch (_screenColor) do {
   };
 };
 
-
-/*
-if (AIO_DEBUG) then {hint format ["%1 | %2 | %3 | %4 | %5 ",typename _object,typename  _screenMsg,typename _args,typename _pri,typename _screenColor];};
-*/
-
 if(isNull _object) exitWith {};
 
 //--- Add action to object and calls the script specified.
 _object addAction [_msg,_script, _args, _pri, True, True, "", "(_target distance _this) < 6"];
-
-//unit addAction [title, script, arguments, priority, showWindow, hideOnUse, shortcut, condition, positionInModel, radius, radiusView, showIn3D, available, textDefault, textToolTip]

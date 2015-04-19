@@ -55,24 +55,6 @@ respawnOnStart = 0;
 
 //--- General Includes
 
-//--- Intro Sounds/ Others
-/*class CfgSounds {
-	sounds[] = {news,prayer};
-
-	class news {
-		name = "news";
-		sound[] = {"media\sounds\news.ogg", db+0, 1.0};
-		titles[] = {};
-	};
-
-	class prayer {
-		name = "prayer";
-		sound[] = {"media\sounds\prayer.ogg", db+1, 1};
-		titles[] = {};
-	};
-};
-*/
-
 //--- Custom Intel Event Handlers
 class Extended_InitPost_EventHandlers {
     class Man {

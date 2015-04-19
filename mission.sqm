@@ -129,7 +129,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="w";
-					init="this addAction[""Run Test Script"", ""functions\testScript.sqf""];";
+					init="this addAction[""Run Test Script"", ""debug\testscript.sqf""];";
 					syncId=0;
 					synchronizations[]={2};
 				};
