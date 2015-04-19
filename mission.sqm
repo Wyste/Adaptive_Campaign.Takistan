@@ -50,6 +50,7 @@ class Mission
 	addOnsAuto[]=
 	{
 		"rhsusf_c_troops",
+		"AEF_DCU_UNIFORM_1",
 		"A3_Modules_F_Curator_Curator",
 		"task_force_radio_items",
 		"alive_main",
@@ -754,7 +755,7 @@ class Mission
 						items=6;
 						class Item0
 						{
-							value="false";
+							value="true";
 							parentCls="ALiVE_sys_weather";
 							typeName="weather_debug_setting";
 						};
@@ -1332,6 +1333,7 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_HelipadRescue_F";
 			skill=0.60000002;
+			text="ALiVE_SUP_MULTISPAWN_DESTINATION_rhs_faction_usarmy_d";
 		};
 		class Item49
 		{
