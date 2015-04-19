@@ -50,7 +50,6 @@ class Mission
 	addOnsAuto[]=
 	{
 		"rhsusf_c_troops",
-		"AEF_DCU_UNIFORM_1",
 		"A3_Modules_F_Curator_Curator",
 		"task_force_radio_items",
 		"alive_main",

@@ -41,6 +41,7 @@ class AIO
 		class getcountbldgpos {};
 		class randbldgpos {};
 		class intelpickup {};
+		class delallspawnedintelgroup {};
 	};
 };
 
