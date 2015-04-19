@@ -40,6 +40,7 @@ class AIO
 		class spawncache {};
 		class getcountbldgpos {};
 		class randbldgpos {};
+		class intelpickup {};
 	};
 };
 

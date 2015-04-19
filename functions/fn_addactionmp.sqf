@@ -58,4 +58,4 @@ switch (_screenColor) do {
 if(isNull _object) exitWith {};
 
 //--- Add action to object and calls the script specified.
-_object addAction [_msg,_script, _args, _pri, True, True, "", "(_target distance _this) < 6"];
+_object addAction [_msg,_script, _args, _pri, True, True, "", "(_target distance _this) < 4.5"];

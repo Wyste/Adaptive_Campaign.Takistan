@@ -39,7 +39,11 @@ ______________________________________________________________________________*/
 //--- Public Mission Define.
   AIO_INTEL_POINTS = 0;
   AIO_INTEL_ACTIVE = 0;
+  AIO_INTEL_TRACKER = [];
   publicVariable "AIO_INTEL_POINTS";
+  publicVariable "AIO_INTEL_ACTIVE";
+  publicVariable "AIO_INTEL_TRACKER";
+
 
   /*if (isServer || isDedicated) then {
     AIO_SQUADOBJ1 = objNull;
@@ -76,7 +80,7 @@ ______________________________________________________________________________*/
     ["Adaptive Intel | AlivE - Creating Tasks..."] call ALiVE_fnc_Dump;
     };
 
-  //Format: [id,tier,bAvailable,sActionName,sMapName,sMapDesc,areas,script,args]
+  //Format:[id,tier,bAvailable,sActionName,sMapName,sMapDesc,areas,script,args]
 
   AIO_TASKS = [
     [0,1,true,"Gather Intel","Gather Intellegence : ","Gather intellegence to make available more advanced missions.",

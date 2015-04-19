@@ -30,21 +30,25 @@ arguments (_this select 3): Anything - arguments given to the script
 
 //--- Setup / Gathering Arguments + Mission Parameters
 
-private ["_target","_caller","_aID","_args","_intelItems","_selectedItem","_item","_buildings","_area","_cities","_cityName","_cityPOS","_cityRadA","_cityRadB","_cityCent","_intelactive","_usearea","_targetBuildings","_targBuilding","_index","_targArr","_intelPosition"];
+private ["_target","_caller","_aID","_args","_selectedItem","_item","_buildings","_area","_cities","_cityName","_cityPOS","_cityRadA","_cityRadB","_cityCent","_intelactive","_usearea","_targetBuildings","_targBuilding","_index","_targArr","_intelPosition"];
 
 _target = _this select 0;
 _caller = _this select 1;
 _aID    = _this select 2;
 _args   = _this select 3;
-_intelactive = missionNamespace getVariable "AIO_INTEL_ACTIVE";
-_intelItems = missionNamespace getVariable "AIO_INTELSPAWNED";
+AIO_INTEL_ACTIVE = missionNamespace getVariable "AIO_INTEL_ACTIVE";
+AIO_INTELSPAWNED = missionNamespace getVariable "AIO_INTELSPAWNED";
+AIO_INTEL_TRACKER = missionNamespace getVariable "AIO_INTEL_TRACKER";
 
 spawnedIntelItems = [];
 publicVariable "spawnedIntelItems";
 
 //--- Do nothing if this is called and 5 of this task are active.
 
-if (_intelactive > 4) exitWith {}; //Max intels spawned - you need to wait.
+if (AIO_INTEL_ACTIVE > 4) exitWith {}; //Max intels spawned - you need to wait.
+
+//--- If we're nto above 4 - you can add one to the counter
+AIO_INTEL_ACTIVE = AIO_INTEL_ACTIVE + 1;
 
 //--- Selecting an area of operations
 if (AIO_DEBUG) then {[" DEBUG| Selecting area for intel spawn..."] call ALiVE_fnc_Dump;};
@@ -84,24 +88,28 @@ if (AIO_DEBUG) then {hint "stuff spawning";};
 //In meantime... 10 intels please.
 for "_i" from 1 to 10 step 1 do {
   if (count _targetBuildings > 0 ) then {
-        _selectedItem = _intelItems call BIS_fnc_selectRandom;
+        _selectedItem = AIO_INTELSPAWNED call BIS_fnc_selectRandom;
         // Pull the array and select a random building from it.
         _targBuilding = _targetBuildings call BIS_fnc_selectRandom;
         // Take the random building from the above result and pass it through gRBP function to get a single cache position
         _intelPosition = [_targBuilding] call AIO_fnc_randbldgpos;
         _item = createVehicle [_selectedItem, _intelPosition, [], 0, "None"];
+        _item setVariable ["intelgroup",AIO_INTEL_ACTIVE,true];
+        _item setVariable ["intelpoints",2,true];
+        AIO_INTEL_TRACKER set [AIO_INTEL_ACTIVE,_i];
 
       // [[_item,"Capture Intel"],"AIO_fnc_addactionMP", true, true] spawn BIS_fnc_MP;
 
-
-         [[_item,"Capture Intel","AIO_fnc_pickupintel",0,5,"red"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
+         [[_item,"Capture Intel",{ call AIO_fnc_intelpickup},0,5,"red"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
         // Move the Cache to the above select position
         _item setPos _intelPosition;
 
         spawnedIntelItems set [count spawnedIntelItems, _item];
         publicVariable "spawnedIntelItems";
+        publicVariable "AIO_INTEL_TRACKER";
 
         if (AIO_DEBUG) then {
+          [" DEBUG| Creating markers..."] call ALiVE_fnc_Dump;
           //debug to see where box spawned is if not multiplayer
           _m = createMarker [format ["box%1",random 10],getposATL _item];
           _m setMarkerShape "ICON";
@@ -112,6 +120,9 @@ for "_i" from 1 to 10 step 1 do {
 
 };
 
+//--- Create task for side to collect intellegence in that area...
+
 //--- Did this task throw us over the limit of 5? If so - kill the action.
-_intelactive = missionNamespace getVariable "AIO_INTEL_ACTIVE";
-if (_intelactive > 4) then { _target removeAction _aID};
+if (AIO_INTEL_ACTIVE > 4) then { _target removeAction _aID};
+
+  publicVariable "AIO_INTEL_ACTIVE";

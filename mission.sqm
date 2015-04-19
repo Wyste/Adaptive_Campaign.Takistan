@@ -41,27 +41,28 @@ class Mission
 		"agm_core",
 		"agm_map",
 		"agm_movement",
-		"agm_explosives",
 		"agm_interaction",
 		"agm_medical",
-		"agm_nametags"
+		"agm_nametags",
+		"alive_sup_multispawn",
+		"rhsusf_c_troops"
 	};
 	addOnsAuto[]=
 	{
-		"AEF_DCU_UNIFORM_1",
+		"rhsusf_c_troops",
 		"A3_Modules_F_Curator_Curator",
 		"task_force_radio_items",
 		"alive_main",
 		"agm_respawn",
 		"agm_core",
 		"agm_map",
-		"agm_movement",
-		"agm_explosives",
+		"alive_sup_multispawn",
 		"agm_medical",
 		"agm_nametags",
 		"agm_logistics",
 		"alive_sys_weather",
 		"agm_interaction",
+		"agm_movement",
 		"A3_Structures_F_Mil_Cargo",
 		"rhsusf_c_rg33",
 		"A3_Structures_F_Mil_Fortification",
@@ -121,10 +122,10 @@ class Mission
 				class Item0
 				{
 					position[]={4843.5015,107.64463,10280.889};
-					azimut=263.02719;
+					azimut=263.02701;
 					id=0;
 					side="WEST";
-					vehicle="aef_dcu_Commander";
+					vehicle="rhsusf_army_ucp_rifleman_82nd";
 					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
@@ -138,7 +139,7 @@ class Mission
 					position[]={4876.1733,106.72511,10214.616};
 					id=1;
 					side="WEST";
-					vehicle="aef_dcu_Commander";
+					vehicle="rhsusf_army_ucp_marksman";
 					player="PLAY CDG";
 					skill=0.60000002;
 					text="b";
@@ -321,7 +322,7 @@ class Mission
 						items=8;
 						class Item0
 						{
-							value="false";
+							value="true";
 							parentCls="ALiVE_require";
 							typeName="debug";
 						};
@@ -339,7 +340,7 @@ class Mission
 						};
 						class Item3
 						{
-							value="1";
+							value="0";
 							parentCls="ALiVE_require";
 							typeName="ALiVE_DISABLEMARKERS";
 						};
@@ -493,67 +494,49 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4649.6675,108.09436,10548.431};
+					position[]={4837.251,107.58113,10282.502};
 					class args
 					{
-						items=2;
+						items=4;
 						class Item0
 						{
-							value="1";
-							parentCls="AGM_ModuleFatigue";
-							typeName="CoefFatigue";
+							value="false";
+							parentCls="ALiVE_sup_multispawn";
+							typeName="debug";
 						};
 						class Item1
 						{
-							value="1";
-							parentCls="AGM_ModuleFatigue";
-							typeName="CoefRecover";
+							value="insertion";
+							parentCls="ALiVE_sup_multispawn";
+							typeName="spawntype";
+						};
+						class Item2
+						{
+							value="6";
+							parentCls="ALiVE_sup_multispawn";
+							typeName="timeout";
+						};
+						class Item3
+						{
+							value="false";
+							parentCls="ALiVE_sup_multispawn";
+							typeName="spawningnearenemiesallowed";
 						};
 					};
 					id=9;
 					side="LOGIC";
-					vehicle="AGM_ModuleFatigue";
+					vehicle="ALiVE_sup_multispawn";
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
+					text="respawn_westBase";
+					description="Air Insertion";
+					syncId=4;
+					synchronizations[]={5};
 				};
 			};
 		};
 		class Item9
-		{
-			side="LOGIC";
-			class Vehicles
-			{
-				items=1;
-				class Item0
-				{
-					position[]={4749.1392,103.50381,10547.912};
-					class args
-					{
-						items=2;
-						class Item0
-						{
-							value="1";
-							parentCls="AGM_ModuleExplosive";
-							typeName="RequireSpecialist";
-						};
-						class Item1
-						{
-							value="1";
-							parentCls="AGM_ModuleExplosive";
-							typeName="PunishNonSpecialists";
-						};
-					};
-					id=10;
-					side="LOGIC";
-					vehicle="AGM_ModuleExplosive";
-					leader=1;
-					lock="UNLOCKED";
-					skill=0.60000002;
-				};
-			};
-		};
-		class Item10
 		{
 			side="LOGIC";
 			class Vehicles
@@ -662,7 +645,7 @@ class Mission
 							typeName="DisableScreams";
 						};
 					};
-					id=11;
+					id=10;
 					side="LOGIC";
 					vehicle="AGM_ModuleMedical";
 					leader=1;
@@ -671,7 +654,7 @@ class Mission
 				};
 			};
 		};
-		class Item11
+		class Item10
 		{
 			side="LOGIC";
 			class Vehicles
@@ -702,7 +685,7 @@ class Mission
 							typeName="Visibility";
 						};
 					};
-					id=12;
+					id=11;
 					side="LOGIC";
 					vehicle="AGM_ModuleNameTags";
 					leader=1;
@@ -711,7 +694,7 @@ class Mission
 				};
 			};
 		};
-		class Item12
+		class Item11
 		{
 			side="LOGIC";
 			class Vehicles
@@ -748,7 +731,7 @@ class Mission
 							typeName="MaxDamageRepair";
 						};
 					};
-					id=13;
+					id=12;
 					side="LOGIC";
 					vehicle="AGM_ModuleRepair";
 					leader=1;
@@ -757,7 +740,7 @@ class Mission
 				};
 			};
 		};
-		class Item13
+		class Item12
 		{
 			side="LOGIC";
 			class Vehicles
@@ -806,7 +789,7 @@ class Mission
 							typeName="weather_cycle_variance_setting";
 						};
 					};
-					id=14;
+					id=13;
 					side="LOGIC";
 					vehicle="ALiVE_sys_weather";
 					leader=1;
@@ -815,7 +798,7 @@ class Mission
 				};
 			};
 		};
-		class Item14
+		class Item13
 		{
 			side="LOGIC";
 			class Vehicles
@@ -834,9 +817,43 @@ class Mission
 							typeName="EnableTeamManagement";
 						};
 					};
-					id=15;
+					id=14;
 					side="LOGIC";
 					vehicle="AGM_ModuleInteraction";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+				};
+			};
+		};
+		class Item14
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={4649.6675,108.09436,10548.431};
+					class args
+					{
+						items=2;
+						class Item0
+						{
+							value="1";
+							parentCls="AGM_ModuleFatigue";
+							typeName="CoefFatigue";
+						};
+						class Item1
+						{
+							value="1";
+							parentCls="AGM_ModuleFatigue";
+							typeName="CoefRecover";
+						};
+					};
+					id=15;
+					side="LOGIC";
+					vehicle="AGM_ModuleFatigue";
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
@@ -846,7 +863,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=160;
+		items=161;
 		class Item0
 		{
 			position[]={4855.249,106.82538,10299.308};
@@ -990,32 +1007,35 @@ class Mission
 		class Item15
 		{
 			position[]={4844.7432,107.10831,10293.425};
-			azimut=145.35825;
+			azimut=145.358;
 			offsetY=9.5367398e-007;
 			id=31;
 			side="EMPTY";
 			vehicle="CargoNet_01_box_F";
 			skill=0.60000002;
+			init="this addAction [""<t color='#004EFF'>Arsenal</t>"", {[""Open"",true] spawn BIS_fnc_arsenal}];";
 		};
 		class Item16
 		{
 			position[]={4847.9175,107.0143,10295.58};
-			azimut=503.50781;
+			azimut=503.508;
 			offsetY=4.7683699e-007;
 			id=32;
 			side="EMPTY";
 			vehicle="CargoNet_01_box_F";
 			skill=0.60000002;
+			init="this addAction [""<t color='#004EFF'>Arsenal</t>"", {[""Open"",true] spawn BIS_fnc_arsenal}];";
 		};
 		class Item17
 		{
 			position[]={4846.377,107.06451,10294.475};
-			azimut=505.3558;
+			azimut=505.35599;
 			offsetY=4.7683699e-007;
 			id=33;
 			side="EMPTY";
 			vehicle="B_CargoNet_01_ammo_F";
 			skill=0.60000002;
+			init="this addAction [""<t color='#004EFF'>Arsenal</t>"", {[""Open"",true] spawn BIS_fnc_arsenal}];";
 		};
 		class Item18
 		{
@@ -1307,7 +1327,7 @@ class Mission
 		class Item48
 		{
 			position[]={4866.1958,106.55428,10264.682};
-			azimut=145.3567;
+			azimut=145.35699;
 			id=64;
 			side="EMPTY";
 			vehicle="Land_HelipadRescue_F";
@@ -2366,10 +2386,21 @@ class Mission
 			vehicle="AGM_SpareWheel";
 			skill=0.60000002;
 		};
+		class Item160
+		{
+			position[]={5.7117996,92.979347,12791.501};
+			id=176;
+			side="EMPTY";
+			vehicle="RHS_UH60M_d";
+			skill=1;
+			text="insertionhelo";
+			syncId=5;
+			synchronizations[]={4};
+		};
 	};
 	class Markers
 	{
-		items=2;
+		items=5;
 		class Item0
 		{
 			position[]={4898.1426,105.61111,10224.778};
@@ -2382,6 +2413,24 @@ class Mission
 		{
 			position[]={6550.3672,286.0275,6451.9194};
 			name="AIO_MAPCENTER";
+			type="Empty";
+		};
+		class Item2
+		{
+			position[]={4417.9268,56.219654,11906.582};
+			name="ALiVE_SUP_MULTISPAWN_INSERTION_rhs_faction_usarmy_d";
+			type="Empty";
+		};
+		class Item3
+		{
+			position[]={4866.1318,106.56109,10266.893};
+			name="ALiVE_SUP_MULTISPAWN_DESTINATION_rhs_faction_usarmy_d";
+			type="Empty";
+		};
+		class Item4
+		{
+			position[]={4835.5903,107.6778,10277.82};
+			name="respawn_westBase-HQ";
 			type="Empty";
 		};
 	};
