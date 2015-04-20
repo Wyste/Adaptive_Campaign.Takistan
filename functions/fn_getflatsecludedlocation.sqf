@@ -24,9 +24,9 @@ Returns:
 
     No return value
 
-TODO:
+USAGE:
 
-    Check to see if this script actually works?
+    [centerPoint, radius, minDistance] call AIO_fnc_getflatsecludedlocation;
 ______________________________________________________________________________*/
 
 private ["_centerPoint", "_radiusA", "_dir", "_minDistance", "_orgX", "_orgY", "_posX", "_posY", "_randPos", "_loc"];
