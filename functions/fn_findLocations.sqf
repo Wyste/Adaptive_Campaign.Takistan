@@ -20,9 +20,18 @@ Description:
 
     TASK - finds all locations of the allowed location types
 
+Returns:
+
+  Array
+
 TODO:
 
   Remove hardcoding if possible
+  -- Is possible, just not for takistan ;) - BBrown
+
+USAGE:
+
+  someVar = call AIO_fnc_findLocations;
 _____________________________________________________________________________*/
 
 private ["_locations","_cityTypes","_randomLoc","_x","_i","_cities"];

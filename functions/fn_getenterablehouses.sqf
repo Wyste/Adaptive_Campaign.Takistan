@@ -23,6 +23,11 @@ Description:
 Returns:
 
 	Array
+
+USAGE:
+  //first arg is center point, second arg is the A radius
+
+  [Position, Number] call AIO_fnc_getenterablehouses;
 ______________________________________________________________________________*/
 
 private ["_cityPos", "_cityRadA", "_buildings"];

@@ -24,6 +24,9 @@ Returns:
 
 	Array
 
+USAGE:
+
+  [Position, Number] call AIO_fnc_findbuildings;
 ______________________________________________________*/
 
 private ["_centerPos","_radius","_buildingList","_house"];
