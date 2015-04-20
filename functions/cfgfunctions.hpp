@@ -43,7 +43,6 @@ class AIO
 		class intelpickup {};
 		class delallspawnedintelgroup {};
 		class addtosign {};
-		class generatemission {};
 		class createtask {};
 	};
 };

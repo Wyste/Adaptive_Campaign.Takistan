@@ -52,7 +52,6 @@ _loc = _p nearObjects _minDistance;
 while {(count _loc) >= 1} do {
   _p = call fn_RandomPosInRadius;
   _loc = _p nearObjects _minDistance;
-  sleep 1;  //IS THIS REALLY NEEDED? -Wyste
 };
 
 if (AIO_DEBUG) then {[format [" DEBUG | fn_getflatsecludedlocation | Found suitable location: %1", _p]] call ALiVE_fnc_Dump;};

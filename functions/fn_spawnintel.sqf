@@ -10,15 +10,20 @@
 
 Author:
 
-	Wyste
+	Wyste/BBrown
 
 Last modified:
 
-	4/12/2015
+	4/19/2015
 
 Description:
 
 	TASK - spawns intellegence in a town randomly. Also creates a trigger in which enemies can drop more intel.
+
+TODO:
+
+  gut and overhaul city selection and information using existing external scripts
+
 _____________________________________________________________________________
 
 
