@@ -59,16 +59,17 @@ if (AIO_INTEL_TRACKER select _intgrp < 5) then {
 	AIO_INTEL_ACTIVE = AIO_INTEL_ACTIVE - 1;
 	publicVariable "AIO_INTEL_ACTIVE";
 	//run the sign script again, cuz it need to repopulate if needed.
-	((AIO_TASKS select 0) select 2) set true;
-	[missionNamespace getVariable "AIO_TASKS"] execVM "sign.sqf";
+	(AIO_TASKS select 0) set [2,true];
+	[AIO_TASKS select 0] execVM "addtosignsign.sqf";
 };
 
 //Look at current point total and make random tier 2 missions available... :D
 
-if (AIO_INTEL_POINTS => 20) then {
+if (AIO_INTEL_POINTS >= 20) then {
 	AIO_INTEL_POINTS = AIO_INTEL_POINTS - 20;
 	publicVariable "AIO_INTEL_POINTS";
 	private ["_tier"];
+	_tier = 0;
 	while {_tier != 2} do {
     	_newTask = AIO_TASKS select floor(random(count AIO_TASKS));
     	_tier = _newTask select 1;

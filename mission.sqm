@@ -754,7 +754,7 @@ class Mission
 						items=6;
 						class Item0
 						{
-							value="true";
+							value="false";
 							parentCls="ALiVE_sys_weather";
 							typeName="weather_debug_setting";
 						};
