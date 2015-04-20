@@ -88,3 +88,7 @@ ______________________________________________________________________________*/
     [1,2,false,"Destroy Cache","Destroy Weapons Cache : ","Insurgents have been hoarding weapons, we need your squad to destroy them immediately upon discovery.",["AIO_LgCITY","AIO_SmCITY","AIO_CITY"],{call AIO_fnc_spawncache},0,"yellow"]];
 
   publicVariable "AIO_TASKS";
+
+  if (AIO_DEBUG) then {
+  ["Adaptive Intel | AlivE - commond_defines.sqf finished"] call ALiVE_fnc_Dump;
+};
