@@ -60,7 +60,7 @@ if (AIO_INTEL_TRACKER select _intgrp < 5) then {
 	publicVariable "AIO_INTEL_ACTIVE";
 	//run the sign script again, cuz it need to repopulate if needed.
 	(AIO_TASKS select 0) set [2,true];
-	[AIO_TASKS select 0] execVM "addtosignsign.sqf";
+	[AIO_TASKS select 0] execVM "addtosign.sqf";
 };
 
 //Look at current point total and make random tier 2 missions available... :D
@@ -76,5 +76,5 @@ if (AIO_INTEL_POINTS >= 20) then {
     };
     //One random teir 2 mission is now available and going to be assigned to sign board.
 	//(AIO_TASKS select (_newTask select 0)) set [2,true];
-	_newTask execVM "addtosign.sqf";
+	_newTask execVM AIO_fnc_addtosign;
 };

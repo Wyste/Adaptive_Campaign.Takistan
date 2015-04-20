@@ -22,20 +22,22 @@ Returns:
 	Array
 _____________________________________________________________________________*/
 
-private ["_building", "_count", "_position"];
-
+private ["_building", "_count", "_position","_z","_posATL"];
+_z = 0;
 _building = _this select 0;
 _count = [_building] call AIO_fnc_getcountbldgpos;
 
-if(_count == 0) then {
-	_position = getPos _building;
-} else {
-	_position = random _count;
-	_position = _building buildingPos _position;
-};
-
-if((_position select 0) == 0) then {
-	_position = getPos _building;
-};
-
-_position
+	if(_count == 0) then {
+		_position = getPos _building;
+		_posATL = getPosATL _building;
+		_z = _posATL select 2;
+	} else {
+		_position = random _count;
+		_position = _building buildingPos _position;
+		_z = _position select 2;
+	};
+	if((_position select 0) == 0) then {
+		_position = getPos _building;
+	};
+_position set [2,abs(_position select 2)];
+_position;

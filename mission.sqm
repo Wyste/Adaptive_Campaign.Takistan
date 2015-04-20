@@ -322,7 +322,7 @@ class Mission
 						items=8;
 						class Item0
 						{
-							value="true";
+							value="false";
 							parentCls="ALiVE_require";
 							typeName="debug";
 						};
@@ -529,7 +529,6 @@ class Mission
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
-					text="respawn_westBase";
 					description="Air Insertion";
 					syncId=4;
 					synchronizations[]={5};
@@ -2406,9 +2405,9 @@ class Mission
 		{
 			position[]={4898.1426,105.61111,10224.778};
 			name="base";
-			text="Camp Sheild";
-			type="Empty";
-			angle=145.35699;
+			text=" Camp Sheild";
+			type="Faction_US";
+			b=0.75;
 		};
 		class Item1
 		{
@@ -2432,6 +2431,7 @@ class Mission
 		{
 			position[]={4835.5903,107.6778,10277.82};
 			name="respawn_westBase-HQ";
+			text="Base-HQ";
 			type="Empty";
 		};
 	};

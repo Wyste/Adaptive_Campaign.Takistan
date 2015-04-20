@@ -64,13 +64,7 @@ if (AIO_DEBUG) then {[" DEBUG| Selecting area for intel spawn..."] call ALiVE_fn
     if (AIO_DEBUG) then {[format [" DEBUG| Index Selected: %1",_index]] call ALiVE_fnc_Dump;};
   _targArr = _area select _index;
 
-  if (AIO_DEBUG) then {[" DEBUG| Array of area to use for intel spawn..."] call ALiVE_fnc_Dump;
-[(_targArr select 0)] call ALiVE_fnc_Dump;
-[(_targArr select 1)] call ALiVE_fnc_Dump;
-[(_targArr select 2)] call ALiVE_fnc_Dump;
-[(_targArr select 3)] call ALiVE_fnc_Dump;
-[(_targArr select 4)] call ALiVE_fnc_Dump;
-};
+  if (AIO_DEBUG) then {[" DEBUG| Array of area to use for intel spawn..."] call ALiVE_fnc_Dump;};
 
       _cityName = _targArr select 0;
       _cityPOS  = _targArr select 1;
@@ -86,6 +80,9 @@ if (AIO_DEBUG) then {hint "stuff spawning";};
 
 //TO-DO: Get count of current amount of players in the group based upon their personal variables
 //In meantime... 10 intels please.
+
+private ["_intelspawned"];
+
 for "_i" from 1 to 10 step 1 do {
   if (count _targetBuildings > 0 ) then {
         _selectedItem = AIO_INTELSPAWNED call BIS_fnc_selectRandom;
@@ -93,10 +90,14 @@ for "_i" from 1 to 10 step 1 do {
         _targBuilding = _targetBuildings call BIS_fnc_selectRandom;
         // Take the random building from the above result and pass it through gRBP function to get a single cache position
         _intelPosition = [_targBuilding] call AIO_fnc_randbldgpos;
+        if (AIO_DEBUG) then {
+          [format [" DEBUG| Creating intel at %1...",_intelPosition]] call ALiVE_fnc_Dump;};
+
         _item = createVehicle [_selectedItem, _intelPosition, [], 0, "None"];
         _item setVariable ["intelgroup",AIO_INTEL_ACTIVE,true];
         _item setVariable ["intelpoints",10,true];
         AIO_INTEL_TRACKER set [AIO_INTEL_ACTIVE,_i];
+        _intelspawned = _i;
 
       // [[_item,"Capture Intel"],"AIO_fnc_addactionMP", true, true] spawn BIS_fnc_MP;
 
