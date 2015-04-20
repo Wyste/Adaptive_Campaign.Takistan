@@ -95,7 +95,7 @@ for "_i" from 1 to 10 step 1 do {
         _intelPosition = [_targBuilding] call AIO_fnc_randbldgpos;
         _item = createVehicle [_selectedItem, _intelPosition, [], 0, "None"];
         _item setVariable ["intelgroup",AIO_INTEL_ACTIVE,true];
-        _item setVariable ["intelpoints",2,true];
+        _item setVariable ["intelpoints",10,true];
         AIO_INTEL_TRACKER set [AIO_INTEL_ACTIVE,_i];
 
       // [[_item,"Capture Intel"],"AIO_fnc_addactionMP", true, true] spawn BIS_fnc_MP;
@@ -122,7 +122,10 @@ for "_i" from 1 to 10 step 1 do {
 
 //--- Create task for side to collect intellegence in that area...
 
-//--- Did this task throw us over the limit of 5? If so - kill the action.
-if (AIO_INTEL_ACTIVE > 4) then { _target removeAction _aID};
+//--- Did this task throw us over the limit of 5? If so - kill the action and prevent it from being re-added to the sign.
+if (AIO_INTEL_ACTIVE > 4) then {
+  _target removeAction _aID;
+  (AIO_TASKS select 0) set [2,false];
+};
 
-  publicVariable "AIO_INTEL_ACTIVE";
+publicVariable "AIO_INTEL_ACTIVE";

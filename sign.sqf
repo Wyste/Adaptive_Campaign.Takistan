@@ -37,10 +37,8 @@ private ["_tID","_tier","_avl","_aStr","_mStr","_MDStr","_areas","_script","_arg
   _args   = _x select 6;
   _script = _x select 7;
   _color  = _x select 8;
-
-  if (_avl) then {
      [[AIO_SIGN select 0,_aStr,_script,_args,_tier+5,_color],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
-  };
+
 } forEach AIO_TASKS;
 
 if (AIO_DEBUG) then {["Adaptive Intel | AlivE - Sign.sqf finished..."] call ALiVE_fnc_Dump;};
