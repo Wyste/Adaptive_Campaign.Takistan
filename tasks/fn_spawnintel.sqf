@@ -1,137 +1,76 @@
-/*
-         ___     __          __  _            ____     __      __
-        / _ |___/ /__ ____  / /_(_)  _____   /  _/__  / /____ / /
-       / __ / _  / _ `/ _ \/ __/ / |/ / -_) _/ // _ \/ __/ -_) /
-      /_/_|_\_,_/\_,_/ .__/\__/_/|___/\__/ /___/_//_/\__/\__/_/
-        / _ | ______/_/ / _ | |_  /
-       / __ |/ __/  ' \/ __ |_/_ <
-      /_/ |_/_/ /_/_/_/_/ |_/____/
-                                                      @filename: spawnintel.sqf
+/* _       _             _   _              _____       _       _
+  /_\   __| | __ _ _ __ | |_(_)_   _____    \_   \_ __ | |_ ___| |
+ //_\\ / _` |/ _` | '_ \| __| \ \ / / _ \    / /\/ '_ \| __/ _ \ |
+/  _  \ (_| | (_| | |_) | |_| |\ V /  __/ /\/ /_ | | | | ||  __/ |
+\_/ \_/\__,_|\__,_| .__/ \__|_| \_/ \___| \____/ |_| |_|\__\___|_|
+Author | Last Modified | Description
 
-Author:
+	Wyste | 4/20/2015 | TASK - spawns intellegence in a town randomly. 
+___________________________________________________________________________*/
 
-	Wyste/BBrown
+if (AIO_DEBUG) then {["SCRIPT STARTING| fn_spawnintel.sqf"] call ALiVE_fnc_Dump;};
+if (AIO_INTEL_ACTIVE > 4) exitWith {}; //--- If 5 intel areas are populated already - EXIT
 
-Last modified:
+//--- addAction Information Gathering
+private ["_target","_caller","_ID","_args"];
+target    = _this select 0; //--- Object - The IntelSign
+caller    = _this select 1; //--- Object - the unit that activated the action
+ID        = _this select 2; //--- Number - ID of the activated action
+arguments = _this select 3; //--- Anything - arguments given to the script
 
-	4/19/2015
-
-Description:
-
-	TASK - spawns intellegence in a town randomly. Also creates a trigger in which enemies can drop more intel.
-
-TODO:
-
-  gut and overhaul city selection and information using existing external scripts
-
-_____________________________________________________________________________
-
-
-target    (_this select 0): Object - the object which the action is assigned to
-caller    (_this select 1): Object - the unit that activated the action
-ID        (_this select 2): Number - ID of the activated action
-arguments (_this select 3): Anything - arguments given to the script
+/*--- Current Mission Variables (Shouldn't need this section - just for reference!
+AIO_INTEL_ACTIVE  = missionNamespace getVariable "AIO_INTEL_ACTIVE";
+AIO_INTELSPAWNABLE  = missionNamespace getVariable "AIO_INTELSPAWNABLE";
+AIO_INTEL_TRACKER = missionNamespace getVariable "AIO_INTEL_TRACKER";
 */
 
-//--- Setup / Gathering Arguments + Mission Parameters
+if (AIO_DEBUG) then {["fn_spawnintel.sqf| Selecting area for intel spawn..."] call ALiVE_fnc_Dump;};
 
-private ["_target","_caller","_aID","_args","_selectedItem","_item","_buildings","_area","_cities","_cityName","_cityPOS","_cityRadA","_cityRadB","_cityCent","_intelactive","_usearea","_targetBuildings","_targBuilding","_index","_targArr","_intelPosition"];
+private ["_randcity","_cityName","_cityPOS","_cityRadA","_cithRadB","_cityCent","_buildings","_bldg","_itemToSpawn","_spawnPOS","_item","_m"];
+_buildings = [];
 
-_target = _this select 0;
-_caller = _this select 1;
-_aID    = _this select 2;
-_args   = _this select 3;
-AIO_INTEL_ACTIVE = missionNamespace getVariable "AIO_INTEL_ACTIVE";
-AIO_INTELSPAWNED = missionNamespace getVariable "AIO_INTELSPAWNED";
-AIO_INTEL_TRACKER = missionNamespace getVariable "AIO_INTEL_TRACKER";
+while {count _buildings < 5} do { //--- We want a city with more then 4 buildings.
+	//--- Select random city and it's information.
+	_randcity = [AIO_VILLAGE,AIO_CITY] call AIO_fnc_findLocation;
+	_cityName = _targArr select 0;
+	_cityPOS  = _targArr select 1;
+	_cityRadA = _targArr select 2;
+	_cityRadB = _targArr select 3;
+	_cityCent = [(_cityPOS select 0) + (_cityRadA / 2),(_cityPos select 1) + (_cityRadB / 2)];
+	if(_cityRadB > _cityRadA) then { _cityRadA = _cityRadB; };
+	//--- Select buildings within the selected city
+	_buildings = [_cityCent, _cityRadA] call AIO_fnc_findbuildings;
+};
 
-spawnedIntelItems = [];
-publicVariable "spawnedIntelItems";
-
-//--- Do nothing if this is called and 5 of this task are active.
-
-if (AIO_INTEL_ACTIVE > 4) exitWith {}; //Max intels spawned - you need to wait.
-
-//--- If we're nto above 4 - you can add one to the counter
-AIO_INTEL_ACTIVE = AIO_INTEL_ACTIVE + 1;
-
-//--- Selecting an area of operations
-if (AIO_DEBUG) then {[" DEBUG| Selecting area for intel spawn..."] call ALiVE_fnc_Dump;};
-
-//IF (AIO_DEBUG) then {[_args] call DEBUG_fnc_debugarray;};
-
-  // Select random citygrouping to use
-  // Select random city/area to use
-  _area = _args call BIS_fnc_selectRandom;
-  if (AIO_DEBUG) then {[format [" DEBUG| Selected Area Set of: %1",_area]] call ALiVE_fnc_Dump;};
-  _area = missionNamespace getVariable _area;
-  _index = _area call BIS_fnc_randomIndex;
-    if (AIO_DEBUG) then {[format [" DEBUG| Index Selected: %1",_index]] call ALiVE_fnc_Dump;};
-  _targArr = _area select _index;
-
-  if (AIO_DEBUG) then {[" DEBUG| Array of area to use for intel spawn..."] call ALiVE_fnc_Dump;};
-
-      _cityName = _targArr select 0;
-      _cityPOS  = _targArr select 1;
-      _cityRadA = _targArr select 2;
-      _cityRadB = _targArr select 3;
-      _cityCent = [(_cityPOS select 0) + (_cityRadA / 2),(_cityPos select 1) + (_cityRadB / 2)];
-      if(_cityRadB > _cityRadA) then { _cityRadA = _cityRadB; };
-
-//--- Spawn the stuff randomly!
-if (AIO_DEBUG) then {hint "stuff spawning";};
-
-  _targetBuildings = [_cityCent, _cityRadA] call AIO_fnc_findbuildings;
-
-//TO-DO: Get count of current amount of players in the group based upon their personal variables
-//In meantime... 10 intels please.
-
-private ["_intelspawned"];
-
+//--- Spawn max 10 intel items in this random city within building positions
 for "_i" from 1 to 10 step 1 do {
-  if (count _targetBuildings > 0 ) then {
-        _selectedItem = AIO_INTELSPAWNED call BIS_fnc_selectRandom;
-        // Pull the array and select a random building from it.
-        _targBuilding = _targetBuildings call BIS_fnc_selectRandom;
-        // Take the random building from the above result and pass it through gRBP function to get a single cache position
-        _intelPosition = [_targBuilding] call AIO_fnc_randbldgpos;
-        if (AIO_DEBUG) then {
-          [format [" DEBUG| Creating intel at %1...",_intelPosition]] call ALiVE_fnc_Dump;};
-
-        _item = createVehicle [_selectedItem, _intelPosition, [], 0, "None"];
-        _item setVariable ["intelgroup",AIO_INTEL_ACTIVE,true];
-        _item setVariable ["intelpoints",10,true];
-        AIO_INTEL_TRACKER set [AIO_INTEL_ACTIVE,_i];
-        _intelspawned = _i;
-
-      // [[_item,"Capture Intel"],"AIO_fnc_addactionMP", true, true] spawn BIS_fnc_MP;
-
-         [[_item,"Capture Intel",{ call AIO_fnc_intelpickup},0,5,"red"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
-        // Move the Cache to the above select position
-        _item setPos _intelPosition;
-
-        spawnedIntelItems set [count spawnedIntelItems, _item];
-        publicVariable "spawnedIntelItems";
-        publicVariable "AIO_INTEL_TRACKER";
-
-        if (AIO_DEBUG) then {
-          [" DEBUG| Creating markers..."] call ALiVE_fnc_Dump;
-          //debug to see where box spawned is if not multiplayer
-          _m = createMarker [format ["box%1",random 10],getposATL _item];
+	//--- Item and location Setup
+	_itemToSpawn = AIO_INTELSPAWNABLE call BIS_fnc_selectRandom; //--- Random class of intel item
+	_bldg = _Buildings call BIS_fnc_selectRandom; //--- Select random building from the town
+	_spawnPOS = [_bldg] call AIO_fnc_randbldgpos;
+	
+	if (AIO_DEBUG) then {[format ["fn_spawnintel.sqf| Attempting to create intel at %1...",_intelPosition]] call ALiVE_fnc_Dump;};
+	_item = createVehicle [_itemToSpawn, _spawnPOS, [], 0, "None"];
+	
+	if (AIO_DEBUG) then { //--- Debug Markers
+          [format ["fn_spawnintel.sqf| Creating marker at %1",_spawnPOS]] call ALiVE_fnc_Dump;
+		  _m = createMarker [format ["box%1",random 10],getposATL _item];
           _m setMarkerShape "ICON";
           _m setMarkerType "mil_dot";
           _m setMarkerColor "ColorGreen";
-        };
-  };
+	};
 
+	//--- Add action to pickup the intel by players
+	[[_item,"Capture Intel",{ call AIO_fnc_intelpickup},0,5,"red"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
+	
+	//--- Reset position just in case.
+	sleep 1;
+	_item setPos _spawnPOS;
+	//--- Add intel item to global tracker for all spawned intel items.
+	AIO_INTELSPAWNED set [AIO_INTEL_ACTIVE,[_i, _item]];
+	publicVariable "AIO_INTELSPAWNED";
 };
 
-//--- Create task for side to collect intellegence in that area...
-
-//--- Did this task throw us over the limit of 5? If so - kill the action and prevent it from being re-added to the sign.
-if (AIO_INTEL_ACTIVE > 4) then {
-  _target removeAction _aID;
-  (AIO_TASKS select 0) set [2,false];
-};
-
-publicVariable "AIO_INTEL_ACTIVE";
+AIO_INTEL_ACTIVE = AIO_INTEL_ACTIVE + 1;	//--- Add one to the tracker - successfully setup area.
+if (AIO_INTEL_ACTIVE > 4) then { _target removeAction _ID; };//--- Did this task throw us over the limit of 5?
+if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_spawnintel.sqf"] call ALiVE_fnc_Dump;};
