@@ -28,8 +28,7 @@ class AIO
 	class functions
 	{
 		file = "functions";
-		class areas {};
-		class toggletaskavail {};
+		class aliveSideMsg {};
 		class gettaskdetail {};
 		class findLocation {};
 		class findbuildings {};
@@ -62,8 +61,8 @@ class TASK
 	class TASK
 	{
 		file = "tasks";
-		class T1_spawnintel {};
-		class T2_spawncache {};
-		class T2_killhvt {};
+		class spawnintel {};
+		class T1_spawncache {};
+		class T1_killhvt {};
 	};
 };

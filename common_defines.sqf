@@ -7,9 +7,9 @@ Author | Last Modified | Description
 
   Wyste/BBrown | 4/20/2015 | Main Definitions - These will be used the entire life of the mission.
 ______________________________________________________________________________*/
-if (AIO_DEBUG) then {["Adaptive Intel | AlivE - commond_defines.sqf started"] call ALiVE_fnc_Dump;};
 //--- Debug
   AIO_DEBUG = true;
+  if (AIO_DEBUG) then {["Adaptive Intel | AlivE - commond_defines.sqf started"] call ALiVE_fnc_Dump;};
 
 //--- GLOBAL STATIC ITEMS
   AIO_SIGN = nearestObjects [getmarkerpos "base", ["Land_MapBoard_F"], 150];

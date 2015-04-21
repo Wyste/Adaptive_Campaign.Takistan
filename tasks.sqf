@@ -11,20 +11,15 @@ ______________________________________________________________________________*/
 if (AIO_DEBUG) then {["Adaptive Intel | AlivE - Starting task.sqf..."] call ALiVE_fnc_Dump;};
 
 AIO_T1TASKS = [
-  ["Gather Intel",{call TASK_fnc_spawnintel}]
-];
-
-AIO_T2TASKS = [
   ["Destroy Cache",{call TASK_fnc_spawncache}],
   ["Capture/Kill HVT",{call TASK_fnc_TASKhvt}]
 ];
 
-AIO_T3TASKS = [
-  [],
+AIO_T2TASKS = [
+  ["Raze Airfield",{call TASK_fnc_T2_airfield}]
 ];
 
-publicVariable "AIO_T1TASKS";
-publicVariable "AIO_T2TASKS";
-publicVariable "AIO_T3TASKS";
+publicVariable "AIO_T1TASKS"; // Regular missions inspired by intellegence
+publicVariable "AIO_T2TASKS"; // Special mission - 10% chance to be used once every mission...
 
 if (AIO_DEBUG) then {["Adaptive Intel | AlivE - Ending task.sqf..."] call ALiVE_fnc_Dump;};
