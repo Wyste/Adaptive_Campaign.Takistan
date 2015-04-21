@@ -56,7 +56,6 @@ class DEBUG
 	};
 };
 
-
 class TASK
 {
 	tag = "TASK";
