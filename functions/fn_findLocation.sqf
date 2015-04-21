@@ -8,7 +8,7 @@ Author | Last Modified | Description
   BBrown | 4/20/2015 | TASK - finds all locations of the allowed location types
 _____________________________________________________________________________*/
 /*
----Usage: randCity = [AIO_LgCITY,AIO_VILLAGE] call AIO_fnc_findLocations;
+---Usage: randCity = [[AIO_LgCITY,AIO_VILLAGE]] call AIO_fnc_findLocation;
 ---Returns: Array
 */
 
@@ -39,7 +39,7 @@ _randTown = _cities call bis_fnc_selectRandom;
 _rtName = _randTown select 0;
 _rtPos = [];
 
-// This finds all the cities that have actual city centers and sets their coordinates to the city's center coords
+// This finds all the cities that have actual city centers and sets their coordinates to the city's center coords (One back draw is it's hardcoded to Takistan, make sure to change/remove this block when porting to other maps)
 switch (_rtName) do {
   case "Anar": {
   	_randTown set [1, [5984.78,5780.72]];

@@ -31,10 +31,10 @@ class AIO
 		class areas {};
 		class toggletaskavail {};
 		class gettaskdetail {};
-		class findlocation {};
+		class findLocation {};
 		class findbuildings {};
 		class getenterablehouses {};
-		class getflatsecludedlocation {};
+		class getsecludedlocation {};
 		class addactionmp {};
 		class spawnintel {};
 		class spawncache {};
