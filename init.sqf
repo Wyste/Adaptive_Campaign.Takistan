@@ -21,16 +21,14 @@ enableSaving [false, false];
 //--- Game Briefing
 [] call compileFinal preprocessfilelinenumbers "scripts\briefings\briefing.sqf";
 
+//--- Intro
+[] call compileFinal preprocessfilelinenumbers "intro.sqf";
+
 //--- Add things to the sign at base, starts off the mission.
 if (isServer || isDedicated) then {
   //Run this once to start the intel spawns for the mission.
   [] call compileFinal preprocessfilelinenumbers "tasks\fn_spawnintel.sqf";
 };
-
-//--- Intro
-[] call compileFinal preprocessfilelinenumbers "intro.sqf";
-
-
 
 //--- End Init
 ["Adaptive Intel | AlivE - END OF INIT..."] call ALiVE_fnc_Dump;

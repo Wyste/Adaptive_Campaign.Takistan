@@ -12,19 +12,7 @@ if (AIO_DEBUG) then {["SCRIPT STARTING| fn_spawnintel.sqf"] call ALiVE_fnc_Dump;
 
 if (AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED > 4) exitWith {}; //--- If 5 intel areas are populated already - EXIT
 
-while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} {
-	//--- addAction Information Gathering
-	private ["_target","_caller","_ID","_args"];
-	target    = _this select 0; //--- Object - The IntelSign
-	caller    = _this select 1; //--- Object - the unit that activated the action
-	ID        = _this select 2; //--- Number - ID of the activated action
-	arguments = _this select 3; //--- Anything - arguments given to the script
-
-	/*--- Current Mission Variables (Shouldn't need this section - just for reference!
-	AIO_INTEL_ACTIVE  = missionNamespace getVariable "AIO_INTEL_ACTIVE";
-	AIO_INTELSPAWNABLE  = missionNamespace getVariable "AIO_INTELSPAWNABLE";
-	AIO_INTEL_TRACKER = missionNamespace getVariable "AIO_INTEL_TRACKER";
-	*/
+while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} do {
 
 	if (AIO_DEBUG) then {["fn_spawnintel.sqf| Selecting area for intel spawn..."] call ALiVE_fnc_Dump;};
 
@@ -33,7 +21,7 @@ while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} {
 
 	while {count _buildings < 5} do { //--- We want a city with more then 4 buildings.
 		//--- Select random city and it's information.
-		_randcity = [AIO_VILLAGE,AIO_CITY] call AIO_fnc_findLocation;
+		_randcity = [[AIO_VILLAGE,AIO_CITY]] call AIO_fnc_findLocation;
 		_cityName = _randcity select 0;
 		_cityPOS  = _randcity select 1;
 		_cityRadA = _randcity select 2;
@@ -50,7 +38,7 @@ while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} {
 		_bldg = _buildings call BIS_fnc_selectRandom; //--- Select random building from the town
 		_spawnPOS = [_bldg] call AIO_fnc_randbldgpos;
 
-		if (AIO_DEBUG) then {[format ["fn_spawnintel.sqf| Attempting to create intel at %1...",_intelPosition]] call ALiVE_fnc_Dump;};
+		if (AIO_DEBUG) then {[format ["fn_spawnintel.sqf| Attempting to create intel at %1...",_spawnPOS]] call ALiVE_fnc_Dump;};
 		_item = createVehicle [_itemToSpawn, _spawnPOS, [], 0, "None"];
 
 		if (AIO_DEBUG) then { //--- Debug Markers
@@ -69,9 +57,9 @@ while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} {
 		_item setPos _spawnPOS;
 
 		//Fix up the globals for proper tracking of everything
-		AIO_INTEL_ACTIVE = AIO_INTEL_ACTIVE + 1;  publicVariable AIO_INTEL_ACTIVE;
-		AIO_INTELSPAWNED set [AIO_INTEL_ACTIVE,[_i, _item]]; publicVariable "AIO_INTELSPAWNED";
+		AIO_INTEL_SPAWNED set [AIO_INTEL_ACTIVE,[_i, _item]]; publicVariable "AIO_INTELSPAWNED";
 	};
+	AIO_INTEL_ACTIVE = AIO_INTEL_ACTIVE + 1;  publicVariable "AIO_INTEL_ACTIVE";
 };
 
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_spawnintel.sqf"] call ALiVE_fnc_Dump;};
