@@ -36,7 +36,6 @@ class AIO
 		class getenterablehouses {};
 		class getsecludedlocation {};
 		class addactionmp {};
-		class spawnintel {};
 		class spawncache {};
 		class getcountbldgpos {};
 		class randbldgpos {};
@@ -54,5 +53,18 @@ class DEBUG
 	{
 		file = "debug";
 		class debugarray {};
+	};
+};
+
+
+class TASK
+{
+	tag = "TASK";
+	class TASK
+	{
+		file = "tasks";
+		class T1_spawnintel {};
+		class T2_spawncache {};
+		class T2_killhvt {};
 	};
 };

@@ -1,41 +1,30 @@
-/*
-         ___     __          __  _            ____     __      __
-        / _ |___/ /__ ____  / /_(_)  _____   /  _/__  / /____ / /
-       / __ / _  / _ `/ _ \/ __/ / |/ / -_) _/ // _ \/ __/ -_) /
-      /_/_|_\_,_/\_,_/ .__/\__/_/|___/\__/ /___/_//_/\__/\__/_/
-        / _ | ______/_/ / _ | |_  /
-       / __ |/ __/  ' \/ __ |_/_ <
-      /_/ |_/_/ /_/_/_/_/ |_/____/
-                                                          @filename: tasks.sqf
+/* _       _             _   _              _____       _       _
+  /_\   __| | __ _ _ __ | |_(_)_   _____    \_   \_ __ | |_ ___| |
+ //_\\ / _` |/ _` | '_ \| __| \ \ / / _ \    / /\/ '_ \| __/ _ \ |
+/  _  \ (_| | (_| | |_) | |_| |\ V /  __/ /\/ /_ | | | | ||  __/ |
+\_/ \_/\__,_|\__,_| .__/ \__|_| \_/ \___| \____/ |_| |_|\__\___|_|
+Author | Last Modified | Description
 
-Author:
+  Wyste | 4/20/2015 | Main Definitions - These will be used the entire life of the mission.
+______________________________________________________________________________*/
 
-	Wyste
-Last modified:
+if (AIO_DEBUG) then {["Adaptive Intel | AlivE - Starting task.sqf..."] call ALiVE_fnc_Dump;};
 
-	4/12/2015
-Description:
+AIO_T1TASKS = [
+  ["Gather Intel",{call TASK_fnc_spawnintel}]
+];
 
-	Defines all the available missions and properties associted with.
-Usage:
+AIO_T2TASKS = [
+  ["Destroy Cache",{call TASK_fnc_spawncache}],
+  ["Capture/Kill HVT",{call TASK_fnc_TASKhvt}]
+];
 
-_____________________________________________________________________________*/
+AIO_T3TASKS = [
+  [],
+];
 
-AIO_T1TASKS = []; //--- These are intel missions, and therefore don't change
-AIO_T2TASKS = []; //--- These are the main missions, required to win the game.
-AIO_T3TASKS = []; //--- These are special, rarely follow after T2.(10%)
+publicVariable "AIO_T1TASKS";
+publicVariable "AIO_T2TASKS";
+publicVariable "AIO_T3TASKS";
 
-// Format : ["taskID","TaskName","TaskDesc","AreaToUse"]
-private ["_newtask"];
-for "_i" from 0 to 4 do
-{
-  _newtask = [_i,"Gather Intel","Gather Intellegence","Gather intellegence from %1.","spawnintel.sqf",[AIO_SmCITY,AIO_VILLIAGE]];
-  AIO_T1TASKS = AIO_T1TASKS + _newtask;
-};
-
-/*
-0 = ID
-1 = AddAction Name
-2 = TaskName
-3 = TaskDesc
-4 = Areas to Use
+if (AIO_DEBUG) then {["Adaptive Intel | AlivE - Ending task.sqf..."] call ALiVE_fnc_Dump;};

@@ -13,6 +13,7 @@ ___________________________________________________________________________*/
 
 //--- DEFINES/ INCLUDES
 call compile preprocessFile "common_defines.sqf";
+call compile preprocessFile "tasks.sqf";
 
 //--- Disable Saving
 enableSaving [false, false];

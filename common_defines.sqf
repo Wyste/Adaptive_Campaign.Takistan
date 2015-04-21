@@ -7,6 +7,7 @@ Author | Last Modified | Description
 
   Wyste/BBrown | 4/20/2015 | Main Definitions - These will be used the entire life of the mission.
 ______________________________________________________________________________*/
+if (AIO_DEBUG) then {["Adaptive Intel | AlivE - commond_defines.sqf started"] call ALiVE_fnc_Dump;};
 //--- Debug
   AIO_DEBUG = true;
 
@@ -43,23 +44,4 @@ ______________________________________________________________________________*/
   AIO_VILLAGE   = "NameVillage";
   AIO_WATER     = "NameMarine";
 
-//--STOPPED WITH BRANDON
-  AIO_TASKS = [0,1,2,3,4,5];
-  publicVariable "AIO_TASKS";
-
-    if (AIO_DEBUG) then {
-    ["Adaptive Intel | AlivE - Creating Tasks..."] call ALiVE_fnc_Dump;
-    };
-
-  //Format:[id,tier,bAvailable,sActionName,sMapName,sMapDesc,areas,script,args]
-
-  AIO_TASKS = [
-    [0,1,true,"Gather Intel","Gather Intellegence : ","Gather intellegence to make available more advanced missions.",
-    ["AIO_VILLAGE","AIO_CITY"],{call AIO_fnc_spawnintel},0,"green"],
-    [1,2,false,"Destroy Cache","Destroy Weapons Cache : ","Insurgents have been hoarding weapons, we need your squad to destroy them immediately upon discovery.",["AIO_LgCITY","AIO_SmCITY","AIO_CITY"],{call AIO_fnc_spawncache},0,"yellow"]];
-
-  publicVariable "AIO_TASKS";
-
-  if (AIO_DEBUG) then {
-  ["Adaptive Intel | AlivE - commond_defines.sqf finished"] call ALiVE_fnc_Dump;
-};
+  if (AIO_DEBUG) then {["Adaptive Intel | AlivE - commond_defines.sqf finished"] call ALiVE_fnc_Dump;};
