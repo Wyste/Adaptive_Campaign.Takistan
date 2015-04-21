@@ -1,38 +1,16 @@
-/*
-         ___     __          __  _            ____     __      __
-        / _ |___/ /__ ____  / /_(_)  _____   /  _/__  / /____ / /
-       / __ / _  / _ `/ _ \/ __/ / |/ / -_) _/ // _ \/ __/ -_) /
-      /_/_|_\_,_/\_,_/ .__/\__/_/|___/\__/ /___/_//_/\__/\__/_/
-        / _ | ______/_/ / _ | |_  /
-       / __ |/ __/  ' \/ __ |_/_ <
-      /_/ |_/_/ /_/_/_/_/ |_/____/
-                                                @filename: fn_findLocations.sqf
+/* _       _             _   _              _____       _       _
+  /_\   __| | __ _ _ __ | |_(_)_   _____    \_   \_ __ | |_ ___| |
+ //_\\ / _` |/ _` | '_ \| __| \ \ / / _ \    / /\/ '_ \| __/ _ \ |
+/  _  \ (_| | (_| | |_) | |_| |\ V /  __/ /\/ /_ | | | | ||  __/ |
+\_/ \_/\__,_|\__,_| .__/ \__|_| \_/ \___| \____/ |_| |_|\__\___|_|
+Author | Last Modified | Description
 
-Author:
-
-    BBrown
-
-Last modified:
-
-    4/12/2015
-
-Description:
-
-    TASK - finds all locations of the allowed location types
-
-Returns:
-
-  Array
-
-TODO:
-
-  Remove hardcoding if possible
-  -- Is possible, just not for takistan ;) - BBrown
-
-USAGE:
-
-  someVar = call AIO_fnc_findLocations;
+  BBrown | 4/20/2015 | TASK - finds all locations of the allowed location types
 _____________________________________________________________________________*/
+/*
+---Usage: randCity = [AIO_LgCITY,AIO_VILLAGE] call AIO_fnc_findLocations;
+---Returns: Array
+*/
 
 private ["_locations","_cityTypes","_randomLoc","_x","_i","_cities"];
 _cityTypes = _this select 0;
@@ -45,11 +23,11 @@ for "_x" from 0 to (count _locations - 1) do {
 	private ["_cityName", "_cityPos","_cityRadA", "_cityRadB", "_cityType"];
 
   _randomLoc = _locations select _x;
-	_cityName = getText(_randomLoc >> "name");
-	_cityPos = getArray(_randomLoc >> "position");
-	_cityRadA = getNumber(_randomLoc >> "radiusA");
-	_cityRadB = getNumber(_randomLoc >> "radiusB");
-	_cityType = getText(_randomLoc >> "type");
+	_cityName  = getText  (_randomLoc >> "name");
+	_cityPos   = getArray (_randomLoc >> "position");
+	_cityRadA  = getNumber(_randomLoc >> "radiusA");
+	_cityRadB  = getNumber(_randomLoc >> "radiusB");
+	_cityType  = getText  (_randomLoc >> "type");
 
 	if(_cityType in _cityTypes) then {
 		_cities set [_i,[_cityName, _cityPos, _cityRadA, _cityRadB, _cityType]];
@@ -123,6 +101,4 @@ switch (_rtName) do {
       _randTown set [1, [_rtPosX, _rtPosY]];
   };
 };
-IF (AIO_DEBUG) then {[_randTown] call DEBUG_fnc_debugarray;};
-
 _randTown
