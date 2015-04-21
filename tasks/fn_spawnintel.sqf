@@ -40,6 +40,7 @@ while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} do {
 
 		if (AIO_DEBUG) then {[format ["fn_spawnintel.sqf| Attempting to create intel at %1...",_spawnPOS]] call ALiVE_fnc_Dump;};
 		_item = createVehicle [_itemToSpawn, _spawnPOS, [], 0, "None"];
+		_item setVariable ["id",AIO_INTEL_ACTIVE,true];
 
 		if (AIO_DEBUG) then { //--- Debug Markers
 	          [format ["fn_spawnintel.sqf| Creating marker at %1",_spawnPOS]] call ALiVE_fnc_Dump;
@@ -56,7 +57,7 @@ while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} do {
 		_item setPos _spawnPOS;
 
 		//Fix up the globals for proper tracking of everything
-		AIO_INTEL_SPAWNED set [AIO_INTEL_ACTIVE,[_i, _item]]; publicVariable "AIO_INTELSPAWNED";
+		AIO_INTEL_SPAWNED set [AIO_INTEL_ACTIVE,_i]; publicVariable "AIO_INTELSPAWNED";
 	};
 	AIO_INTEL_ACTIVE = AIO_INTEL_ACTIVE + 1;  publicVariable "AIO_INTEL_ACTIVE";
 };
