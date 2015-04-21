@@ -35,18 +35,14 @@ USAGE:
 _____________________________________________________________________________*/
 
 private ["_locations","_cityTypes","_randomLoc","_x","_i","_cities"];
-
-_mapCenter = getArray(configFile >> "CfgWorlds" >> worldName >> "centerPosition");
-
+_cityTypes = _this select 0;
 _i = 0;
 _cities = [];
-
 _locations = configFile >> "CfgWorlds" >> worldName >> "Names";
-_cityTypes = ["NameVillage", "NameCity", "NameCityCapital"];
 
 for "_x" from 0 to (count _locations - 1) do {
 
-	private ["_cityName", "_cityPos","_cityRadA", "_cityRadB", "_cityType", "_cityAngle"];
+	private ["_cityName", "_cityPos","_cityRadA", "_cityRadB", "_cityType"];
 
   _randomLoc = _locations select _x;
 	_cityName = getText(_randomLoc >> "name");
@@ -54,10 +50,9 @@ for "_x" from 0 to (count _locations - 1) do {
 	_cityRadA = getNumber(_randomLoc >> "radiusA");
 	_cityRadB = getNumber(_randomLoc >> "radiusB");
 	_cityType = getText(_randomLoc >> "type");
-	_cityAngle = getNumber(_randomLoc >> "angle");
 
 	if(_cityType in _cityTypes) then {
-		_cities set [_i,[_cityName, _cityPos, _cityRadA, _cityRadB, _cityType, _cityAngle]];
+		_cities set [_i,[_cityName, _cityPos, _cityRadA, _cityRadB, _cityType]];
 		_i = _i + 1;
 	};
 };
@@ -128,8 +123,6 @@ switch (_rtName) do {
       _randTown set [1, [_rtPosX, _rtPosY]];
   };
 };
-//if (AIO_DEBUG) then {[format [" DEBUG | AIO_fnc_findLocations | Name: %1\nPosition: %2\nRadiusA: %3\nRadiusB: %4\nType: %5\nAngle: %6",_randTown select 0,_randTown select 1,_randTown select 2,_randTown select 3,_randTown select 4,_randTown select 5]] call ALiVE_fnc_Dump;};
 IF (AIO_DEBUG) then {[_randTown] call DEBUG_fnc_debugarray;};
-
 
 _randTown

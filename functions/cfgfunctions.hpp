@@ -31,7 +31,7 @@ class AIO
 		class areas {};
 		class toggletaskavail {};
 		class gettaskdetail {};
-		class findLocations {};
+		class findLocation {};
 		class findbuildings {};
 		class getenterablehouses {};
 		class getflatsecludedlocation {};
