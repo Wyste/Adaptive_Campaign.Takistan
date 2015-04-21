@@ -28,27 +28,26 @@ while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} {
 
 	if (AIO_DEBUG) then {["fn_spawnintel.sqf| Selecting area for intel spawn..."] call ALiVE_fnc_Dump;};
 
-	private ["_randcity","_cityName","_cityPOS","_cityRadA","_cithRadB","_cityCent","_buildings","_bldg","_itemToSpawn","_spawnPOS","_item","_m"];
+	private ["_randcity","_cityName","_cityPOS","_cityRadA","_cityRadB","_buildings","_bldg","_itemToSpawn","_spawnPOS","_item","_m"];
 	_buildings = [];
 
 	while {count _buildings < 5} do { //--- We want a city with more then 4 buildings.
 		//--- Select random city and it's information.
 		_randcity = [AIO_VILLAGE,AIO_CITY] call AIO_fnc_findLocation;
-		_cityName = _targArr select 0;
-		_cityPOS  = _targArr select 1;
-		_cityRadA = _targArr select 2;
-		_cityRadB = _targArr select 3;
-		_cityCent = [(_cityPOS select 0) + (_cityRadA / 2),(_cityPos select 1) + (_cityRadB / 2)];
+		_cityName = _randcity select 0;
+		_cityPOS  = _randcity select 1;
+		_cityRadA = _randcity select 2;
+		_cityRadB = _randcity select 3;
 		if(_cityRadB > _cityRadA) then { _cityRadA = _cityRadB; };
 		//--- Select buildings within the selected city
-		_buildings = [_cityCent, _cityRadA] call AIO_fnc_findbuildings;
+		_buildings = [_cityPOS, _cityRadA] call AIO_fnc_getenterablehouses;
 	};
 
 	//--- Spawn max 10 intel items in this random city within building positions
 	for "_i" from 1 to 10 step 1 do {
 		//--- Item and location Setup
 		_itemToSpawn = AIO_INTELSPAWNABLE call BIS_fnc_selectRandom; //--- Random class of intel item
-		_bldg = _Buildings call BIS_fnc_selectRandom; //--- Select random building from the town
+		_bldg = _buildings call BIS_fnc_selectRandom; //--- Select random building from the town
 		_spawnPOS = [_bldg] call AIO_fnc_randbldgpos;
 
 		if (AIO_DEBUG) then {[format ["fn_spawnintel.sqf| Attempting to create intel at %1...",_intelPosition]] call ALiVE_fnc_Dump;};
