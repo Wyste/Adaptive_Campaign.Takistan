@@ -43,7 +43,7 @@ if(count _allbuildings >= 1) then {
 		_b = _allbuildings select _x;
 		_pos = _b buildingPos 1;
 
-		if(str(_pos) == "[0,0,0]") then {
+		if(str(_pos) != "[0,0,0]") then {
 			_enterablebuildings = _enterablebuildings + [_b];
 		};
 	};
