@@ -11,7 +11,7 @@ ______________________________________________________________________________*/
 if (AIO_DEBUG) then {["Adaptive Intel | AlivE - Starting task.sqf..."] call ALiVE_fnc_Dump;};
 
 AIO_T1TASKS = [
-  ["Destroy Cache",{call TASK_fnc_spawncache}],
+  ["Destroy Cache",{call TASK_fnc_TASKcache}],
   ["Capture/Kill HVT",{call TASK_fnc_TASKhvt}]
 ];
 
