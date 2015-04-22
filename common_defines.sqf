@@ -28,6 +28,7 @@ ______________________________________________________________________________*/
   AIO_INTEL_ACTIVE = 0;
   AIO_INTEL_COMPLETED = 0;
   AIO_INTEL_SPAWNED = [];
+  publicVariable "AIO_TASKS_COMPLETED";
   publicVariable "AIO_INTEL_POINTS";
   publicVariable "AIO_INTEL_ACTIVE";
   publicVariable "AIO_INTEL_SPAWNED";
