@@ -23,6 +23,7 @@ ______________________________________________________________________________*/
   AIO_AUTORIFLE = ["B_soldier_AR_F","B_support_MG_F","B_G_Soldier_AR_F"];
 
 //--- Public Mission Define.
+  AIO_TASKS_COMPLETED = 0;
   AIO_INTEL_POINTS = 0;
   AIO_INTEL_ACTIVE = 0;
   AIO_INTEL_COMPLETED = 0;
