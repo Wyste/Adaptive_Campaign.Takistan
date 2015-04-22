@@ -1,38 +1,14 @@
-/*
-         ___     __          __  _            ____     __      __
-        / _ |___/ /__ ____  / /_(_)  _____   /  _/__  / /____ / /
-       / __ / _  / _ `/ _ \/ __/ / |/ / -_) _/ // _ \/ __/ -_) /
-      /_/_|_\_,_/\_,_/ .__/\__/_/|___/\__/ /___/_//_/\__/\__/_/
-        / _ | ______/_/ / _ | |_  /
-       / __ |/ __/  ' \/ __ |_/_ <
-      /_/ |_/_/ /_/_/_/_/ |_/____/
-                                                   @filename: addactionsign.sqf
+/* _       _             _   _              _____       _       _
+  /_\   __| | __ _ _ __ | |_(_)_   _____    \_   \_ __ | |_ ___| |
+ //_\\ / _` |/ _` | '_ \| __| \ \ / / _ \    / /\/ '_ \| __/ _ \ |
+/  _  \ (_| | (_| | |_) | |_| |\ V /  __/ /\/ /_ | | | | ||  __/ |
+\_/ \_/\__,_|\__,_| .__/ \__|_| \_/ \___| \____/ |_| |_|\__\___|_|
+Author | Last Modified | Description
 
-Author:
-
-	Wyste
-Last modified:
-
-	4/19/2015
-Description:
-
-	adds action to intellegence sign at base to handle mission assignment.
+  Wyste | 4/20/2015 | Adds action to intellegence sign at base to handle mission assignment.
   ______________________________________*/
+if (AIO_DEBUG) then {["SCRIPT STARTED| fn_addtosign.sqf"] call ALiVE_fnc_Dump;};
 
-  private ["_task","_tID","_tier","_avl","_aStr","_mStr","_MDStr","_areas","_script","_args","_color"];
+[[AIO_SIGN select 0,_this select 0,_this select 1,_this select 2],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
 
-  _task = _this select 0;
-
-  _tID    = _task select 0;
-  _tier   = _task select 1;
-  _avl    = _task select 2;
-  _aStr   = _task select 3;
-  _args   = _task select 6;
-  _script = _task select 7;
-  _color  = _task select 8;
-
-  if (_avl) then {
-     [[AIO_SIGN select 0,_aStr,_script,_args,_tier+5,_color],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
-  };
-
-if (AIO_DEBUG) then {["Adaptive Intel | AlivE - addtoSign.sqf finished..."] call ALiVE_fnc_Dump;};
+if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_addtosign.sqf"] call ALiVE_fnc_Dump;};
