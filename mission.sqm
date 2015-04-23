@@ -129,13 +129,13 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="w";
-					init="this addAction[""Run Test Script"", ""debug\testscript.sqf""];";
 					syncId=0;
 					synchronizations[]={2};
 				};
 				class Item1
 				{
-					position[]={4876.1733,106.72511,10214.616};
+					position[]={4850.9175,107.17519,10290.079};
+					azimut=143.98573;
 					id=1;
 					side="WEST";
 					vehicle="rhsusf_army_ucp_marksman";
@@ -943,6 +943,7 @@ class Mission
 			vehicle="Land_MapBoard_F";
 			skill=0.60000002;
 			text="intelsign";
+			init="this addAction[""Run Test Script"", ""debug\testscript.sqf""];";
 		};
 		class Item14
 		{

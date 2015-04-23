@@ -1,6 +1,5 @@
-_town = call AIO_fnc_findLocations;
-_townPos = _town select 1;
-_townRadA = _town select 2;
+_target = _this select 0;
+_caller = _this select 1;
+_ID = _this select 2;
 
-//_enterableBuildings = [_townPos, _townRadA] call AIO_fnc_getenterablehouses;
-_nul = [_townPos, 100, 10] call AIO_fnc_getflatsecludedlocation;
+[_target, _caller, _ID] call TASK_fnc_T1_spawncache;
