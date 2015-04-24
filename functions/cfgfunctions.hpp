@@ -40,7 +40,7 @@ class AIO
 		class randbldgpos {};
 		class intelpickup {};
 		class delallspawnedintelgroup {};
-		class addtosign {};
+		class addrandtasktosign {};
 		class createtask {};
 		class killcache {};
 	};

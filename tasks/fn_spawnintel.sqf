@@ -52,7 +52,7 @@ while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} do {
 		};
 
 		//--- Add action to pickup the intel by players
-		[[_item,"Capture Intel",{ call AIO_fnc_intelpickup},0,5,"red"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
+		[[_item,"Capture Intel","call AIO_fnc_intelpickup","red"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
 
 		//--- Reset position just in case.
 		_item setPos _spawnPOS;

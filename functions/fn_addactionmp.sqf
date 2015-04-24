@@ -20,6 +20,12 @@ _screenMsg 	 = _this select 1;
 _script 	   = _this select 2;
 _screenColor = _this select 3;
 
+[format ["fn_addactionmp: YOU PASSED A %1 with Value: %2",typeName _object, _object]] call ALiVE_fnc_Dump;
+[format ["fn_addactionmp: YOU PASSED A %1 with Value: %2",typeName _screenMsg, _screenMsg]] call ALiVE_fnc_Dump;
+[format ["fn_addactionmp: YOU PASSED A %1 with Value: %2",typeName _script, _script]] call ALiVE_fnc_Dump;
+[format ["fn_addactionmp: YOU PASSED A %1 with Value: %2",typeName _screenColor, _screenColor]] call ALiVE_fnc_Dump;
+
+
 switch (_screenColor) do {
 	case "red": {
 		_msg = Format ["<t color='#FF0000'>%1</t>",_screenMsg];

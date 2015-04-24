@@ -19,10 +19,10 @@ call compile preprocessFile "tasks.sqf";
 enableSaving [false, false];
 
 //--- Game Briefing
-[] call compileFinal preprocessfilelinenumbers "scripts\briefings\briefing.sqf";
+//[] call compileFinal preprocessfilelinenumbers "scripts\briefings\briefing.sqf";
 
 //--- Intro
-[] call compileFinal preprocessfilelinenumbers "intro.sqf";
+//[] call compileFinal preprocessfilelinenumbers "intro.sqf";
 
 //--- Add things to the sign at base, starts off the mission.
 if (isServer || isDedicated) then {
