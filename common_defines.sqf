@@ -13,6 +13,7 @@ ______________________________________________________________________________*/
 
 //--- GLOBAL STATIC ITEMS
   AIO_SIGN = nearestObjects [getmarkerpos "base", ["Land_MapBoard_F"], 150];
+  AIO_SIGN = AIO_SIGN select 0;
   publicVariable "AIO_SIGN";
 
 //--- Advanced Roles Defined.

@@ -48,13 +48,7 @@ if (AIO_INTEL_SPAWNED select _ID < 5) then {
 if (AIO_INTEL_POINTS >= 5) then {
 	AIO_INTEL_POINTS = AIO_INTEL_POINTS - 5;
 	publicVariable "AIO_INTEL_POINTS";
-
-	private ["_task"];
-	_task = [AIO_T1TASKS] call BIS_fnc_selectRandom;
-	_task call DEBUG_fnc_debugarray;
-	//One random teir 2 mission is now available and going to be assigned to sign board.
-	[[AIO_SIGN select 0,_task select 0, _task select 1, "green"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
-	// [[AIO_SIGN select 0,"D",{hint "awesome";},"green"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
+	call AIO_fnc_addrandtasktosign;
 	["Headquarters has used gathered intellegence to identify a high value mission. Return to base to accept the tasking!"] call AIO_fnc_alivesideMsg;
 };
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_intelpickup.sqf"] call ALiVE_fnc_Dump;};
