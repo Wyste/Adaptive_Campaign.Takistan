@@ -16,8 +16,6 @@ _ID		= _this select 2;
 
 _target removeAction _ID; //--- Remove action from sign.
 
-if (AIO_DEBUG) then {["DEBUG| fn_T1_spawncache.sqf| Getting random town."] call ALiVE_fnc_Dump;};
-
 //--- Find a location to use
 _location = [[AIO_LgCITY,AIO_CITY,AIO_VILLAGE]] call AIO_fnc_findLocation;
 
@@ -29,35 +27,20 @@ _cityRadB = _location select 3;
 if (_cityRadB > _cityRadA) then {
 	_cityRadA = _cityRadB;
 };
-sleep 1;
-if (AIO_DEBUG) then {["DEBUG| fn_T1_spawncache.sqf| Getting enterable houses."] call ALiVE_fnc_Dump;};
 
 //--- Find enterable houses
 _buildings = [_cityPOS, _cityRadA] call AIO_fnc_getenterablehouses;
-sleep 1;
-if (isNil "_buildings") exitWith {
-	if (AIO_DEBUG) then {
-		["DEBUG| fn_T1_spawncache.sqf| Building array does not exist. Running again..."] call ALiVE_fnc_Dump;
-	};
 
+if (isNil "_buildings") exitWith {
 	[] spawn TASK_fnc_T1_spawncache;
 };
 
 if (count _buildings == 0) then {
-	if (AIO_DEBUG) then {
-		["DEBUG| fn_T1_spawncache.sqf| Building array is empty. No houses found... Trying again."] call ALiVE_fnc_Dump;
-	};
-
 	[] spawn TASK_fnc_T1_spawncache;
 };
-if(AIO_DEBUG) then {["DEBUG| fn_T1_spawncache.sqf| Selecting random house from list: %1", _buildings] call ALiVE_fnc_Dump;};
 
 //--- Select a random enterable house
 _bldg = _buildings call bis_fnc_selectRandom;
-
-if(AIO_DEBUG) then {["DEBUG| fn_T1_spawncache.sqf| House found"] call ALiVE_fnc_Dump};
-sleep 1;
-if(AIO_DEBUG) then {["DEBUG| fn_T1_spawncache.sqf| Finding indoor position"] call ALiVE_fnc_Dump;};
 
 //--- Finding random indoor position for spawning the cache
 _bldgPos = [_bldg] call AIO_fnc_randbldgpos;
@@ -65,7 +48,6 @@ sleep 1;
 
 //--- Create the cache at the selected indoor position
 cache = createVehicle ["Box_FIA_Wps_F", _bldgPos, [], 0, "None"];
-if(AIO_DEBUG) then {["DEBUG| fn_T1_spawncache.sqf| Cache has been created"] call ALiVE_fnc_Dump;};
 
 //-- Empty the cache... doesn't this defeat the purpose of destroying it? sarcasm = true
 clearMagazineCargoGlobal cache;
@@ -87,15 +69,6 @@ cache addEventHandler ["handledamage", {
 //--- Disable simulation of the cache
 cache enableSimulationGlobal false;
 publicVariable "cache";
-
-//--- Debug
-if(AIO_DEBUG) then {
-	_m = createMarker [format ["box%1", random 1000],getPosATL cache];
-	_m setMarkerShape "ICON";
-	_m setMarkerText format ["Cache location"];
-	_m setMarkerType "hd_dot";
-	_m setMarkerColor "ColorRed";
-};
 
 //--- Create and assign the task to the group the caller is in
 ["cache", true, [format ["Intelligence suggests that there is a stockpile of weapons located somewhere in %1. Your objective is to locate and neutralize this stockpile before the enemy can make further use of it. Expect heavy resistance", _location select 0], format ["Locate and Destroy weapons cache in %1", _location select 0], ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
