@@ -100,7 +100,4 @@ if(AIO_DEBUG) then {
 //--- Create and assign the task to the group the caller is in
 ["cache", true, [format ["Intelligence suggests that there is a stockpile of weapons located somewhere in %1. Your objective is to locate and neutralize this stockpile before the enemy can make further use of it. Expect heavy resistance", _location select 0], format ["Locate and Destroy weapons cache in %1", _location select 0], ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
 
-//--- Tasking completed!
-//AIO_TASKS_COMPLETED = AIO_TASKS_COMPLETED + 1; publicVariable "AIO_TASKS_COMPLETED";
-
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_T1_spawncache.sqf"] call ALiVE_fnc_Dump;};

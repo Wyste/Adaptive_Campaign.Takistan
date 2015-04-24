@@ -19,6 +19,9 @@ deleteVehicle cache;
 //--- set task as completed
 ["cache", "SUCCEEDED"] call bis_fnc_taskSetState;
 
+//--- Tasking completed!
+AIO_TASKS_COMPLETED = AIO_TASKS_COMPLETED + 1; publicVariable "AIO_TASKS_COMPLETED";
+
 //--- Create explosion effect
 while {_x <= 22} do {
 	"M_Mo_82mm_AT_LG" createVehicle _pos;
