@@ -9,7 +9,7 @@ Author | Last Modified | Description
 _____________________________________________________________________________*/
 if (AIO_DEBUG) then {["SCRIPT STARTING| fn_T1_spawncache.sqf"] call ALiVE_fnc_Dump;};
 
-private ["_target","_caller","_ID", "_location", "_buildings", "_bldg", "_bldgPos", "_cityPOS", "_cityRadA", "_cityRadB", "_cache", "_group"];
+private ["_target","_caller","_ID", "_location", "_buildings", "_bldg", "_bldgPos", "_cityPOS", "_cityRadA", "_cityRadB", "cache", "_group"];
 _target = _this select 0;
 _caller = _this select 1;
 _ID		= _this select 2;
@@ -19,7 +19,7 @@ _target removeAction _ID; //--- Remove action from sign.
 if (AIO_DEBUG) then {["DEBUG| fn_T1_spawncache.sqf| Getting random town."] call ALiVE_fnc_Dump;};
 
 //--- Find a location to use
-_location = [[AIO_LgCITY,AIO_CITY,AIO_SmCITY]] call AIO_fnc_findLocation;
+_location = [[AIO_LgCITY,AIO_CITY,AIO_VILLAGE]] call AIO_fnc_findLocation;
 
 //--- Get city position and radius
 _cityPOS = _location select 1;
@@ -64,29 +64,33 @@ _bldgPos = [_bldg] call AIO_fnc_randbldgpos;
 sleep 1;
 
 //--- Create the cache at the selected indoor position
-_cache = createVehicle ["Box_FIA_Wps_F", _bldgPos, [], 0, "None"];
+cache = createVehicle ["Box_FIA_Wps_F", _bldgPos, [], 0, "None"];
 if(AIO_DEBUG) then {["DEBUG| fn_T1_spawncache.sqf| Cache has been created"] call ALiVE_fnc_Dump;};
 
 //-- Empty the cache... doesn't this defeat the purpose of destroying it? sarcasm = true
-clearMagazineCargoGlobal _cache;
-clearWeaponCargoGlobal _cache;
+clearMagazineCargoGlobal cache;
+clearWeaponCargoGlobal cache;
 
 //--- Add eventhandlers to the cache
 //--- Handle damage only for Satchels and Demo charges
-_cache addEventHandler ["handledamage", {
+cache addEventHandler ["handledamage", {
 	if ((_this select 4) in ["SatchelCharge_Remote_Ammo", "DemoCharge_Remote_Ammo", "SatchelCharge_Remote_Ammo_Scripted", "DemoCharge_Remote_Ammo_Scripted"]) then {
 		(_this select 0) setdamage 1;
+
+		//--- event handler for killing the cache
+		(_this select 0) spawn AIO_fnc_killcache;
 	} else {
 		(_this select 0) setdamage 0;
 }}];
 //--- End of eventhandlers
 
 //--- Disable simulation of the cache
-_cache enableSimulationGlobal false;
+cache enableSimulationGlobal false;
+publicVariable "cache";
 
 //--- Debug
 if(AIO_DEBUG) then {
-	_m = createMarker [format ["box%1", random 1000],getPosATL _cache];
+	_m = createMarker [format ["box%1", random 1000],getPosATL cache];
 	_m setMarkerShape "ICON";
 	_m setMarkerText format ["Cache location"];
 	_m setMarkerType "hd_dot";
@@ -94,18 +98,7 @@ if(AIO_DEBUG) then {
 };
 
 //--- Create and assign the task to the group the caller is in
-_group = group _caller;
-["cache", _group, [format ["Intelligence suggests that there is a stockpile of weapons located somewhere in %1. Your objective is to locate and neutralize this stockpile before the enemy can make further use of it. Expect heavy resistance", _location select 0], format ["Locate and Destroy weapons cache in %1", _location select 0], ""], "", "AUTOASSIGNED", 1, true, true] call bis_fnc_setTask;
-
-_grpUnits = units _group;
-
-{
-	_tskMrk = createMarkerLocal [format ["area%1", random 1000], _location select 1];
-	_tskMrk setMarkerShapeLocal "ELLIPSE";
-	_tskMrk setMarkerSizeLocal [_cityRadA, _cityRadA];
-	_tskMrk setMarkerColorLocal "ColorRed";
-	_tskMrk setMarkerAlphaLocal 0.5;
-} forEach _grpUnits;
+["cache", true, [format ["Intelligence suggests that there is a stockpile of weapons located somewhere in %1. Your objective is to locate and neutralize this stockpile before the enemy can make further use of it. Expect heavy resistance", _location select 0], format ["Locate and Destroy weapons cache in %1", _location select 0], ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
 
 //--- Tasking completed!
 //AIO_TASKS_COMPLETED = AIO_TASKS_COMPLETED + 1; publicVariable "AIO_TASKS_COMPLETED";

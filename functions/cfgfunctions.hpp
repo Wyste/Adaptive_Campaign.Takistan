@@ -42,6 +42,7 @@ class AIO
 		class delallspawnedintelgroup {};
 		class addtosign {};
 		class createtask {};
+		class killcache {};
 	};
 };
 
