@@ -64,6 +64,6 @@ class TASK
 		file = "tasks";
 		class spawnintel {};
 		class T1_spawncache {};
-		class T1_killhvt {};
+		class T1_hvt {};
 	};
 };
