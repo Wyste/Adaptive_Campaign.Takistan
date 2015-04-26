@@ -63,9 +63,6 @@ clearWeaponCargoGlobal _cache;
 _cache setVariable ["id",AIO_TASKS_ACTIVE];
 
 _cache addEventHandler ["handledamage", {
-if (AIO_DEBUG) then {["CACHE: HANDLEDAMAGE | DEBUGGING"] call ALiVE_fnc_Dump;};
-	[_this] call DEBUG_fnc_debugarray;
-	[_this select 4] call DEBUG_fnc_debugarray;
 	if ((_this select 4) in ["SatchelCharge_Remote_Ammo", "DemoCharge_Remote_Ammo", "SatchelCharge_Remote_Ammo_Scripted", "DemoCharge_Remote_Ammo_Scripted"]) then {
 		(_this select 0) setdamage 1;
 
