@@ -24,17 +24,19 @@ ______________________________________________________________________________*/
   AIO_AUTORIFLE = ["B_soldier_AR_F","B_support_MG_F","B_G_Soldier_AR_F"];
 
 //--- Public Mission Define.
-  AIO_TASKS_COMPLETED = 0;
-  AIO_INTEL_POINTS = 0;
-  AIO_INTEL_ACTIVE = 0;
-  AIO_INTEL_COMPLETED = 0;
-  AIO_INTEL_SPAWNED = [];
-  AIO_CAPTURABLE = [];
-  publicVariable "AIO_TASKS_COMPLETED";
-  publicVariable "AIO_INTEL_POINTS";
-  publicVariable "AIO_INTEL_ACTIVE";
-  publicVariable "AIO_INTEL_SPAWNED";
-  publicVariable "AIO_INTEL_COMPLETED";
+
+  AIO_TASKS_ACTIVE = 0;     publicVariable "AIO_TASKS_ACTIVE";
+  AIO_TASKS_COMPLETED = 0;  publicVariable "AIO_TASKS_COMPLETED";
+  AIO_TASKS_TAORS = [];     publicVariable "AIO_TASKS_TAORS";
+  AIO_TASKS_SPAWNED = [];   publicVariable "AIO_TASKS_SPAWNED";
+
+  AIO_INTEL_POINTS = 0;     publicVariable "AIO_INTEL_POINTS";
+  AIO_INTEL_ACTIVE = 0;     publicVariable "AIO_INTEL_ACTIVE";
+  AIO_INTEL_COMPLETED = 0;  publicVariable "AIO_INTEL_COMPLETED";
+  AIO_INTEL_TAORS = [];     publicVariable "AIO_INTEL_TAORS";
+  AIO_INTEL_SPAWNED = [];   publicVariable "AIO_INTEL_SPAWNED";
+
+  AIO_CAPTURABLE = [];      publicVariable "AIO_CAPTURABLE";
 
 //--- Define intel types
   AIO_INTELDROPABLE = ["Land_HandyCam_F","Land_SatellitePhone_F","Land_Suitcase_F","Land_Ground_sheet_folded_OPFOR_F"];

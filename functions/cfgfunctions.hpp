@@ -35,7 +35,6 @@ class AIO
 		class getenterablehouses {};
 		class getsecludedlocation {};
 		class addactionmp {};
-		class spawncache {};
 		class getcountbldgpos {};
 		class randbldgpos {};
 		class intelpickup {};
@@ -43,6 +42,8 @@ class AIO
 		class addrandtasktosign {};
 		class createtask {};
 		class killcache {};
+		class aliveaddobjtoside {};
+		class aliveremoveobjfromside {};
 	};
 };
 

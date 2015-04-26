@@ -36,7 +36,7 @@ if (AIO_DEBUG) then {player sideChat format ["Your faction retrieved some INTEL.
 if (AIO_INTEL_SPAWNED select _ID < 5) then {
 	//Clean up the rest of those intels
 	if (AIO_DEBUG) then {["fn_intelpickup.sqf| Objective Completed - Cleanup other remaining intel items."] call ALiVE_fnc_Dump;};
-	[_ID] call AIO_fnc_delallspawnedintelgroup;
+	[_ID] spawn AIO_fnc_delallspawnedintelgroup;
 	AIO_INTEL_COMPLETED = AIO_INTEL_COMPLETED + 1;
 	publicVariable "AIO_INTEL_COMPLETED";
 	//run the intel script again, cuz it need to repopulate if needed.

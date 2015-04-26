@@ -49,7 +49,9 @@ while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} do {
 	          _m setMarkerShape "ICON";
 	          _m setMarkerType "mil_dot";
 	          _m setMarkerColor "ColorGreen";
+	          _item setVariable ["marker",_m,true];
 		};
+
 
 		//--- Add action to pickup the intel by players
 		[[_item,"Capture Intel","call AIO_fnc_intelpickup","red"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
@@ -60,7 +62,24 @@ while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} do {
 		//Fix up the globals for proper tracking of everything
 		AIO_INTEL_SPAWNED set [AIO_INTEL_ACTIVE,_i]; publicVariable "AIO_INTELSPAWNED";
 	};
+
+	//CREATE a TAOR marker for this location, and pass it into AIO_INTEL_SPAWNED so it can be handled by ALIVE / deleted later.
+ 	if (AIO_DEBUG) then { [format ["fn_spawnintel.sqf| Creating ALIVE TAOR marker at %1",_cityPOS]] call ALiVE_fnc_Dump; };
+	_m = createMarker [format ["intel_taor_%1",AIO_INTEL_ACTIVE], _cityPOS];
+	_m setMarkerShape "ELLIPSE";
+	_m setMarkerColor "ColorGreen";
+	_m setMarkerBrush "BORDER";
+	_m setMarkerSize [_cityRadA,_cityRadA];
+
+	[format["INTEL%1",AIO_INTEL_ACTIVE], true, [format ["UAVs have identified %1 as an area of interest. Recon the location and look for signs of activity or intellegence items.", _cityName], format ["Gather Intel in %1", _cityName], ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
+
+	AIO_INTEL_TAORS set [AIO_INTEL_ACTIVE,_m]; publicVariable "AIO_INTEL_TAORS";
+
+	[AIO_INTEL_TAORS select AIO_INTEL_ACTIVE,_cityRadA+100] call aio_fnc_aliveaddobjtoside;
+
+	//Increment the active up one for the next set of intels.
 	AIO_INTEL_ACTIVE = AIO_INTEL_ACTIVE + 1;  publicVariable "AIO_INTEL_ACTIVE";
+
 };
 
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_spawnintel.sqf"] call ALiVE_fnc_Dump;};
