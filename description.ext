@@ -32,7 +32,7 @@ author = "AEF-Wyste & AEF-BBrown";
 onLoadMission = "Welcome to Adaptive Intel | AlivE.";
 onLoadIntroTime = true;
 onLoadMissionTime = true;
-onLoadName = Insurgency | ALiVE;
+onLoadName = Adaptive Intel | ALiVE;
 //loadScreen = "media\logo_INS.paa";
 
 //--- General Settings
