@@ -82,7 +82,13 @@ AIO_TASKS_SPAWNED set [AIO_TASKS_ACTIVE,_cache]; publicVariable "AIO_TASKS_SPAWN
 
 //--- Create the TAOR objective for ALIVE and the objective marker on the map.
 if (AIO_DEBUG) then { [format ["fn_T1_spawncache.sqf| Creating ALIVE TAOR marker at %1",_cityPOS]] call ALiVE_fnc_Dump; };
-if (AIO_DEBUG) then {_cityPOS = getposATL _cache};
+if (AIO_DEBUG) then {
+	_cityPOS = getposATL _cache;
+	_cacheMark = createMarker [format["mrk%1", random 1000], _cityPOS];
+	_cacheMark setMarkerType "hd_dot";
+	_cacheMark setMarkerColor "ColorRed";
+	_cacheMark setMarkerText "DEBUG: Cache Location";
+};
 	_m = createMarker [format ["task_taor_%1",AIO_TASKS_ACTIVE], _cityPOS];
 	_m setMarkerShape "ELLIPSE";
 	_m setMarkerColor "ColorRed";

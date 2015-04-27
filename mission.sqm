@@ -115,6 +115,8 @@ class Mission
 	randomSeed=9667535;
 	class Intel
 	{
+		briefingName="Adaptive Intel";
+		overviewText="Collect Intel, complete missions, fight, win...";
 		resistanceWest=0;
 		startWeather=0.39999998;
 		startWind=0.099999994;
