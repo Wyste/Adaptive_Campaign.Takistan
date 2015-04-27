@@ -26,7 +26,7 @@ _taskName = format["INTEL%1",_delgrp];
 
 
 //--- Remove TAOR objective from alive.
-[AIO_INTEL_TAORS select _delgrp] call aio_fnc_removeobjfromside;
+[AIO_INTEL_TAORS select _delgrp] call aio_fnc_aliveremoveobjfromside;
 
 {
   if (_x getVariable "intelgroup" == _delgrp) then {

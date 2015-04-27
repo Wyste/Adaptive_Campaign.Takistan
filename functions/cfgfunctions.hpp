@@ -44,6 +44,8 @@ class AIO
 		class killcache {};
 		class aliveaddobjtoside {};
 		class aliveremoveobjfromside {};
+		class killhvt {};
+		class endcheck {};
 	};
 };
 

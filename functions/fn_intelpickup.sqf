@@ -49,6 +49,8 @@ if (AIO_INTEL_POINTS >= 5) then {
 	AIO_INTEL_POINTS = AIO_INTEL_POINTS - 5;
 	publicVariable "AIO_INTEL_POINTS";
 	call AIO_fnc_addrandtasktosign;
-	["Headquarters has used gathered intellegence to identify a high value mission. Return to base to accept the tasking!"] call AIO_fnc_alivesideMsg;
+	["HQ was able to use gathered intellegence to identify a high value mission. Return to base to re-arm and accept the tasking!"] call AIO_fnc_alivesideMsg;
+} else {
+	["Friendlies have recovered some intellegence. HQ has not yet been able to provide additional missions without more intellegence. Keep collecting intellegence as HQ processes the data."] call AIO_fnc_alivesideMsg;
 };
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_intelpickup.sqf"] call ALiVE_fnc_Dump;};

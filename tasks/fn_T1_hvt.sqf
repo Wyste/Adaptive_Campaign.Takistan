@@ -21,24 +21,37 @@ _ID		= _this select 2;
 
 _target removeAction _ID; //--- Remove action from sign.
 
-private ["_loc","_house","_buildings","_hvt","_spawnPOS"];
+private ["_loc","_house","_buildings","_hvt","_spawnPOS","_m","_cityPOS","_cityRadA","_cityRadB"];
 
 _loc = [[AIO_LgCITY]] call AIO_fnc_findLocation;
+_cityPOS = _loc select 1;
+_cityRadA = _loc select 2;
+_cityRadB = _loc select 3;
+
+if (_cityRadB > _cityRadA) then {
+	_cityRadA = _cityRadB;
+};
 
 if (_loc select 4 == "Hill") then {
 	_areaName = "on or near the hill marked marked on your map";
 	_house = _loc select 1;
+	_spawnPOS = _house;
 } else {
 	_areaName = format ["near %1",_loc select 0];
 	_buildings = [_loc select 1, _loc select 2] call AIO_fnc_getenterablehouses;
-	if (isNil _buildings) exitWith { [] call TASK_fnc_T1_hvt; };
 	if (count _buildings == 0) exitWith { [] call TASK_fnc_T1_hvt; };
 	_house = _buildings call bis_fnc_selectRandom;
 	_spawnPOS = [_house] call AIO_fnc_randbldgpos;
 	//cache = createVehicle ["Box_FIA_Wps_F", _bldgPos, [], 0, "None"];
 };
 
-_hvt = createVehicle ["LOP_AM_Soldier_AR",_spawnPOS,[],0,"None"]
+_hvt = createVehicle ["LOP_AM_Soldier_AR",_spawnPOS,[],0,"None"];
+
+//--- Check if he's still alive... cuz he may have fell... silly goose.
+sleep 5;
+if !(alive _hvt) exitWith { [] spawn TASK_fnc_T1_hvt; };
+
+_hvt setVariable ["id",AIO_TASKS_ACTIVE];
 
 removeAllWeapons _hvt;
 removeAllItems _hvt;
@@ -65,6 +78,25 @@ _hvt linkItem "tf_anprc152_1";
 _hvt setFace "WhiteHead_22_sa";
 _hvt setSpeaker "Male02PER";
 
-["hvt", true, [format ["Intelligence has indicated a HVT (High Value Target) has shown up %1. Your objective is to locate and neutralize the target before he relocates from the area.  Friendly UAV's in the area will identify the target is eliminated.", _areaName], format ["Kill HVT %1.", _areaName], ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
+(group _hvt) setBehaviour "COMBAT";
+(group _hvt) setCombatMode "RED";
+
+AGM_HVT = [_hvt, "Confirm Identity", 5, {true}, {call AIO_fnc_killhvt}, true] call AGM_Interaction_fnc_addInteraction;
+
+AIO_TASKS_SPAWNED set [AIO_TASKS_ACTIVE,_hvt]; publicVariable "AIO_TASKS_SPAWNED";
+
+if (AIO_DEBUG) then { [format ["fn_T1_hvt.sqf| Creating ALIVE TAOR marker at %1",_cityPOS]] call ALiVE_fnc_Dump; };
+if (AIO_DEBUG) then {_cityPOS = getposATL _hvt};
+	_m = createMarker [format ["task_taor_%1",AIO_TASKS_ACTIVE], _cityPOS];
+	_m setMarkerShape "ELLIPSE";
+	_m setMarkerColor "ColorRed";
+	_m setMarkerBrush "BORDER";
+	_m setMarkerSize [_cityRadA+400,_cityRadA+400];
+	AIO_TASKS_TAORS set [AIO_TASKS_ACTIVE,_m]; publicVariable "AIO_TASKS_TAORS";
+	[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_cityRadA+400] call aio_fnc_aliveaddobjtoside;
+
+AIO_TASKS_ACTIVE = AIO_TASKS_ACTIVE + 1; publicVariable "AIO_TASKS_ACTIVE";
+
+[format["TASK%1",AIO_TASKS_ACTIVE], true, [format ["Intelligence has indicated a HVT (High Value Target) has shown up %1. Your objective is to locate and neutralize the target before he relocates from the area.  Target is wearing green camoflague and has a wound on his right hand. Friendly forces will need to visibily identify (AGM ACTION) the target after he is eliminated.", _areaName], format ["Kill HVT %1.", _areaName], ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
 
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_T1_hvt.sqf"] call ALiVE_fnc_Dump;};

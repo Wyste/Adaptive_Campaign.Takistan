@@ -10,6 +10,7 @@ ___________________________________________________________________________*/
 if (AIO_DEBUG) then {["SCRIPT STARTED| fn_aliveremoveobjfromside.sqf"] call ALiVE_fnc_Dump;};
 if (AIO_DEBUG) then {[format ["Parameters| fn_aliveremoveobjfromside.sqf| : %1",_this select 0]] call ALiVE_fnc_Dump;};
 
+private ["_marker"];
 
 if (isServer || isDedicated) then {
 	private ["_objName"];
@@ -22,7 +23,7 @@ if (isServer || isDedicated) then {
 } else {
 	["SCRIPT PROBLEM| fn_aliveremoveobjfromside.sqf - WAS NOT RUN ON DEDICATED|SERVER"] call ALiVE_fnc_Dump;
 };
-
-deleteMarker _this select 0;
+_marker = _this select 0;
+deleteMarker _marker;
 
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_aliveremoveobjfromside.sqf"] call ALiVE_fnc_Dump;};
