@@ -85,8 +85,15 @@ AGM_HVT = [_hvt, "Confirm Identity", 5, {true}, {call AIO_fnc_killhvt}, true] ca
 
 AIO_TASKS_SPAWNED set [AIO_TASKS_ACTIVE,_hvt]; publicVariable "AIO_TASKS_SPAWNED";
 
-if (AIO_DEBUG) then { [format ["fn_T1_hvt.sqf| Creating ALIVE TAOR marker at %1",_cityPOS]] call ALiVE_fnc_Dump; };
-if (AIO_DEBUG) then {_cityPOS = getposATL _hvt};
+if (AIO_DEBUG) then { 
+	[format ["fn_T1_hvt.sqf| Creating ALIVE TAOR marker at %1",_cityPOS]] call ALiVE_fnc_Dump; 
+	private ["_hvtMark"];
+	_cityPOS = getposATL _hvt;  
+ 	_hvtMark = createMarker [format["mrk%1", random 1000], _cityPOS];  
+ 	_hvtMark setMarkerType "hd_dot";  
+ 	_hvtMark setMarkerColor "ColorRed";  
+ 	_hvtMark setMarkerText "DEBUG: HVT Location";  
+ };  
 	_m = createMarker [format ["task_taor_%1",AIO_TASKS_ACTIVE], _cityPOS];
 	_m setMarkerShape "ELLIPSE";
 	_m setMarkerColor "ColorRed";
