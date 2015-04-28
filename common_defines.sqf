@@ -13,8 +13,9 @@ ______________________________________________________________________________*/
 
 //--- GLOBAL STATIC ITEMS
   AIO_SIGN = nearestObjects [getmarkerpos "base", ["Land_MapBoard_F"], 150];
-  AIO_SIGN = AIO_SIGN select 0;
-  publicVariable "AIO_SIGN";
+  AIO_CAPPAD = nearestObjects [getmarkerpos "base", ["Land_HelipadRescue_F",150]];
+  AIO_SIGN    = AIO_SIGN select 0;    publicVariable "AIO_SIGN";
+  AIO_CAPPAD  = AIO_CAPPAD select 0;  publicVariable "AIO_CAPPAD";
 
 //--- Advanced Roles Defined.
   AIO_ENGINEERS = ["B_engineer_F","B_soldier_repair_F","B_soldier_exp_F","B_G_engineer_F"];
