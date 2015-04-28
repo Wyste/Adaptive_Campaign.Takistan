@@ -46,6 +46,8 @@ class AIO
 		class aliveremoveobjfromside {};
 		class killhvt {};
 		class endcheck {};
+		class capturearea {};
+		class helofinish {};
 	};
 };
 
@@ -68,5 +70,6 @@ class TASK
 		class spawnintel {};
 		class T1_spawncache {};
 		class T1_hvt {};
+		class T1_rescuehelo {};
 	};
 };
