@@ -55,3 +55,4 @@ while {(count _loc) >= 1} do {
 };
 
 if (AIO_DEBUG) then {[format [" DEBUG | fn_getflatsecludedlocation | Found suitable location: %1", _p]] call ALiVE_fnc_Dump;};
+  _p
