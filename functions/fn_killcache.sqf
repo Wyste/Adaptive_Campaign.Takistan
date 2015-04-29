@@ -28,7 +28,7 @@ _taskName = format["TASK%1",_ID];
 [_taskName, "SUCCEEDED"] call bis_fnc_taskSetState;
 
 //--- Remove TAOR objective from alive.
-[AIO_TASKS_TAORS select _ID] call aio_fnc_aliveremoveobjfromside;
+[AIO_TASKS_TAORS select _ID] call AIO_fnc_aliveremoveobjfromside;
 
 //--- Tasking completed!
 AIO_TASKS_COMPLETED = AIO_TASKS_COMPLETED + 1; publicVariable "AIO_TASKS_COMPLETED";

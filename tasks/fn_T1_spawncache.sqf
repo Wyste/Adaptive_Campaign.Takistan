@@ -95,8 +95,7 @@ if (AIO_DEBUG) then {
 	_m setMarkerBrush "BORDER";
 	_m setMarkerSize [_cityRadA+200,_cityRadA+200];
 	AIO_TASKS_TAORS set [AIO_TASKS_ACTIVE,_m]; publicVariable "AIO_TASKS_TAORS";
-	[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_cityRadA+200] call aio_fnc_aliveaddobjtoside;
+	[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_cityRadA+200] call AIO_fnc_aliveaddobjtoside;
 
 AIO_TASKS_ACTIVE = AIO_TASKS_ACTIVE + 1; publicVariable "AIO_TASKS_ACTIVE";
-
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_T1_spawncache.sqf"] call ALiVE_fnc_Dump;};
