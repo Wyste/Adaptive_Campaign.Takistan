@@ -19,12 +19,13 @@ _target = _this select 0;
 _caller = _this select 1;
 _ID		= _this select 2;
 
-_target removeAction _ID; //--- Remove action from sign.
+//_target removeAction _ID; //--- Remove action from sign.
 
-private ["_loc","_house","_buildings","_spawnPOS","_m","_cityPOS","_cityRadA","_cityRadB"];
+private ["_loc","_house","_buildings","_spawnPOS","_m","_cityRadA","_cityRadB","_areaPOS"];
 
-_loc = [[AIO_SmCITY]] call AIO_fnc_findLocation;
-_cityPOS = _loc select 1;
+_loc = [[AIO_SmCITY,AIO_LgCITY,AIO_CITY,AIO_VILLAGE]] call AIO_fnc_findLocation;
+_areaPOS = _loc select 1;
+_spawnPOS = [_areaPOS,500,10] call AIO_fnc_getsecludedlocation;
 _cityRadA = _loc select 2;
 _cityRadB = _loc select 3;
 
@@ -36,11 +37,11 @@ if (_cityRadB > _cityRadA) then {
 
 private ["_helo","_pilot","_psngr","_men"];
 
-_helo = createVehicle ["RHS_AH1Z",_cityPOS,[],0,"None"];
+_helo = createVehicle ["RHS_AH1Z",_spawnPOS,[],0,"None"];
 _helo setDamage 0.5;
 
-_pilot = createVehicle ["aef_tac_aircrew",[(_cityPOS select 0) + 10, (_cityPOS select 1) + 5],[],0,"None"];
-_psngr = createVehicle ["aef_tac_aircrew",[(_cityPOS select 0) + 8, (_cityPOS select 1) + 5],[],0,"None"];
+_pilot = createVehicle ["aef_tac_aircrew",_spawnPOS,[],0,"None"];
+_psngr = createVehicle ["aef_tac_aircrew",_spawnPOS,[],0,"None"];
 
 _helo  setVariable ["id",AIO_TASKS_ACTIVE];
 
@@ -52,18 +53,20 @@ _men = [_pilot, _psngr];
 	removeAllAssignedItems _x;
 	removeBackpack _x;
 	_x addEventHandler ["killed", {
-			[_x,"FAILED"] call AIO_fnc_helofinish;
+			[AIO_TASKS_ACTIVE,_x,"FAILED"] call AIO_fnc_helofinish;
 	}];
-	_x setVariable ["AGM_AllowUnconscious", true];
-	[_x, 999999] call AGM_Medical_fnc_knockOut;
-	_x setDamage 0.5;
+	//_x setVariable ["AGM_AllowUnconscious", true];
 } forEach _men;
 
-AIO_TASKS_SPAWNED set [AIO_TASKS_ACTIVE,_helo]; publicVariable "AIO_TASKS_SPAWNED";
+AGM_PSNGR = [_psngr, "Rescue Aircrew", 5, {_psngr distance AIO_CAPPAD < 20}, {[AIO_TASKS_ACTIVE,_psngr,"CHECK"] call AIO_fnc_helofinish}, false] call AGM_Interaction_fnc_addInteraction;
 
-if (AIO_DEBUG) then { [format ["fn_T1_rescuehelo.sqf| Creating ALIVE TAOR marker at %1",_cityPOS]] call ALiVE_fnc_Dump; };
-if (AIO_DEBUG) then {_cityPOS = getposATL _helo};
-	_m = createMarker [format ["task_taor_%1",AIO_TASKS_ACTIVE], _cityPOS];
+AGM_PILOT = [_pilot, "Rescue Aircrew", 5, {_pilot distance AIO_CAPPAD < 20}, {[AIO_TASKS_ACTIVE,_pilot,"CHECK"] call AIO_fnc_helofinish}, false] call AGM_Interaction_fnc_addInteraction;
+
+AIO_TASKS_SPAWNED set [AIO_TASKS_ACTIVE,[_helo,_pilot,_psngr]]; publicVariable "AIO_TASKS_SPAWNED";
+
+if (AIO_DEBUG) then { [format ["fn_T1_rescuehelo.sqf| Creating ALIVE TAOR marker at %1",_spawnPOS]] call ALiVE_fnc_Dump; };
+if (AIO_DEBUG) then {_spawnPOS = getposATL _helo};
+	_m = createMarker [format ["task_taor_%1",AIO_TASKS_ACTIVE], _spawnPOS];
 	_m setMarkerShape "ELLIPSE";
 	_m setMarkerColor "ColorBlue";
 	_m setMarkerBrush "BORDER";
@@ -73,11 +76,6 @@ if (AIO_DEBUG) then {_cityPOS = getposATL _helo};
 
 AIO_TASKS_ACTIVE = AIO_TASKS_ACTIVE + 1; publicVariable "AIO_TASKS_ACTIVE";
 
-[format["TASK%1",AIO_TASKS_ACTIVE], true, [format ["Friendly UAV's have spotted a downed AH1Z. Your mission is to locate and rescue the pilot and passenger before locals capture and execute them. Bring the personnel back to base immediately for medical attention and debriefing.", _areaName], format ["Rescue %1.", _areaName], ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
+[format["TASK%1",AIO_TASKS_ACTIVE], true, [format ["Friendly UAV's have spotted a downed AH1Z. Your mission is to locate and rescue the pilot and passenger before locals capture and execute them. Hurry to prevent their death via bloodloss, bring the personnel back to base immediately for any medical attention and debriefing.", _areaName], "Rescue downed helo.", ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
 
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_T1_rescuehelo.sqf"] call ALiVE_fnc_Dump;};
-
-sleep 3600;
-//Wait one hour... then check to see if they still exist in the world...  If they do - you failed, and cleanup.
-if (alive _pilot) exitWith { [_pilot,"FAILED"] call AIO_fnc_helofinish; };
-if (alive _psngr) exitWith { [_psngr,"FAILED"] call AIO_fnc_helofinish; };

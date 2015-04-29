@@ -22,7 +22,7 @@ Description:
 
 Returns:
 
-    No return value
+    Position
 
 USAGE:
     //first arg is centerpoint, second arg is radius, third arg is minimum amount of space on all sides
@@ -55,3 +55,4 @@ while {(count _loc) >= 1} do {
 };
 
 if (AIO_DEBUG) then {[format [" DEBUG | fn_getflatsecludedlocation | Found suitable location: %1", _p]] call ALiVE_fnc_Dump;};
+_p;
