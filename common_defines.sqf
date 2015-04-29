@@ -53,4 +53,4 @@ ______________________________________________________________________________*/
   AIO_VILLAGE   = "NameVillage";
   AIO_WATER     = "NameMarine";
 
-  if (AIO_DEBUG) then {["SCRIPT FINISHED| commond_defines.sqf"] call ALiVE_fnc_Dump;};
+  if (AIO_DEBUG) then {["SCRIPT FINISHED| common_defines.sqf"] call ALiVE_fnc_Dump;};

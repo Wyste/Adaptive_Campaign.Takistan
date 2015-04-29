@@ -48,6 +48,7 @@ class AIO
 		class endcheck {};
 		class capturearea {};
 		class helofinish {};
+		class friendlytankfinish {};
 	};
 };
 
@@ -71,5 +72,6 @@ class TASK
 		class T1_spawncache {};
 		class T1_hvt {};
 		class T1_rescuehelo {};
+		class T1_friendlytank {};
 	};
 };

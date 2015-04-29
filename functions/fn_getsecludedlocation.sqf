@@ -27,7 +27,7 @@ Returns:
 USAGE:
     //first arg is centerpoint, second arg is radius, third arg is minimum amount of space on all sides
 
-    [Position, Number, Number] call AIO_fnc_getflatsecludedlocation;
+    [Position, Number, Number] call AIO_fnc_getsecludedlocation;
 ______________________________________________________________________________*/
 
 private ["_centerPoint", "_radiusA", "_dir", "_minDistance", "_orgX", "_orgY", "_posX", "_posY", "_randPos", "_loc"];
