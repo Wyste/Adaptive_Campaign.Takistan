@@ -35,7 +35,7 @@ switch (_condition) do {
 		//--- set task as completed
 		//[_taskName, "SUCCEEDED"] call bis_fnc_taskSetState;
 		AIO_TASKS_COMPLETED = AIO_TASKS_COMPLETED + 1; publicVariable "AIO_TASKS_COMPLETED";
-		_taskName setTaskState "Succeeded";
+		[_taskName, "SUCCEEDED"] call bis_fnc_taskSetState;
 		deleteVehicle _helo;
 		deleteVehicle _pilot;
 		deleteVehicle _psngr;
@@ -47,7 +47,7 @@ switch (_condition) do {
 		_taskName = format["TASK%1",_ID];
 		//--- set task as completed
 		//[_taskName, "FAILED"] call bis_fnc_taskSetState;
-		_taskName setTaskState "Failed";
+		[_taskName, "FAILED"] call bis_fnc_taskSetState;
 		deleteVehicle _helo;
 		deleteVehicle _pilot;
 		deleteVehicle _psngr;

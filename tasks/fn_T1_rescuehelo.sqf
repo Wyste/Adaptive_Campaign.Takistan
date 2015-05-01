@@ -35,27 +35,37 @@ if (_cityRadB > _cityRadA) then {
 
 	_areaName = format ["near %1",_loc select 0];
 
-private ["_helo","_pilot","_psngr","_men"];
+private ["_helo","_pilot","_psngr","_men","_wp","_grp"];
 
-_helo = createVehicle ["RHS_AH1Z",_spawnPOS,[],0,"None"];
+if (AIO_DEBUG) then { [format ["fn_T1_rescuehelo.sqf| Creating Helicopter + Men at %1",_spawnPOS]] call ALiVE_fnc_Dump; };
+_helo = createVehicle ["RHS_AH1Z",_spawnPOS,[],750,"None"];
+if (AIO_DEBUG) then { ["fn_T1_rescuehelo.sqf| Setting Helicopter Damage to 0.5"] call ALiVE_fnc_Dump; };
 _helo setDamage 0.5;
 
-_pilot = createVehicle ["aef_tac_aircrew",_spawnPOS,[],0,"None"];
-_psngr = createVehicle ["aef_tac_aircrew",_spawnPOS,[],0,"None"];
+_grp = createGroup west;
+private ["_menPOS"];
+_menPOS = getPosATL _helo;
 
+_pilot = _grp createUnit ["aef_tac_aircrew",_menPOS,[],10,"FORM"];
+_psngr = _grp createUnit ["aef_tac_aircrew",_menPOS,[],10,"FORM"];
+[_pilot,_psngr] join _grp;
 _helo  setVariable ["id",AIO_TASKS_ACTIVE];
 
 _men = [_pilot, _psngr];
 {
+	_x setVariable ["AGM_AllowUnconscious", true];
+	//[_x, 1800 ] call AGM_Medical_fnc_knockOut;
+	//_x setBleedingRemaining 1800;
+	//_x setHitPointDamage ["HitBody", 0.8];
+	//_x setDamage 0.8;
 	_x setVariable ["id",AIO_TASKS_ACTIVE];
-	removeAllWeapons _x;
-	removeAllItems _x;
-	removeAllAssignedItems _x;
+	_x setBehaviour "AWARE";
+	_x setCombatMode "RED";
 	removeBackpack _x;
+	if (AIO_DEBUG) then { ["fn_T1_rescuehelo.sqf| Adding 'killed' eventhandler to men"] call ALiVE_fnc_Dump; };
 	_x addEventHandler ["killed", {
 			[AIO_TASKS_ACTIVE,_x,"FAILED"] call AIO_fnc_helofinish;
 	}];
-	//_x setVariable ["AGM_AllowUnconscious", true];
 } forEach _men;
 
 AGM_PSNGR = [_psngr, "Rescue Aircrew", 5, {_psngr distance AIO_CAPPAD < 20}, {[AIO_TASKS_ACTIVE,_psngr,"CHECK"] call AIO_fnc_helofinish}, false] call AGM_Interaction_fnc_addInteraction;
@@ -64,13 +74,21 @@ AGM_PILOT = [_pilot, "Rescue Aircrew", 5, {_pilot distance AIO_CAPPAD < 20}, {[A
 
 AIO_TASKS_SPAWNED set [AIO_TASKS_ACTIVE,[_helo,_pilot,_psngr]]; publicVariable "AIO_TASKS_SPAWNED";
 
+if(AIO_DEBUG) then {
+	private ["_vehMrk"];
+	[format ["fn_T1_rescuehelo.sqf| Creating vehicle marker at %1",(getPosATL _helo)]] call ALiVE_fnc_Dump;
+	_vehMrk = createMarker [format["mark%1", random 100], (getPosATL _helo)];
+	_vehMrk setMarkerType "hd_dot";
+	_vehMrk setMarkerColor "ColorRed";
+	_vehMrk setMarkerText "DEBUG: Helicopter location";
+};
+
 if (AIO_DEBUG) then { [format ["fn_T1_rescuehelo.sqf| Creating ALIVE TAOR marker at %1",_spawnPOS]] call ALiVE_fnc_Dump; };
-if (AIO_DEBUG) then {_spawnPOS = getposATL _helo};
 	_m = createMarker [format ["task_taor_%1",AIO_TASKS_ACTIVE], _spawnPOS];
 	_m setMarkerShape "ELLIPSE";
 	_m setMarkerColor "ColorBlue";
 	_m setMarkerBrush "BORDER";
-	_m setMarkerSize [_cityRadA+200,_cityRadA+200];
+	_m setMarkerSize [_cityRadA+300,_cityRadA+300];
 	AIO_TASKS_TAORS set [AIO_TASKS_ACTIVE,_m]; publicVariable "AIO_TASKS_TAORS";
 	[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_cityRadA+400] call aio_fnc_aliveaddobjtoside;
 

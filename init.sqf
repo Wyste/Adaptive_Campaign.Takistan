@@ -28,7 +28,6 @@ enableSaving [false, false];
 //--- Add things to the sign at base, starts off the mission.
 if (isServer || isDedicated) then {
   //Run this once to start the intel spawns for the mission.
-     call compileFinal preprocessFileLineNumbers "functions\fn_aliveprofilegroup.sqf";
   [] call compileFinal preprocessfilelinenumbers "tasks\fn_spawnintel.sqf";
 };
 

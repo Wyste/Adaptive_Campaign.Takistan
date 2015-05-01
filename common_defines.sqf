@@ -8,7 +8,7 @@ Author | Last Modified | Description
   Wyste/BBrown | 4/20/2015 | Main Definitions - These will be used the entire life of the mission.
 ______________________________________________________________________________*/
 //--- Debug
-  AIO_DEBUG = true;
+  AIO_DEBUG = false;
   if (AIO_DEBUG) then {["SCRIPT STARTING| commond_defines.sqf"] call ALiVE_fnc_Dump;};
 
 //--- GLOBAL STATIC ITEMS

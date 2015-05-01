@@ -21,7 +21,7 @@ if (AIO_DEBUG) then {[format ["fn_intelpickup.sqf| Picking up %1 near player..."
 _ID = _intel getVariable "id";
 _pts = _intel getVariable "pts";
 if (AIO_DEBUG) then {["fn_intelpickup.sqf| Removing 1 from AIO_INTEL_SPAWNED"] call ALiVE_fnc_Dump;};
-AIO_INTEL_SPAWNED set [_ID,(AIO_INTEL_SPAWNED select _ID)- 1];
+AIO_INTEL_SPAWNED set [_ID,(AIO_INTEL_SPAWNED select _ID)-1];
 AIO_INTEL_POINTS = AIO_INTEL_POINTS + _pts;
 publicVariable "AIO_INTEL_SPAWNED";
 publicVariable "AIO_INTEL_POINTS";
@@ -45,12 +45,12 @@ if (AIO_INTEL_SPAWNED select _ID < 5) then {
 
 //Look at current point total and make random tier 2 missions available... :D
 
-if (AIO_INTEL_POINTS >= 5) then {
-	AIO_INTEL_POINTS = AIO_INTEL_POINTS - 5;
+if (AIO_INTEL_POINTS >= 20) then {
+	AIO_INTEL_POINTS = AIO_INTEL_POINTS - 20;
 	publicVariable "AIO_INTEL_POINTS";
 	call AIO_fnc_addrandtasktosign;
-	["HQ was able to use gathered intellegence to identify a high value mission. Return to base to re-arm and accept the tasking!"] call AIO_fnc_alivesideMsg;
+	["HQ was able to use gathered intellegence to identify a high value mission. Return to base to re-arm and accept the tasking!","AIO_fnc_alivesideMsg",false,true] spawn BIS_fnc_MP;
 } else {
-	["Friendlies have recovered some intellegence. HQ has not yet been able to provide additional missions without more intellegence. Keep collecting intellegence as HQ processes the data."] call AIO_fnc_alivesideMsg;
+	["Friendlies have recovered some intellegence. HQ has not yet been able to provide additional missions without more intellegence. Keep collecting intellegence as HQ processes the data.","AIO_fnc_alivesideMsg",false,true] spawn BIS_fnc_MP;
 };
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_intelpickup.sqf"] call ALiVE_fnc_Dump;};

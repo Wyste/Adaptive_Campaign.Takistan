@@ -45,7 +45,9 @@ if (_loc select 4 == "Hill") then {
 	//cache = createVehicle ["Box_FIA_Wps_F", _bldgPos, [], 0, "None"];
 };
 
-_hvt = createVehicle ["LOP_AM_Soldier_AR",_spawnPOS,[],0,"None"];
+private ["_grp"];
+_grp = createGroup resistance;
+_hvt = _grp createUnit ["LOP_AM_Soldier_AR", _spawnPOS,[], 0, "NONE"];
 
 //--- Check if he's still alive... cuz he may have fell... silly goose.
 sleep 5;
@@ -78,22 +80,22 @@ _hvt linkItem "tf_anprc152_1";
 _hvt setFace "WhiteHead_22_sa";
 _hvt setSpeaker "Male02PER";
 
-(group _hvt) setBehaviour "COMBAT";
-(group _hvt) setCombatMode "RED";
+_hvt setBehaviour "COMBAT";
+_hvt setCombatMode "RED";
 
 AGM_HVT = [_hvt, "Confirm Identity", 5, {true}, {call AIO_fnc_killhvt}, true] call AGM_Interaction_fnc_addInteraction;
 
 AIO_TASKS_SPAWNED set [AIO_TASKS_ACTIVE,_hvt]; publicVariable "AIO_TASKS_SPAWNED";
 
-if (AIO_DEBUG) then { 
-	[format ["fn_T1_hvt.sqf| Creating ALIVE TAOR marker at %1",_cityPOS]] call ALiVE_fnc_Dump; 
+if (AIO_DEBUG) then {
+	[format ["fn_T1_hvt.sqf| Creating ALIVE TAOR marker at %1",_cityPOS]] call ALiVE_fnc_Dump;
 	private ["_hvtMark"];
-	_cityPOS = getposATL _hvt;  
- 	_hvtMark = createMarker [format["mrk%1", random 1000], _cityPOS];  
- 	_hvtMark setMarkerType "hd_dot";  
- 	_hvtMark setMarkerColor "ColorRed";  
- 	_hvtMark setMarkerText "DEBUG: HVT Location";  
- };  
+	_cityPOS = getposATL _hvt;
+ 	_hvtMark = createMarker [format["mrk%1", random 1000], _cityPOS];
+ 	_hvtMark setMarkerType "hd_dot";
+ 	_hvtMark setMarkerColor "ColorRed";
+ 	_hvtMark setMarkerText "DEBUG: HVT Location";
+ };
 	_m = createMarker [format ["task_taor_%1",AIO_TASKS_ACTIVE], _cityPOS];
 	_m setMarkerShape "ELLIPSE";
 	_m setMarkerColor "ColorRed";
