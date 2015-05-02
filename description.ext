@@ -59,7 +59,7 @@ respawnOnStart = 0;
 class Extended_InitPost_EventHandlers {
     class Man {
         //--- Make sure everyone is happy when the mission starts
-		//init = "_this call AIO_fnc_handlerRegister";
+		init = "_this call AIO_fnc_addKilledEH";
     };
 };
 

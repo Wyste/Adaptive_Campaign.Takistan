@@ -46,6 +46,8 @@ _grp = createGroup west;
 private ["_menPOS"];
 _menPOS = getPosATL _helo;
 
+if (AIO_DEBUG) then {[format["fn_T1_rescuehelo| _menPOS is: %1, getpos helo is %2, ",_menPOS, (getPOS _helo)]]call ALIVE_fnc_dump; };
+
 _pilot = _grp createUnit ["aef_tac_aircrew",_menPOS,[],10,"FORM"];
 _psngr = _grp createUnit ["aef_tac_aircrew",_menPOS,[],10,"FORM"];
 [_pilot,_psngr] join _grp;
@@ -53,6 +55,7 @@ _helo  setVariable ["id",AIO_TASKS_ACTIVE];
 
 _men = [_pilot, _psngr];
 {
+	_x setUnitPos "DOWN";
 	_x setVariable ["AGM_AllowUnconscious", true];
 	//[_x, 1800 ] call AGM_Medical_fnc_knockOut;
 	//_x setBleedingRemaining 1800;
@@ -62,15 +65,15 @@ _men = [_pilot, _psngr];
 	_x setBehaviour "AWARE";
 	_x setCombatMode "RED";
 	removeBackpack _x;
-	if (AIO_DEBUG) then { ["fn_T1_rescuehelo.sqf| Adding 'killed' eventhandler to men"] call ALiVE_fnc_Dump; };
+	if (AIO_DEBUG) then { ["fn_T1_rescuehelo.sqf| Adding 'killed' eventhandler to our men"] call ALiVE_fnc_Dump; };
 	_x addEventHandler ["killed", {
 			[AIO_TASKS_ACTIVE,_x,"FAILED"] call AIO_fnc_helofinish;
 	}];
 } forEach _men;
 
-AGM_PSNGR = [_psngr, "Rescue Aircrew", 5, {_psngr distance AIO_CAPPAD < 20}, {[AIO_TASKS_ACTIVE,_psngr,"CHECK"] call AIO_fnc_helofinish}, false] call AGM_Interaction_fnc_addInteraction;
+AGM_PSNGR = [_psngr, "Rescue Aircrew", 5, {AGM_Interaction_Target distance AIO_CAPPAD < 20}, {[AIO_TASKS_ACTIVE,_psngr,"CHECK"] call AIO_fnc_helofinish}, false] call AGM_Interaction_fnc_addInteraction;
 
-AGM_PILOT = [_pilot, "Rescue Aircrew", 5, {_pilot distance AIO_CAPPAD < 20}, {[AIO_TASKS_ACTIVE,_pilot,"CHECK"] call AIO_fnc_helofinish}, false] call AGM_Interaction_fnc_addInteraction;
+AGM_PILOT = [_pilot, "Rescue Aircrew", 5, {AGM_Interaction_Target distance AIO_CAPPAD < 20}, {[AIO_TASKS_ACTIVE,_pilot,"CHECK"] call AIO_fnc_helofinish}, false] call AGM_Interaction_fnc_addInteraction;
 
 AIO_TASKS_SPAWNED set [AIO_TASKS_ACTIVE,[_helo,_pilot,_psngr]]; publicVariable "AIO_TASKS_SPAWNED";
 

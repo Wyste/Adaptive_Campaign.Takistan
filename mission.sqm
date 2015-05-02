@@ -4168,26 +4168,6 @@ class Mission
 			angle=55.459599;
 		};
 	};
-	class Sensors
-	{
-		items=1;
-		class Item0
-		{
-			position[]={4859.9507,106.73631,10256.652};
-			a=30;
-			b=25;
-			angle=54.7243;
-			rectangular=1;
-			activationBy="ANY";
-			repeating=1;
-			interruptable=1;
-			age="UNKNOWN";
-			name="CAPTUREAREA";
-			class Effects
-			{
-			};
-		};
-	};
 };
 class Intro
 {

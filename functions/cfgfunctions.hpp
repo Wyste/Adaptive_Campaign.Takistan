@@ -49,6 +49,8 @@ class AIO
 		class capturearea {};
 		class helofinish {};
 		class friendlytankfinish {};
+		class addKilledEH {};
+		class inteldrop {};
 	};
 };
 

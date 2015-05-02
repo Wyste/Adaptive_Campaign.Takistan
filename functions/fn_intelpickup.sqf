@@ -21,11 +21,10 @@ if (AIO_DEBUG) then {[format ["fn_intelpickup.sqf| Picking up %1 near player..."
 _ID = _intel getVariable "id";
 _pts = _intel getVariable "pts";
 if (AIO_DEBUG) then {["fn_intelpickup.sqf| Removing 1 from AIO_INTEL_SPAWNED"] call ALiVE_fnc_Dump;};
-AIO_INTEL_SPAWNED set [_ID,(AIO_INTEL_SPAWNED select _ID)-1];
-AIO_INTEL_POINTS = AIO_INTEL_POINTS + _pts;
-publicVariable "AIO_INTEL_SPAWNED";
-publicVariable "AIO_INTEL_POINTS";
 
+if (format["%1",_ID] != "DROP") then {AIO_INTEL_SPAWNED set [_ID,(AIO_INTEL_SPAWNED select _ID)-1];	publicVariable "AIO_INTEL_SPAWNED";};
+
+AIO_INTEL_POINTS = AIO_INTEL_POINTS + _pts; publicVariable "AIO_INTEL_POINTS";
 if (AIO_DEBUG) then {["fn_intelpickup.sqf| Deleting intel from world"] call ALiVE_fnc_Dump;};
 deleteVehicle _intel;
 
