@@ -11,7 +11,6 @@ ________________________________________________________________________________
 
 if (AIO_DEBUG) then {
   ["SCRIPT STARTING| fn_findbuildings.sqf"] call ALiVE_fnc_Dump;
-  ["fn_findbuildings.sqf",_this] call DEBUG_fnc_dumpParams;
 };
 
 private ["_centerPos","_radius","_buildingList","_house"];

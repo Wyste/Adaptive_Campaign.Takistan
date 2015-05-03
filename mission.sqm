@@ -4245,8 +4245,8 @@ class Mission
 			name="BLU_BASE";
 			markerType="RECTANGLE";
 			type="Empty";
-			a=300;
-			b=500;
+			a=500;
+			b=700;
 			angle=55.459599;
 		};
 	};

@@ -19,7 +19,7 @@ while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} do {
 	private ["_randcity","_cityName","_cityPOS","_cityRadA","_cityRadB","_buildings","_bldg","_itemToSpawn","_spawnPOS","_item","_m"];
 	_buildings = [];
 
-	while {count _buildings < 5} do { //--- We want a city with more then 4 buildings.
+	while {count _buildings < 2} do { //--- We want a city with more then 4 buildings.
 		//--- Select random city and it's information.
 		_randcity = [[AIO_VILLAGE,AIO_CITY]] call AIO_fnc_findLocation;
 		_cityName = _randcity select 0;
@@ -28,6 +28,7 @@ while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} do {
 		_cityRadB = _randcity select 3;
 		if(_cityRadB > _cityRadA) then { _cityRadA = _cityRadB; };
 		//--- Select buildings within the selected city
+		if (AIO_DEBUG) then {_cityRadA = (_cityRadA / 3);};
 		_buildings = [_cityPOS, _cityRadA] call AIO_fnc_getenterablehouses;
 	};
 

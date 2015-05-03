@@ -11,7 +11,6 @@ ________________________________________________________________________________
 
 if (AIO_DEBUG) then {
   ["SCRIPT STARTING| fn_getenterablehouses.sqf"] call ALiVE_fnc_Dump;
-  ["fn_getenterablehouses.sqf",_this] call DEBUG_fnc_dumpParams;
 };
 
 private ["_cityPos", "_cityRadA", "_buildings","_enterablebuildings","_b"];

@@ -39,7 +39,7 @@ while {(count _loc) >= 1} do {
 };
 
 if (AIO_DEBUG) then {
-  [format [" DEBUG | fn_getflatsecludedlocation | Found suitable location: %1", _p]] call ALiVE_fnc_Dump;};
-  ["SCRIPT STARTING| fn_getsecludedlocation.sqf"] call ALiVE_fnc_Dump;
+  [format [" DEBUG | fn_getsecludedlocation| Found suitable location: %1", _p]] call ALiVE_fnc_Dump;
+  ["SCRIPT FINISHED| fn_getsecludedlocation.sqf"] call ALiVE_fnc_Dump;
 };
 _p;

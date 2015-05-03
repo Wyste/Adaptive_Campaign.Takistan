@@ -11,7 +11,6 @@ ________________________________________________________________________________
 
 if (AIO_DEBUG) then {
   ["SCRIPT STARTING| fn_findLocation.sqf"] call ALiVE_fnc_Dump;
-  ["fn_findLocation.sqf",_this] call DEBUG_fnc_dumpParams;
 };
 
 private ["_locations", "_cityTypes", "_randomLoc", "_x", "_i", "_cities"];
