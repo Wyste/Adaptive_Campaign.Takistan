@@ -25,7 +25,9 @@ deleteVehicle _cache;
 private ["_taskName"];
 _taskName = format["TASK%1",_ID];
 //--- set task as completed
-[_taskName, "SUCCEEDED"] call bis_fnc_taskSetState;
+//[_taskName, "SUCCEEDED"] call bis_fnc_taskSetState;
+
+[[_taskName, "Succeeded"],"BIS_fnc_taskSetState", true, true] call BIS_fnc_MP;
 
 //--- Remove TAOR objective from alive.
 [AIO_TASKS_TAORS select _ID] call AIO_fnc_aliveremoveobjfromside;

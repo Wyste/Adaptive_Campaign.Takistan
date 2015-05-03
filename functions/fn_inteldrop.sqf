@@ -20,7 +20,7 @@ if (isServer || isDedicated) then {
 			[[_droppedItem,"Capture Intel","call AIO_fnc_intelpickup","red"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
 			_droppedItem setPosATL getPosATL (_this select 0);
 			["Intel Item Dropped"] call ALIVE_fnc_dump;
-			_droppedItem setVariable ["id","DROP",true];
+			_droppedItem setVariable ["id",0,true];
 			_droppedItem setVariable ["pts",5,true];
 		};
 	} else {
@@ -29,7 +29,7 @@ if (isServer || isDedicated) then {
 			_droppedItem = createVehicle [_selectedItem, _unit, [], 0, "None"];
 			[[_droppedItem,"Capture Intel","call AIO_fnc_intelpickup","red"],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
 			_droppedItem setPosATL getPosATL (_this select 0);
-			_droppedItem setVariable ["id","DROP",true];
+			_droppedItem setVariable ["id",0,true];
 			_droppedItem setVariable ["pts",5,true];
 		};
 	};

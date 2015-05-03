@@ -15,7 +15,13 @@ _task 	= AIO_T1TASKS call bis_fnc_selectRandom;
 _msg 	= _task select 0;
 _script = _task select 1;
 _color 	= _task select 2;
+_ID 	= _task select 3;
 
-[[AIO_SIGN,_msg,_script,_color],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
+if (_ID == AIO_LAST_TASK_SPAWNED) then {
+	call fn_addrandtasktosign;
+} else {
+	AIO_LAST_TASK_SPAWNED = _ID; publicVariable "AIO_LAST_TASK_SPAWNED";
+	[[AIO_SIGN,_msg,_script,_color],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;
+};
 
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_addrandtasktosign.sqf"] call ALiVE_fnc_Dump;};

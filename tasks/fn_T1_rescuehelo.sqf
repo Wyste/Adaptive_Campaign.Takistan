@@ -19,7 +19,7 @@ _target = _this select 0;
 _caller = _this select 1;
 _ID		= _this select 2;
 
-//_target removeAction _ID; //--- Remove action from sign.
+_target removeAction _ID; //--- Remove action from sign.
 
 private ["_loc","_house","_buildings","_spawnPOS","_m","_cityRadA","_cityRadB","_areaPOS"];
 
@@ -71,9 +71,11 @@ _men = [_pilot, _psngr];
 	}];
 } forEach _men;
 
-AGM_PSNGR = [_psngr, "Rescue Aircrew", 5, {AGM_Interaction_Target distance AIO_CAPPAD < 20}, {[AIO_TASKS_ACTIVE,_psngr,"CHECK"] call AIO_fnc_helofinish}, false] call AGM_Interaction_fnc_addInteraction;
 
-AGM_PILOT = [_pilot, "Rescue Aircrew", 5, {AGM_Interaction_Target distance AIO_CAPPAD < 20}, {[AIO_TASKS_ACTIVE,_pilot,"CHECK"] call AIO_fnc_helofinish}, false] call AGM_Interaction_fnc_addInteraction;
+
+AGM_PSNGR = [_psngr, "Rescue Aircrew", 5, {AGM_Interaction_Target distance AIO_CAPPAD < 20}, {[AGM_Interaction_Target,"CHECK"] call AIO_fnc_helofinish}, false] call AGM_Interaction_fnc_addInteraction;
+
+AGM_PILOT = [_pilot, "Rescue Aircrew", 5, {AGM_Interaction_Target distance AIO_CAPPAD < 20}, {[AGM_Interaction_Target,"CHECK"] call AIO_fnc_helofinish}, false] call AGM_Interaction_fnc_addInteraction;
 
 AIO_TASKS_SPAWNED set [AIO_TASKS_ACTIVE,[_helo,_pilot,_psngr]]; publicVariable "AIO_TASKS_SPAWNED";
 

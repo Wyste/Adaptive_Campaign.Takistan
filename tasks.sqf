@@ -11,9 +11,9 @@ ______________________________________________________________________________*/
 if (AIO_DEBUG) then {["Adaptive Intel | AlivE - Starting task.sqf..."] call ALiVE_fnc_Dump;};
 
 AIO_T1TASKS = [
-  ["Destroy Cache","call TASK_fnc_T1_spawncache","green"], //--- Green Text
-  ["Kill HVT","call TASK_fnc_T1_hvt","green"],
-  ["Rescue Mission","call TASK_fnc_T1_rescuehelo","green"]
+  ["Destroy Cache","call TASK_fnc_T1_spawncache","green",0], //--- Green Text
+  ["Kill HVT","call TASK_fnc_T1_hvt","green",1],
+  ["Rescue Mission","call TASK_fnc_T1_rescuehelo","green",2]
   // Base Defense
   // Use C2ISTAR / Demolition To destroy a Recruitment HQ (requires finding one via ALIVE...)
   // Friendly tank destruction / retrieval

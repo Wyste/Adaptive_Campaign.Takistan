@@ -8,7 +8,7 @@ Author | Last Modified | Description
   Wyste/BBrown | 4/20/2015 | Main Definitions - These will be used the entire life of the mission.
 ______________________________________________________________________________*/
 //--- Debug
-  AIO_DEBUG = true;
+  AIO_DEBUG = false;
   if (AIO_DEBUG) then {["SCRIPT STARTING| commond_defines.sqf"] call ALiVE_fnc_Dump;};
 
 //--- GLOBAL STATIC ITEMS
@@ -32,10 +32,12 @@ ______________________________________________________________________________*/
   AIO_TASKS_SPAWNED = [];   publicVariable "AIO_TASKS_SPAWNED";
 
   AIO_INTEL_POINTS = 0;     publicVariable "AIO_INTEL_POINTS";
-  AIO_INTEL_ACTIVE = 0;     publicVariable "AIO_INTEL_ACTIVE";
-  AIO_INTEL_COMPLETED = 0;  publicVariable "AIO_INTEL_COMPLETED";
+  AIO_INTEL_ACTIVE = 1;     publicVariable "AIO_INTEL_ACTIVE";
+  AIO_INTEL_COMPLETED = 1;  publicVariable "AIO_INTEL_COMPLETED";
   AIO_INTEL_TAORS = [];     publicVariable "AIO_INTEL_TAORS";
   AIO_INTEL_SPAWNED = [];   publicVariable "AIO_INTEL_SPAWNED";
+
+  AIO_LAST_TASK_SPAWNED = 999; publicVariable "AIO_LAST_TASK_SPAWNED";
 
   AIO_CAPTURABLE = [];      publicVariable "AIO_CAPTURABLE";
 
