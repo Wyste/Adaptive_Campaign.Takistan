@@ -3,13 +3,15 @@
  //_\\ / _` |/ _` | '_ \| __| \ \ / / _ \    / /\/ '_ \| __/ _ \ |
 /  _  \ (_| | (_| | |_) | |_| |\ V /  __/ /\/ /_ | | | | ||  __/ |
 \_/ \_/\__,_|\__,_| .__/ \__|_| \_/ \___| \____/ |_| |_|\__\___|_|
-Author | Last Modified | Description
+Author         | Last Modified | Description
+BBrown         | 05/03/2015    | Handles destroying of weapons cache
+______________________________________________________________________________________________________________________*/
+// RETURN: NOTHING
+// USAGE : [_cache] call AIO_fnc_killcache
 
-	BBrown | 4/23/2015 | Handles destroying of weapons cache
-_____________________________________________________________________________*/
 if (AIO_DEBUG) then {
 	["SCRIPT STARTING| fn_killcache.sqf"] call ALiVE_fnc_Dump;
-	[format ["Parameters| fn_killcache.sqf| : %1",_this select 0]] call ALiVE_fnc_Dump;
+	["fn_killcache.sqf",_this] call DEBUG_fnc_dumpParams;
 };
 
 private ["_cache","_pos","_x","_ID"];

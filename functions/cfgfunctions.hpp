@@ -1,79 +1,67 @@
-/*
-         ___     __          __  _            ____     __      __
-        / _ |___/ /__ ____  / /_(_)  _____   /  _/__  / /____ / /
-       / __ / _  / _ `/ _ \/ __/ / |/ / -_) _/ // _ \/ __/ -_) /
-      /_/_|_\_,_/\_,_/ .__/\__/_/|___/\__/ /___/_//_/\__/\__/_/
-        / _ | ______/_/ / _ | |_  /
-       / __ |/ __/  ' \/ __ |_/_ <
-      /_/ |_/_/ /_/_/_/_/ |_/____/
-                                                    @filename: cfgfunctions.hpp
-
-Author:
-
-	Wyste / BBrown
-
-Last modified:
-
-	4/19/2015
-
-Description:
-
-	Creates and appends AIO_FNC to each function listed.
-
-______________________________________________________*/
+/* _       _             _   _              _____       _       _
+  /_\   __| | __ _ _ __ | |_(_)_   _____    \_   \_ __ | |_ ___| |
+ //_\\ / _` |/ _` | '_ \| __| \ \ / / _ \    / /\/ '_ \| __/ _ \ |
+/  _  \ (_| | (_| | |_) | |_| |\ V /  __/ /\/ /_ | | | | ||  __/ |
+\_/ \_/\__,_|\__,_| .__/ \__|_| \_/ \___| \____/ |_| |_|\__\___|_|
+Author         | Last Modified | Description
+Wyste + BBrown | 05/03/2015    | Creates and appends AIO_FNC to each function listed.
+______________________________________________________________________________________________________________________*/
+// TODO: Needs Scrubbed for functions no longer in use.
 
 class AIO
 {
-	tag = "AIO";
-	class functions
-	{
-		file = "functions";
-		class aliveSideMsg {};
-		class gettaskdetail {};
-		class findLocation {};
-		class findbuildings {};
-		class getenterablehouses {};
-		class getsecludedlocation {};
-		class addactionmp {};
-		class getcountbldgpos {};
-		class randbldgpos {};
-		class intelpickup {};
-		class delallspawnedintelgroup {};
-		class addrandtasktosign {};
-		class createtask {};
-		class killcache {};
-		class aliveaddobjtoside {};
-		class aliveremoveobjfromside {};
-		class killhvt {};
-		class endcheck {};
-		class capturearea {};
-		class helofinish {};
-		class friendlytankfinish {};
-		class addKilledEH {};
-		class inteldrop {};
-	};
-};
+  tag = "AIO";
+  class functions
+  {
+    file = "functions";
+    class findLocation {};
+    class findbuildings {};
+    class getenterablehouses {};
+    class getsecludedlocation {};
+    class addactionmp {};
+    class getcountbldgpos {};
+    class randbldgpos {};
+    class addrandtasktosign {};
 
-class DEBUG
-{
-	tag = "DEBUG";
-	class debug
-	{
-		file = "debug";
-		class debugarray {};
-	};
+    class intelpickup {};
+    class inteldrop {};
+    class addKilledEH {};
+    class delallspawnedintelgroup {};
+        
+    class aliveSideMsg {};
+    class aliveaddobjtoside {};
+    class aliveremoveobjfromside {};    
+    
+    class killcache {};
+    class killhvt {};
+    class helofinish {};
+    class friendlytankfinish {};
+
+    class endcheck {};
+  };
 };
 
 class TASK
 {
-	tag = "TASK";
-	class TASK
-	{
-		file = "tasks";
-		class spawnintel {};
-		class T1_spawncache {};
-		class T1_hvt {};
-		class T1_rescuehelo {};
-		class T1_friendlytank {};
-	};
+  tag = "TASK";
+  class TASK
+  {
+    file = "tasks";
+    class spawnintel {};
+    class T1_spawncache {};
+    class T1_hvt {};
+    class T1_rescuehelo {};
+    class T1_friendlytank {};
+  };
+};
+
+class DEBUG
+{
+  tag = "DEBUG";
+  class debug
+  {
+    file = "debug";
+    class debugarray {};
+    class dumpParams {};
+  };
 };

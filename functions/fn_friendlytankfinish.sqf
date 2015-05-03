@@ -3,15 +3,17 @@
  //_\\ / _` |/ _` | '_ \| __| \ \ / / _ \    / /\/ '_ \| __/ _ \ |
 /  _  \ (_| | (_| | |_) | |_| |\ V /  __/ /\/ /_ | | | | ||  __/ |
 \_/ \_/\__,_|\__,_| .__/ \__|_| \_/ \___| \____/ |_| |_|\__\___|_|
-Author | Last Modified | Description
+Author         | Last Modified | Description
+BBrown         | 05/03/2015    | Handles 'Friendly Armor Retrieval/Destruction' T1 Task Ending
+______________________________________________________________________________________________________________________*/
+// RETURN: NOTHING
+// USAGE : [_object, _] call AIO_fnc_endcheck
 
-	BBrown | 4/28/2015 | Handles generation of 'Friendly Armor Retrieval/Destruction' T1 Task Ending
-_____________________________________________________________________________*/
+//TODO: RE-DO ENTIRE SCRIPT FROM SCRATCH - NO IDEA WHAT'S GOING ON.
 
 if (AIO_DEBUG) then {
 	["SCRIPT STARTING| fn_T1_friendlytankfinish.sqf"] call ALiVE_fnc_Dump;
-	[format ["Parameters| fn_T1_friendlytankfinish.sqf| : %1",_this select 0]] call ALiVE_fnc_Dump;
-	[format ["Parameters| fn_T1_friendlytankfinish.sqf| : %1",_this select 1]] call ALiVE_fnc_Dump;
+	["fn_friendlytankfinish.sqf",_this] call DEBUG_fnc_dumpParams;
 };
 
 //--- Get required information
@@ -35,4 +37,4 @@ if(_taskState == "SUCCEEDED") then {
 //--- Remove TAOR objective from alive
 [AIO_TASKS_TAORS select _ID] call AIO_fnc_aliveremoveobjfromside;
 
-if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_killcache.sqf"] call ALiVE_fnc_Dump;};
+if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_T1_friendlytankfinish.sqf"] call ALiVE_fnc_Dump;};

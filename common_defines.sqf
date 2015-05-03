@@ -3,9 +3,8 @@
  //_\\ / _` |/ _` | '_ \| __| \ \ / / _ \    / /\/ '_ \| __/ _ \ |
 /  _  \ (_| | (_| | |_) | |_| |\ V /  __/ /\/ /_ | | | | ||  __/ |
 \_/ \_/\__,_|\__,_| .__/ \__|_| \_/ \___| \____/ |_| |_|\__\___|_|
-Author | Last Modified | Description
-
-  Wyste/BBrown | 4/20/2015 | Main Definitions - These will be used the entire life of the mission.
+Author         | Last Modified | Description
+Wyste + BBrown | 05/03/2015    | Main Definitions - These will be used the entire life of the mission.
 ______________________________________________________________________________*/
 //--- Debug
   AIO_DEBUG = false;

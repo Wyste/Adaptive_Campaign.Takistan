@@ -3,11 +3,12 @@
  //_\\ / _` |/ _` | '_ \| __| \ \ / / _ \    / /\/ '_ \| __/ _ \ |
 /  _  \ (_| | (_| | |_) | |_| |\ V /  __/ /\/ /_ | | | | ||  __/ |
 \_/ \_/\__,_|\__,_| .__/ \__|_| \_/ \___| \____/ |_| |_|\__\___|_|
-Author | Last Modified | Description
-
-  Wyste | 4/20/2015 | Calls text for intel getting picked up.
-
-______________________________________________________*/
+Author         | Last Modified | Description
+Wyste          | 05/03/2015    | Creates a message on the sign of the screen using ALIVE API
+______________________________________________________________________________________________________________________*/
+// RETURN: NOTHING
+// USAGE : (ONLY PLAYER CALLING) : [_message] call AIO_fnc_alivesideMsg
+// USAGE : (ALL PLAYING PLAYERS) : [[_message],"AIO_fnc_alivesideMsg",false,true] spawn BIS_fnc_MP;
 
 private ["_title","_text","_msg"];
 

@@ -3,9 +3,8 @@
  //_\\ / _` |/ _` | '_ \| __| \ \ / / _ \    / /\/ '_ \| __/ _ \ |
 /  _  \ (_| | (_| | |_) | |_| |\ V /  __/ /\/ /_ | | | | ||  __/ |
 \_/ \_/\__,_|\__,_| .__/ \__|_| \_/ \___| \____/ |_| |_|\__\___|_|
-Author | Last Modified | Description
-
-	Wyste/BBrown | 4/20/2015 | Main Init - Starts and runs things.
+Author         | Last Modified | Description
+Wyste + BBrown | 05/03/2015    | Main Init - Starts and runs things.
 ___________________________________________________________________________*/
 
 //--- Start Init
@@ -14,7 +13,6 @@ ___________________________________________________________________________*/
 //--- DEFINES/ INCLUDES
 call compile preprocessFile "common_defines.sqf";
 call compile preprocessFile "tasks.sqf";
-
 
 //--- Disable Saving
 enableSaving [false, false];
@@ -25,7 +23,6 @@ enableSaving [false, false];
 //--- Intro
 //[] call compileFinal preprocessfilelinenumbers "intro.sqf";
 
-//--- Add things to the sign at base, starts off the mission.
 if (isServer || isDedicated) then {
   //Run this once to start the intel spawns for the mission.
   [] call compileFinal preprocessfilelinenumbers "tasks\fn_spawnintel.sqf";

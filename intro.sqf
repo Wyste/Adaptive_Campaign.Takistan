@@ -3,9 +3,8 @@
  //_\\ / _` |/ _` | '_ \| __| \ \ / / _ \    / /\/ '_ \| __/ _ \ |
 /  _  \ (_| | (_| | |_) | |_| |\ V /  __/ /\/ /_ | | | | ||  __/ |
 \_/ \_/\__,_|\__,_| .__/ \__|_| \_/ \___| \____/ |_| |_|\__\___|_|
-Author | Last Modified | Description
-
-    Wyste | 4/20/2015 | Crude intro to mission
+Author         | Last Modified | Description
+Wyste          | 05/03/2015    | Crude intro to mission
 ___________________________________________________________________________*/
 if(isDedicated) exitWith{};
 

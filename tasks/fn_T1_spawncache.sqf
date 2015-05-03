@@ -19,7 +19,7 @@ _target = _this select 0;
 _caller = _this select 1;
 _ID		= _this select 2;
 
-_target removeAction _ID; //--- Remove action from sign.
+_target removeAction _ID; //--- Remove action from sign. //spawn fnc BIS MP
 
 //--- Find a location to use
 _location = [[AIO_LgCITY,AIO_CITY,AIO_VILLAGE]] call AIO_fnc_findLocation;

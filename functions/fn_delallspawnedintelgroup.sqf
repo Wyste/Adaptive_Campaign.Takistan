@@ -3,13 +3,15 @@
  //_\\ / _` |/ _` | '_ \| __| \ \ / / _ \    / /\/ '_ \| __/ _ \ |
 /  _  \ (_| | (_| | |_) | |_| |\ V /  __/ /\/ /_ | | | | ||  __/ |
 \_/ \_/\__,_|\__,_| .__/ \__|_| \_/ \___| \____/ |_| |_|\__\___|_|
-Author | Last Modified | Description
+Author         | Last Modified | Description
+Wyste          | 05/03/2015    | Deletes all remaining items of a specified intel group
+______________________________________________________________________________________________________________________*/
+// RETURN: NOTHING
+// USAGE : [_delgroup] call AIO_fnc_delallspawnedintelgroup
 
-  Wyste | 4/26/2015 |
-_____________________________________________________________________________*/
 if (AIO_DEBUG) then {
   ["SCRIPT STARTING| fn_delallspawnedintelgroup.sqf"] call ALiVE_fnc_Dump;
-  [format ["Parameters| fn_delallspawnedintelgroup.sqf| : %1",_this select 0]] call ALiVE_fnc_Dump;
+  ["fn_delallspawnedintelgroup.sqf",_this] call DEBUG_fnc_dumpParams;
 };
 
 private ["_intelItems","_items","_delgrp"];
@@ -19,11 +21,9 @@ _intelItems = AIO_INTELDROPABLE + AIO_INTELSPAWNABLE;
 _items = nearestObjects[AIO_MAPCENTER, _intelItems, 20000];
 //Grabs all items of certain classes on the entire map.
 
-
 private ["_taskName"];
 _taskName = format["INTEL%1",_delgrp];
 //--- set task as completed
-
 
 //--- Remove TAOR objective from alive.
 [AIO_INTEL_TAORS select _delgrp] call aio_fnc_aliveremoveobjfromside;
