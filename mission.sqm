@@ -966,7 +966,7 @@ class Mission
 						items=9;
 						class Item0
 						{
-							value="false";
+							value="true";
 							parentCls="ALiVE_mil_OPCOM";
 							typeName="debug";
 						};
@@ -1602,7 +1602,7 @@ class Mission
 						items=9;
 						class Item0
 						{
-							value="false";
+							value="true";
 							parentCls="ALiVE_mil_OPCOM";
 							typeName="debug";
 						};

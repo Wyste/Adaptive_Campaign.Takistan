@@ -40,6 +40,8 @@ ______________________________________________________________________________*/
 
   AIO_CAPTURABLE = [];      publicVariable "AIO_CAPTURABLE";
 
+  AIO_ENEMY_FACTIONS = ["LOP_AM","LOP_IT"]; publicVariable "AIO_ENEMY_FACTIONS"; // these better have opcoms modules defiend within the editor
+
 //--- Define intel types
   AIO_INTELDROPABLE = ["Land_HandyCam_F","Land_SatellitePhone_F","Land_Suitcase_F","Land_Ground_sheet_folded_OPFOR_F"];
   AIO_INTELSPAWNABLE = ["Box_East_Support_F","Land_Laptop_unfolded_F","Land_Sleeping_bag_folded_F","Land_Sleeping_bag_blue_F"];

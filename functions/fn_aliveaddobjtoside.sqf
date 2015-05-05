@@ -7,22 +7,27 @@ Author         | Last Modified | Description
 Wyste + BBrown | 05/03/2015    | Adds a CIV OPCOM objective with given radius to every OPCOM instance in the server.
 ______________________________________________________________________________________________________________________*/
 // RETURN: NOTHING
-// USAGE : [_marker, _radius] call AIO_fnc_aliveaddobjtoside
-
-if (AIO_DEBUG) then {
-  ["SCRIPT STARTED| fn_aliveaddobjtoside.sqf"] call ALiVE_fnc_Dump;
-  ["fn_aliveaddobjtoside.sqf",_this] call DEBUG_fnc_dumpParams;
-};
+// USAGE : [_marker, _position, _radius, CIV | MIL, Priority] call AIO_fnc_aliveaddobjtoside
 
 if (isServer || isDedicated) then {
-  private ["_marker","_size"];
-  _marker = _this select 0;
-  _size = _this select 1;
-  private ["_objName","_pos"];
-  _objName = format["%1_obj",_marker];
-  _pos = getMarkerPos _marker;
+  if (AIO_DEBUG) then {
+    ["SCRIPT STARTED| fn_aliveaddobjtoside.sqf"] call ALiVE_fnc_Dump;
+  };
+
+  private["_objectiveParams","_factionSide","_faction","_opcom","_opcomSide","_baseObjName"];
+  _objectiveParams = _this select 0;
+  _factionSide = _this select 1;
+  _baseObjName = _objectiveParams select 0;
   {
-    [_x,"addObjective", [_objName, _pos, _size, "CIV", 1000] ] call ALiVE_fnc_OPCOM;
-  } foreach OPCOM_INSTANCES;
-};
+    _opcom = _x;
+    _opcomSide = [_opcom,"side",""] call ALiVE_fnc_HashGet;
+      if (AIO_DEBUG) then { [format["OPCOMSIDE %1",_opcomSide]] call Alive_fnc_Dump; };
+    _objectiveParams set[0, format["%1_%2",_baseObjName,_opcomSide]];
+    if( _opcomSide == _factionSide) then {
+      [_opcom, "addObjective", _objectiveParams] call ALiVE_fnc_OPCOM;
+      if (AIO_DEBUG) then { [format["Adding %1 to %2",_baseObjName,_factionSide]] call Alive_fnc_Dump; };
+    };
+  } forEach OPCOM_INSTANCES;
+
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_aliveaddobjtoside.sqf"] call ALiVE_fnc_Dump;};
+};

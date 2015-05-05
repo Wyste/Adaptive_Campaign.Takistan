@@ -30,7 +30,7 @@ class AIO
         
     class aliveSideMsg {};
     class aliveaddobjtoside {};
-    class aliveremoveobjfromside {};    
+    class aliveremoveobjectivefromsides {};
     
     class killcache {};
     class killhvt {};

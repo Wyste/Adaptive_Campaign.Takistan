@@ -75,8 +75,8 @@ while {AIO_INTEL_ACTIVE - AIO_INTEL_COMPLETED < 5} do {
 	[format["INTEL%1",AIO_INTEL_ACTIVE], true, [format ["UAVs have identified %1 as an area of interest. Recon the location and look for signs of activity or intellegence items.", _cityName], format ["Gather Intel in %1", _cityName], ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
 
 	AIO_INTEL_TAORS set [AIO_INTEL_ACTIVE,_m]; publicVariable "AIO_INTEL_TAORS";
-
-	[AIO_INTEL_TAORS select AIO_INTEL_ACTIVE,_cityRadA+100] call aio_fnc_aliveaddobjtoside;
+    [[AIO_INTEL_TAORS select AIO_INTEL_ACTIVE, _cityPOS,_cityRadA+200,"CIV",1000],"GUER"] call AIO_fnc_aliveaddobjtoside;
+	//[AIO_INTEL_TAORS select AIO_INTEL_ACTIVE,_cityRadA+100] call aio_fnc_aliveaddobjtoside;
 
 	//Increment the active up one for the next set of intels.
 	AIO_INTEL_ACTIVE = AIO_INTEL_ACTIVE + 1;  publicVariable "AIO_INTEL_ACTIVE";
