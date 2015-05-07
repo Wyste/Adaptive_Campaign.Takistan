@@ -21,7 +21,6 @@ if (isServer || isDedicated) then {
   {
     _opcom = _x;
     _opcomSide = [_opcom,"side",""] call ALiVE_fnc_HashGet;
-      if (AIO_DEBUG) then { [format["OPCOMSIDE %1",_opcomSide]] call Alive_fnc_Dump; };
     _objectiveParams set[0, format["%1_%2",_baseObjName,_opcomSide]];
     if( _opcomSide == _factionSide) then {
       [_opcom, "addObjective", _objectiveParams] call ALiVE_fnc_OPCOM;

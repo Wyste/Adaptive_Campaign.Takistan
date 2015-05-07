@@ -20,8 +20,9 @@ _x = 0;
 _pos = getPos _hvt;
 _ID = _hvt getVariable "id";
 _taskName = format["TASK%1",_ID];
+["TASKING| TASK Trying to Complete Task: %1",_taskName] call ALiVE_fnc_Dump;
 [_taskName, "SUCCEEDED"] call bis_fnc_taskSetState; //--- set task as completed
-[AIO_TASKS_TAORS select _ID] call aio_fnc_aliveremoveobjfromside; //--- Remove TAOR objective from alive.
+[AIO_TASKS_TAORS select _ID,"GUER"]  call aio_fnc_aliveremoveobjectivefromsides; //--- Remove TAOR objective from alive.
 AIO_TASKS_COMPLETED = AIO_TASKS_COMPLETED + 1; publicVariable "AIO_TASKS_COMPLETED";
 deleteVehicle _hvt;
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_killhvt.sqf"] call ALiVE_fnc_Dump;};

@@ -95,10 +95,12 @@ if (AIO_DEBUG) then { [format ["fn_T1_rescuehelo.sqf| Creating ALIVE TAOR marker
 	_m setMarkerBrush "BORDER";
 	_m setMarkerSize [_cityRadA+300,_cityRadA+300];
 	AIO_TASKS_TAORS set [AIO_TASKS_ACTIVE,_m]; publicVariable "AIO_TASKS_TAORS";
-	[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_cityRadA+400] call aio_fnc_aliveaddobjtoside;
+	[[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_spawnPOS,800,"CIV",1000],"GUER"] call aio_fnc_aliveaddobjtoside;
+
+private ["_taskName"];
+_taskName = format["TASK%1",AIO_TASKS_ACTIVE];
+[_taskName, true, [format ["Friendly UAV's have spotted a downed AH1Z. Your mission is to locate and rescue the pilot and passenger before locals capture and execute them. Hurry to prevent their death via bloodloss, bring the personnel back to base immediately for any medical attention and debriefing.", _areaName], "Rescue downed helo.", ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
 
 AIO_TASKS_ACTIVE = AIO_TASKS_ACTIVE + 1; publicVariable "AIO_TASKS_ACTIVE";
-
-[format["TASK%1",AIO_TASKS_ACTIVE], true, [format ["Friendly UAV's have spotted a downed AH1Z. Your mission is to locate and rescue the pilot and passenger before locals capture and execute them. Hurry to prevent their death via bloodloss, bring the personnel back to base immediately for any medical attention and debriefing.", _areaName], "Rescue downed helo.", ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
 
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_T1_rescuehelo.sqf"] call ALiVE_fnc_Dump;};

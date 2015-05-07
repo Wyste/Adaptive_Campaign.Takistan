@@ -26,19 +26,18 @@ _taskName = format["INTEL%1",_delgrp];
 //--- set task as completed
 
 //--- Remove TAOR objective from alive.
-[AIO_INTEL_TAORS select _delgrp] call aio_fnc_aliveremoveobjfromside;
+[AIO_INTEL_TAORS select _delgrp,"GUER"] call aio_fnc_aliveremoveobjectivefromsides;
 
 {
-  if (_x getVariable "intelgroup" == _delgrp) then {
+  if (_x getVariable "id" == _delgrp) then {
     deleteVehicle _x;
     if (AIO_DEBUG) then {
       [format ["DEBUG: Cleaned up objects of group : %1",_delgrp]] call ALiVE_fnc_Dump;
     };
   };
 } forEach _items;
-
+["TASKING| TASK Trying to Delete Task: %1",_taskName] call ALiVE_fnc_Dump;
 ["fn_delallspawnedintelgroup.sqf| : Sleeping 15 then deleting the task"] call ALiVE_fnc_Dump;
-sleep 15;
 [_taskName, true] call BIS_fnc_deleteTask;
 
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_delallspawnedintelgroup.sqf"] call ALiVE_fnc_Dump;};

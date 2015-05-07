@@ -37,12 +37,12 @@ private ["_areaCoords", "_vehicles", "_selectedVeh", "_armor", "_brief", "_title
 //--- spawn a random armored vehicle to destroy/capture
 _vehicles = ["rhsusf_m113_usarmy", "rhsusf_m1a1aimd_usarmy", "rhsusf_m1a1fep_d"];
 _selectedVeh = _vehicles select (random count _vehicles);
-_armor = createVehicle [_selectedVeh,_spawnPOS,[],0,"None"];
+_armor = createVehicle [_selectedVeh,_spawnPOS,[],200,"None"];
 _armor setDamage random 0.1;
 _areaCoords = mapGridPosition _armor;
 
 //Sets the number of tasks active
-AIO_TASKS_ACTIVE = AIO_TASKS_ACTIVE + 1; publicVariable "AIO_TASKS_ACTIVE";
+
 _armor setVariable ["id",AIO_TASKS_ACTIVE];
 //--- add the tank to the capturable array
 AIO_CAPTURABLE set [AIO_TASKS_ACTIVE,_armor];
@@ -70,7 +70,7 @@ _m setMarkerColor "ColorBlue";
 _m setMarkerBrush "BORDER";
 _m setMarkerSize [_areaRad+200,_areaRad+200];
 AIO_TASKS_TAORS set [AIO_TASKS_ACTIVE,_m]; publicVariable "AIO_TASKS_TAORS";
-[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_areaRad+400] call AIO_fnc_aliveaddobjtoside;
+	[[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_spawnPOS,500,"CIV",1000],"GUER"] call aio_fnc_aliveaddobjtoside;
 
 //--- Find out whether it's in a city or on a hill, modify the task title and description accordingly
 if(_areaType == AIO_LgCITY || _areaType == AIO_CITY) then {
@@ -85,11 +85,10 @@ if(_areaType == AIO_LgCITY || _areaType == AIO_CITY) then {
 	};
 };
 
-//--- create the task for all players
-[format["TASK%1",AIO_TASKS_ACTIVE], true, [_brief, _title, ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
+//--- create the task for all playersprivate ["_taskName"];
+_taskName = format["TASK%1",AIO_TASKS_ACTIVE];
+[_taskName, true, [_brief, _title, ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
+AIO_TASKS_ACTIVE = AIO_TASKS_ACTIVE + 1; publicVariable "AIO_TASKS_ACTIVE";
 
 if(AIO_DEBUG) then {["SCRIPT FINISHED| fn_T1_friendlytank.sqf"] call ALiVE_fnc_Dump;};
-
 sleep 3600;
-//Wait one hour... then check to see if the tank still exists in the world...  If it does - you failed, and cleanup.
-if(alive _armor) exitWith { [_armor,"FAILED"] call AIO_fnc_friendlytankfinish; };

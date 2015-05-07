@@ -26,8 +26,8 @@ _location = [[AIO_LgCITY,AIO_CITY,AIO_VILLAGE]] call AIO_fnc_findLocation;
 
 //--- Get city position and radius
 _cityPOS = _location select 1;
-_cityRadA = _location select 2;
-_cityRadB = _location select 3;
+_cityRadA = (_location select 2) + 400;
+_cityRadB = (_location select 3) + 400;
 
 if (_cityRadB > _cityRadA) then {
 	_cityRadA = _cityRadB;
@@ -78,7 +78,9 @@ _cache enableSimulationGlobal false;
 AIO_TASKS_SPAWNED set [AIO_TASKS_ACTIVE,_cache]; publicVariable "AIO_TASKS_SPAWNED";
 
 //--- Create and assign the task to the group the caller is in
-[format["TASK%1",AIO_TASKS_ACTIVE], true, [format ["Intelligence suggests that there is a stockpile of weapons located somewhere in %1. Your objective is to locate and neutralize this stockpile before the enemy can make further use of it. Expect heavy resistance", _location select 0], format ["Locate and Destroy weapons cache in %1", _location select 0], ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
+private ["_taskName"];
+_taskName = format["TASK%1",AIO_TASKS_ACTIVE];
+[_taskName, true, [format ["Intelligence suggests that there is a stockpile of weapons located somewhere in %1. Your objective is to locate and neutralize this stockpile before the enemy can make further use of it. Expect heavy resistance", _location select 0], format ["Locate and Destroy weapons cache in %1", _location select 0], ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
 
 //--- Create the TAOR objective for ALIVE and the objective marker on the map.
 if (AIO_DEBUG) then { [format ["fn_T1_spawncache.sqf| Creating ALIVE TAOR marker at %1",_cityPOS]] call ALiVE_fnc_Dump; };
@@ -95,7 +97,9 @@ if (AIO_DEBUG) then {
 	_m setMarkerBrush "BORDER";
 	_m setMarkerSize [_cityRadA+200,_cityRadA+200];
 	AIO_TASKS_TAORS set [AIO_TASKS_ACTIVE,_m]; publicVariable "AIO_TASKS_TAORS";
-	[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_cityRadA+200] call AIO_fnc_aliveaddobjtoside;
+
+	[[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_cityPOS,_cityRadA+600,"CIV",1000],"GUER"] call aio_fnc_aliveaddobjtoside;
+
 
 AIO_TASKS_ACTIVE = AIO_TASKS_ACTIVE + 1; publicVariable "AIO_TASKS_ACTIVE";
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_T1_spawncache.sqf"] call ALiVE_fnc_Dump;};

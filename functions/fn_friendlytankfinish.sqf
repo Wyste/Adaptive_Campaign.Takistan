@@ -35,6 +35,6 @@ if(_taskState == "SUCCEEDED") then {
 };
 
 //--- Remove TAOR objective from alive
-[AIO_TASKS_TAORS select _ID] call AIO_fnc_aliveremoveobjfromside;
+[AIO_TASKS_TAORS select _ID,"GUER"]  call aio_fnc_aliveremoveobjectivefromsides;
 
 if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_T1_friendlytankfinish.sqf"] call ALiVE_fnc_Dump;};

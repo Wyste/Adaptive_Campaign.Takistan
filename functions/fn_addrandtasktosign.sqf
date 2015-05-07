@@ -20,7 +20,7 @@ _color  = _task select 2;
 _ID     = _task select 3;
 
 if (_ID == AIO_LAST_TASK_SPAWNED) then {
-  call fn_addrandtasktosign;
+  call AIO_fnc_addrandtasktosign;
 } else {
   AIO_LAST_TASK_SPAWNED = _ID; publicVariable "AIO_LAST_TASK_SPAWNED";
   [[AIO_SIGN,_msg,_script,_color],"AIO_fnc_addactionmp", true, true] spawn BIS_fnc_MP;

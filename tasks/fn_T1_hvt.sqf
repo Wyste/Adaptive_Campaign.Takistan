@@ -102,10 +102,16 @@ if (AIO_DEBUG) then {
 	_m setMarkerBrush "BORDER";
 	_m setMarkerSize [_cityRadA+400,_cityRadA+400];
 	AIO_TASKS_TAORS set [AIO_TASKS_ACTIVE,_m]; publicVariable "AIO_TASKS_TAORS";
-	[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_cityRadA+400] call aio_fnc_aliveaddobjtoside;
+	[[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_cityPOS,_cityRadA+400,"CIV",1000],"GUER"] call aio_fnc_aliveaddobjtoside;
+
+private ["_taskName"];
+_taskName = format["TASK%1",AIO_TASKS_ACTIVE];
+[_taskName, true, [format ["Intelligence has indicated a HVT (High Value Target) has shown up %1. Your objective is to locate and neutralize the target before he relocates from the area.  Target is wearing green camoflague and has a wound on his right hand. Friendly forces will need to visibily identify (AGM ACTION) the target after he is eliminated.", _areaName], format ["Kill HVT %1.", _areaName], ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
 
 AIO_TASKS_ACTIVE = AIO_TASKS_ACTIVE + 1; publicVariable "AIO_TASKS_ACTIVE";
 
-[format["TASK%1",AIO_TASKS_ACTIVE], true, [format ["Intelligence has indicated a HVT (High Value Target) has shown up %1. Your objective is to locate and neutralize the target before he relocates from the area.  Target is wearing green camoflague and has a wound on his right hand. Friendly forces will need to visibily identify (AGM ACTION) the target after he is eliminated.", _areaName], format ["Kill HVT %1.", _areaName], ""], "", "CREATED", 1, true, true] call bis_fnc_setTask;
 
-if (AIO_DEBUG) then {["SCRIPT FINISHED| fn_T1_hvt.sqf"] call ALiVE_fnc_Dump;};
+if (AIO_DEBUG) then {
+	["fn_T1_hvt.sqf| TASK Created: %1",_taskName] call ALiVE_fnc_Dump;
+	["SCRIPT FINISHED| fn_T1_hvt.sqf"] call ALiVE_fnc_Dump;
+};

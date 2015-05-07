@@ -356,6 +356,7 @@ class Mission
 				items=1;
 				class Item0
 				{
+					presenceCondition="false";
 					position[]={4849.1289,98.18969,10545.841};
 					class args
 					{
@@ -966,7 +967,7 @@ class Mission
 						items=9;
 						class Item0
 						{
-							value="true";
+							value="false";
 							parentCls="ALiVE_mil_OPCOM";
 							typeName="debug";
 						};
@@ -1602,7 +1603,7 @@ class Mission
 						items=9;
 						class Item0
 						{
-							value="true";
+							value="false";
 							parentCls="ALiVE_mil_OPCOM";
 							typeName="debug";
 						};

@@ -30,6 +30,9 @@ class AIO
         
     class aliveSideMsg {};
     class aliveaddobjtoside {};
+    class alivehaltprofilesenrouteto {};
+    class alivenearestobjtoignoring {};
+    class aliverandompointnear {};
     class aliveremoveobjectivefromsides {};
     
     class killcache {};

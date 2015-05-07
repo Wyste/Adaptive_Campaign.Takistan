@@ -27,12 +27,11 @@ _helo = _objs select 0;
 _pilot = _objs  select 1;
 _psngr = _objs select 2;
 
-_ID = _helo getVariable "id";
+_ID = _caller getVariable "id";
 
 switch (_condition) do {
   case "SUCCEEDED": {
     [["Both pilots were successfully returned to base and are undergoing medical evaluation. Complete other main objectives or gather more intellegence to continue the fight!"],"AIO_fnc_alivesideMsg",false,true] spawn BIS_fnc_MP;
-    [nil,"INS_fnc_cacheKilledText", nil, false] spawn BIS_fnc_MP;
     private ["_taskName"];
     _taskName = format["TASK%1",_ID];
     AIO_TASKS_COMPLETED = AIO_TASKS_COMPLETED + 1; publicVariable "AIO_TASKS_COMPLETED";
@@ -40,18 +39,19 @@ switch (_condition) do {
     deleteVehicle _helo;
     deleteVehicle _pilot;
     deleteVehicle _psngr;
-    [AIO_TASKS_TAORS select _ID] call aio_fnc_aliveremoveobjfromside;
+    [AIO_TASKS_TAORS select _ID,"GUER"]  call aio_fnc_aliveremoveobjectivefromsides;
   };
   case "FAILED": {
     [["One of the pilots were killed in action. The helicopter crew rescue is a failure. Complete other main objectives or gather more intellegence to continue the fight!"],"AIO_fnc_alivesideMsg",false,true] spawn BIS_fnc_MP; //Tell all players what happened.
     private ["_taskName"];
     _taskName = format["TASK%1",_ID];
+    ["TASKING| TASK Trying to Complete Task: %1",_taskName] call ALiVE_fnc_Dump;
     [[_taskName, "Failed"],"BIS_fnc_taskSetState", true, true] call BIS_fnc_MP;
     sleep 5;
     deleteVehicle _helo;
     deleteVehicle _pilot;
     deleteVehicle _psngr;
-    [AIO_TASKS_TAORS select _ID] call aio_fnc_aliveremoveobjfromside;
+    [AIO_TASKS_TAORS select _ID,"GUER"]  call aio_fnc_aliveremoveobjectivefromsides;
   };
   case "CHECK": {
     if (_pilot distance AIO_CAPPAD < 50 && _psngr distance AIO_CAPPAD < 50) then {

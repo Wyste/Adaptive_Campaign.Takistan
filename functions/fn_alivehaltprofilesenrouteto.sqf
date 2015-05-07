@@ -29,11 +29,11 @@ if (isServer || isDedicated) then {
         if(_retreatToNearestHeldObj) then {
           _pos = [_profile,"position",[]] call ALiVE_fnc_HashGet;
           diag_log format ["Finding an objective to reroute %1",_profileID];
-          _results = [_pos, _objectives, [_objectiveID]] call AIO_fnc_nearestObjectiveToIgnoring;
+          _results = [_pos, _objectives, [_objectiveID]] call AIO_fnc_alivenearestObjToIgnoring;
 
           if(typename (_results select 0) != "STRING") then {
             diag_log format ["Routing %1 to %2",_profileID, [(_results select 0),"objectiveID",""] call ALiVE_fnc_HashGet];
-            _resultPos = [(_results select 1)] call AIO_fnc_randomPointNear;
+            _resultPos = [(_results select 1)] call AIO_fnc_aliverandomPointNear;
             _wp = [_resultPos, 50, "MOVE","NORMAL",25] call ALIVE_fnc_createProfileWaypoint;
             [_profile,"addWaypoint",_wp] call ALIVE_fnc_profileEntity;
           } else {
