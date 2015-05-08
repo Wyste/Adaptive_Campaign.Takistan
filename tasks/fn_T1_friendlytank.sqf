@@ -51,12 +51,15 @@ AIO_CAPTURABLE set [AIO_TASKS_ACTIVE,_armor];
 AIO_TASKS_SPAWNED set [AIO_TASKS_ACTIVE,_armor]; publicVariable "AIO_TASKS_SPAWNED";
 
 //--- add KILLED eventhandler
-_armor addEventHandler ["handledamage", {
-	(_this select 0) setdamage 1;
-	[_this select 0, "SUCCEEDED"] call AIO_fnc_friendlytankfinish; }];
+_armor addEventHandler ["killed", {
+	[_armor, "DESTROYED"] call AIO_fnc_friendlytankfinish; }
+];
+
+//--- add an AGM interaction to the tank
+AGM_TANK = [_armor, "Secure Vehicle", 5, {AGM_Interaction_Target distance AIO_CAPPAD < 20}, {[AGM_Interaction_Target,"CHECK"] call AIO_fnc_friendlytankfinish}, false] call AGM_Interaction_fnc_addInteraction;
 
 if(AIO_DEBUG) then {
-	[format ["fn_T1_rescuehelo.sqf| Creating ALIVE TAOR marker at %1",_areaPOS]] call ALiVE_fnc_Dump;
+	[format ["fn_T1_friendlytank.sqf| Creating ALIVE TAOR marker at %1",_areaPOS]] call ALiVE_fnc_Dump;
 	_vehMrk = createMarker [format["mark%1", random 1000], _spawnPOS];
 	_vehMrk setMarkerType "hd_dot";
 	_vehMrk setMarkerColor "ColorRed";
@@ -70,20 +73,21 @@ _m setMarkerColor "ColorBlue";
 _m setMarkerBrush "BORDER";
 _m setMarkerSize [_areaRad+200,_areaRad+200];
 AIO_TASKS_TAORS set [AIO_TASKS_ACTIVE,_m]; publicVariable "AIO_TASKS_TAORS";
-	[[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_spawnPOS,500,"CIV",1000],"GUER"] call aio_fnc_aliveaddobjtoside;
+[[AIO_TASKS_TAORS select AIO_TASKS_ACTIVE,_spawnPOS,500,"CIV",1000],"GUER"] call aio_fnc_aliveaddobjtoside;
 
 //--- Find out whether it's in a city or on a hill, modify the task title and description accordingly
-if(_areaType == AIO_LgCITY || _areaType == AIO_CITY) then {
-	_brief = format["Friendly UAV's have located friendly armor that appears to be abandoned near %1. The location of it's crew is unknown and enemy forces were spotted in the area, heading in it's direction. From the looks of it, they know it's there and are on their way to capture it. Your mission is to prevent the enemy from doing so at all costs. Retrieving the vehicle should be your highest priority, however you are authorized to destroy it if need be.", _areaName];
+private ["_verbage"];
 
-	_title = format["Retrieve/Destroy friendly armor near %1",_areaName];
+if (_areaType ==  AIO_HILL) then {
+	_verbage = format["at grid %1",_areaCoords];
 } else {
-	if(_areaType == AIO_HILL) then {
-		_brief = format["Friendly UAV's have located friendly armor that appears to be abandoned at grid %1. The location of it's crew is unknown and enemy forces were spotted in the area, heading in it's direction. From the looks of it, they know it's there and are on their way to capture it. Your mission is to prevent the enemy from doing so at all costs. Retrieving the vehicle should be your highest priority, however you are authorized to destroy it if need be.", _areaCoords];
+	_verbage = format["near %1",_areaName];
 
-		_title = format["Retrieve/Destroy friendly armor at %1",_areaCoords];
-	};
 };
+
+	_brief = format["Friendly UAV's have located friendly armor that appears to be abandoned %1. The location of it's crew is unknown and enemy forces were spotted in the area, heading in it's direction. From the looks of it, they know it's there and are on their way to capture it. Your mission is to prevent the enemy from doing so at all costs. Retrieving the vehicle should be your highest priority, however you are authorized to destroy it if need be.", _verbage];
+
+	_title = format["Retrieve/Destroy friendly armor %1",_verbage];
 
 //--- create the task for all playersprivate ["_taskName"];
 _taskName = format["TASK%1",AIO_TASKS_ACTIVE];
@@ -91,4 +95,3 @@ _taskName = format["TASK%1",AIO_TASKS_ACTIVE];
 AIO_TASKS_ACTIVE = AIO_TASKS_ACTIVE + 1; publicVariable "AIO_TASKS_ACTIVE";
 
 if(AIO_DEBUG) then {["SCRIPT FINISHED| fn_T1_friendlytank.sqf"] call ALiVE_fnc_Dump;};
-sleep 3600;
